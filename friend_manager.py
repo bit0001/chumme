@@ -18,7 +18,9 @@ QUERIES = {
         """,
     'insert_friend':
         """
-        INSERT INTO friends VALUES (?, ?)
+        INSERT INTO friends
+        (first_name, last_name)
+        VALUES (?, ?)
         """,
     'get_friends':
         """
