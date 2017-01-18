@@ -2,6 +2,7 @@ import sys
 
 from db_context_manager import DBContextManager
 from friend import Friend
+from util import get_absolute_path_of_file_parent_directory
 
 
 class FriendManager:
@@ -17,10 +18,31 @@ class FriendManager:
             )
             """)
 
+    def add_friend(self, friend: Friend):
+        with DBContextManager(self.db_path) as cursor:
+            cursor.execute("""
+            INSERT INTO friends VALUES
+            (?, ?)
+            """, (friend.name, friend.last_name))
+
+    def get_friends(self) -> [Friend]:
+        with DBContextManager(self.db_path) as cursor:
+            cursor.execute("""
+            SELECT * FROM friends
+            """)
+
+            friends = []
+            for row in cursor.fetchall():
+                friends.append(Friend(row[0], row[1]))
+
+        return friends
+
 
 class Menu:
     def __init__(self):
-        self.friends = []
+        self.friend_manger = FriendManager(
+            get_absolute_path_of_file_parent_directory(__file__) +
+            '/chumme.db')
         self.choices = {
             '1': self.add_friend,
             '2': self.show_friends,
@@ -55,18 +77,19 @@ class Menu:
     def add_friend(self):
         name = input("Enter friend's name: ")
         last_name = input("Enter friend's last name: ")
-        self.friends.append(Friend(name, last_name))
+        self.friend_manger.add_friend(Friend(name, last_name))
         print('Your friend {0} {1} has been added.'.format(name, last_name))
         print()
 
     def show_friends(self):
-        if not self.friends:
+        friends = self.friend_manger.get_friends()
+        if not friends:
             print('There are no friends to show.')
             print()
             return
 
         print('Friends:')
-        for friend in self.friends:
+        for friend in friends:
             print(friend)
             print()
 
