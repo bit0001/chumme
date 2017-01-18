@@ -1,6 +1,21 @@
 import sys
 
+from db_context_manager import DBContextManager
 from friend import Friend
+
+
+class FriendManager:
+    def __init__(self, db_path: str):
+        self.db_path = db_path
+
+        with DBContextManager(db_path) as cursor:
+            cursor.execute("""
+            CREATE TABLE IF NOT EXISTS friends
+            (
+              name VARCHAR(50) NOT NULL,
+              last_name VARCHAR(50) NOT NULL
+            )
+            """)
 
 
 class Menu:
