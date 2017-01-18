@@ -48,6 +48,6 @@ class FriendManager:
 
             friends = []
             for row in cursor.fetchall():
-                friends.append(Friend(row[1], row[3]))
+                friends.append(Friend(row[0], row[1], row[3]))
 
         return friends
