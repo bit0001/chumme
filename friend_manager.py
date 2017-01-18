@@ -7,8 +7,14 @@ QUERIES = {
         """
         CREATE TABLE IF NOT EXISTS friends
         (
-          name VARCHAR(50) NOT NULL,
-          last_name VARCHAR(50) NOT NULL)
+          id INTEGER PRIMARY KEY,
+          first_name VARCHAR(50) NOT NULL,
+          middle_name VARCHAR(50),
+          last_name VARCHAR(50) NOT NULL,
+          birthdate DATE,
+          email VARCHAR(320),
+          cell_phone VARCHAR(50),
+          )
         """,
     'insert_friend':
         """
