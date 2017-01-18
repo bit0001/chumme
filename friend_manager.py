@@ -13,7 +13,7 @@ QUERIES = {
           last_name VARCHAR(50) NOT NULL,
           birthdate DATE,
           email VARCHAR(320),
-          cell_phone VARCHAR(50),
+          cell_phone VARCHAR(50)
           )
         """,
     'insert_friend':
