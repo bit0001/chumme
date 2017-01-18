@@ -12,8 +12,9 @@ class Menu:
             '/chumme.db')
         self.choices = {
             '1': self.add_friend,
-            '2': self.show_friends,
-            '3': self.quit,
+            '2': self.modify_friend,
+            '3': self.show_friends,
+            '4': self.quit,
         }
 
     @staticmethod
@@ -25,8 +26,9 @@ class Menu:
     def _display_menu():
         print("""Menu:
 1. Add a friend
-2. Show friends
-3. Quit
+2. Modify friend
+3. Show friends
+4. Quit
 """)
 
 
