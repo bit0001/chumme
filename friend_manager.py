@@ -28,6 +28,11 @@ QUERIES = {
         SET {} = ?
         WHERE id = ?
         """,
+    'delete_friend':
+        """
+        DELETE FROM friends
+        WHERE id = ?
+        """,
     'get_friends':
         """
         SELECT * FROM friends
