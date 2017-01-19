@@ -67,3 +67,7 @@ class FriendManager:
         with DBContextManager(self.db_path) as cursor:
             cursor.execute(QUERIES['update_friend'].format(field),
                            (value, id))
+
+    def delete_friend(self, id: int):
+        with DBContextManager(self.db_path) as cursor:
+            cursor.execute(QUERIES['delete_friend'], (id,))
