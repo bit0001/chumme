@@ -22,6 +22,12 @@ QUERIES = {
         (first_name, last_name)
         VALUES (?, ?)
         """,
+    'update_friend':
+        """
+        UPDATE friends
+        SET {} = ?
+        WHERE id = ?
+        """,
     'get_friends':
         """
         SELECT * FROM friends
