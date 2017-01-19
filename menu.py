@@ -5,6 +5,14 @@ from friend_manager import FriendManager
 from util import get_absolute_path_of_file_parent_directory
 
 
+def new_line(f):
+    def wrapper(*args, **kwargs):
+        print()
+        f(*args, **kwargs)
+        print()
+    return wrapper
+
+
 class Menu:
     def __init__(self):
         self.friend_manger = FriendManager(
