@@ -86,16 +86,14 @@ class Menu:
             'What friend do you want to modify? ', tuple(item_id.keys()))
 
         for field in ['first name', 'middle name', 'last name', 'birthdate', 'email', 'cell phone']:
-            answer = input('Do you want to modify {}? (y/n) '.format(field))
-            if answer in ('y', 'n'):
-                if answer == 'y':
-                    value = input('Enter value for {}: '.format(field))
-                    db_field = '_'.join(field.split())
-                    self.friend_manger.\
-                        update_friend(item_id[item],db_field, value)
-                    print('{} has been updated'.format(field))
-                continue
-            print('{} is not a valid option.'.format(answer))
+            answer = self.get_valid_input(
+                'Do you want to modify {}? (y/n) '.format(field), ('y', 'n'))
+
+            if answer == 'y':
+                value = input('Enter value for {}: '.format(field))
+                db_field = '_'.join(field.split())
+                self.friend_manger.update_friend(item_id[item],db_field, value)
+                print('{} has been updated'.format(field.capitalize()))
 
     @new_line
     def delete_friend(self):
