@@ -55,12 +55,14 @@ class Menu:
 
     @new_line
     def add_friend(self):
-        first_name = input("Enter your friend's first name: ")
-        last_name = input("Enter your friend's last name: ")
-        self.friend_manger.add_friend(
-            Friend(first_name=first_name, last_name=last_name))
+        user_input = {
+            'first_name': input("Enter your friend's first name: "),
+            'last_name': input("Enter your friend's last name: "),
+        }
+        friend = Friend(**user_input)
+        self.friend_manger.add_friend(friend)
         print('Your friend {0} {1} has been added.'.
-              format(first_name, last_name))
+              format(friend.first_name, friend.last_name))
 
     @new_line
     def modify_friend(self):
