@@ -78,7 +78,7 @@ class Menu:
         item = get_valid_input(
             'What friend do you want to modify? ', tuple(item_id.keys()))
 
-        for field in ['first name', 'middle name', 'last name', 'birthdate', 'email', 'cell phone']:
+        for field in Friend.attributes:
             answer = get_valid_input(
                 'Do you want to modify {}? (y/n) '.format(field), ('y', 'n'))
 
