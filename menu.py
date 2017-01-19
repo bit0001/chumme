@@ -13,8 +13,9 @@ class Menu:
         self.choices = {
             '1': self.add_friend,
             '2': self.modify_friend,
-            '3': self.show_friends,
-            '4': self.quit,
+            '3': self.delete_friend,
+            '4': self.show_friends,
+            '5': self.quit,
         }
 
     @staticmethod
@@ -27,8 +28,9 @@ class Menu:
         print("""Menu:
 1. Add a friend
 2. Modify friend
-3. Show friends
-4. Quit
+3. Delete friend
+4. Show friends
+5. Quit
 """)
 
 
@@ -79,6 +81,9 @@ class Menu:
                     print('{} has been updated'.format(field))
                 continue
             print('{} is not a valid option.'.format(answer))
+
+    def delete_friend(self):
+        pass
 
     def show_friends(self):
         friends = self.friend_manger.get_friends()
