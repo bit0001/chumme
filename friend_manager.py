@@ -46,7 +46,7 @@ class FriendManager:
         with DBContextManager(self.db_path) as cursor:
             cursor.execute(
                 QUERIES['insert_friend'],
-                (friend.name, friend.last_name))
+                (friend.first_name, friend.last_name))
 
     def get_friends(self) -> [Friend]:
         with DBContextManager(self.db_path) as cursor:
