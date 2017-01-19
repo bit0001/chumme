@@ -53,6 +53,7 @@ class Menu:
             except KeyError:
                 print('{} is not a valid choice.'.format(choice))
 
+    @new_line
     def add_friend(self):
         first_name = input("Enter friend's first name: ")
         last_name = input("Enter friend's last name: ")
@@ -60,8 +61,8 @@ class Menu:
             Friend(first_name=first_name, last_name=last_name))
         print('Your friend {0} {1} has been added.'.
               format(first_name, last_name))
-        print()
 
+    @new_line
     def modify_friend(self):
         friends = self.friend_manger.get_friends()
         print('Friends:')
@@ -91,6 +92,7 @@ class Menu:
                 continue
             print('{} is not a valid option.'.format(answer))
 
+    @new_line
     def delete_friend(self):
         friends = self.friend_manger.get_friends()
         item_id = {}
@@ -114,20 +116,18 @@ class Menu:
                 break
 
             print('Invalid option!')
-        print()
 
+    @new_line
     def show_friends(self):
         friends = self.friend_manger.get_friends()
         if not friends:
             print('There are no friends to show.')
-            print()
             return
 
         print('Friends:')
         for i, friend in enumerate(friends):
             print('{0}. {1} {2}'.
                   format(i + 1, friend.first_name, friend.last_name))
-        print()
 
     def quit(self):
         print('Thank you for using ChumMe.')
