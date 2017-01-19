@@ -112,17 +112,19 @@ class Menu:
 
             print('Invalid option!')
 
-    @new_line
-    def show_friends(self):
-        friends = self.friend_manger.get_friends()
+    def _print_friends(self, friends: [Friend], action: str):
         if not friends:
-            print('There are no friends to show.')
+            print('There are no friends to {}.'.format(action))
             return
 
         print('Friends:')
         for i, friend in enumerate(friends):
             print('{0}. {1} {2}'.
                   format(i + 1, friend.first_name, friend.last_name))
+
+    @new_line
+    def show_friends(self):
+        self._print_friends(self.friend_manger.get_friends(), 'show')
 
     @new_line
     def quit(self):
