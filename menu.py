@@ -55,8 +55,8 @@ class Menu:
 
     @new_line
     def add_friend(self):
-        first_name = input("Enter friend's first name: ")
-        last_name = input("Enter friend's last name: ")
+        first_name = input("Enter your friend's first name: ")
+        last_name = input("Enter your friend's last name: ")
         self.friend_manger.add_friend(
             Friend(first_name=first_name, last_name=last_name))
         print('Your friend {0} {1} has been added.'.
