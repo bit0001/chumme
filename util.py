@@ -11,3 +11,14 @@ def get_valid_input(input_str: str, valid_options: tuple):
         if response in valid_options:
             return response
         print('Invalid option')
+
+
+def print_friends(friends, action):
+    if not friends:
+        print('There are no friends to {}.'.format(action))
+        return
+
+    print('Friends:')
+    for i, friend in enumerate(friends):
+        print('{0}. {1} {2}'.
+              format(i + 1, friend.first_name, friend.last_name))

@@ -2,7 +2,8 @@ import sys
 
 from friend import Friend
 from friend_manager import FriendManager
-from util import get_absolute_path_of_file_parent_directory, get_valid_input
+from util import get_absolute_path_of_file_parent_directory, get_valid_input, \
+    print_friends
 
 
 def new_line(f):
@@ -67,7 +68,7 @@ class Menu:
     @new_line
     def modify_friend(self):
         friends = self.friend_manger.get_friends()
-        self._print_friends(friends, 'modify')
+        print_friends(friends, 'modify')
 
         if not friends:
             return
@@ -90,7 +91,7 @@ class Menu:
     @new_line
     def delete_friend(self):
         friends = self.friend_manger.get_friends()
-        self._print_friends(friends, 'delete')
+        print_friends(friends, 'delete')
 
         if not friends:
             return
@@ -111,19 +112,9 @@ class Menu:
             self.friend_manger.delete_friend(item_id[item])
             print('Your friend has been deleted.')
 
-    def _print_friends(self, friends: [Friend], action: str):
-        if not friends:
-            print('There are no friends to {}.'.format(action))
-            return
-
-        print('Friends:')
-        for i, friend in enumerate(friends):
-            print('{0}. {1} {2}'.
-                  format(i + 1, friend.first_name, friend.last_name))
-
     @new_line
     def show_friends(self):
-        self._print_friends(self.friend_manger.get_friends(), 'show')
+        print_friends(self.friend_manger.get_friends(), 'show')
 
     @new_line
     def quit(self):
