@@ -95,23 +95,21 @@ class Menu:
         if not friends:
             return
 
-        item_id = {str(i + i): friend.id for i, friend in enumerate(friends)}
+        item_id = {str(i + 1): friend.id for i, friend in enumerate(friends)}
 
-        while True:
-            item = input('What friend do you want to delete? ')
-            if item in item_id.keys():
-                while True:
-                    answer = input(
-                        'Are you sure you want to delete this friend? (y/n) ')
-                    if answer in ('y', 'n'):
-                        if answer == 'y':
-                            self.friend_manger.delete_friend(item_id[item])
-                            print('Friend has been deleted.')
-                        break
-                    print('Invalid option')
-                break
+        item = get_valid_input(
+            'What friend do you want to delete? ',
+            tuple(item_id.keys())
+        )
 
-            print('Invalid option!')
+        answer = get_valid_input(
+            'Are you sure you want to delete this friend? (y/n) ',
+            ('y', 'n')
+        )
+
+        if answer == 'y':
+            self.friend_manger.delete_friend(item_id[item])
+            print('Your friend has been deleted.')
 
     def _print_friends(self, friends: [Friend], action: str):
         if not friends:
