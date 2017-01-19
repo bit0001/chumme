@@ -72,7 +72,7 @@ class Menu:
         if not friends:
             return
 
-        item_id = {str(i + i): friend.id for i, friend in enumerate(friends)}
+        item_id = {str(i + 1): friend.id for i, friend in enumerate(friends)}
 
         item = get_valid_input(
             'What friend do you want to modify? ', tuple(item_id.keys()))
