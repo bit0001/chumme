@@ -88,9 +88,10 @@ class Menu:
             return
 
         print('Friends:')
-        for friend in friends:
-            print(friend)
-            print()
+        for i, friend in enumerate(friends):
+            print('{0}. {1} {2}'.
+                  format(i + 1, friend.first_name, friend.last_name))
+        print()
 
     def quit(self):
         print('Thank you for using your ChumMe.')
