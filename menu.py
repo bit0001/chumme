@@ -129,6 +129,7 @@ class Menu:
             print('{0}. {1} {2}'.
                   format(i + 1, friend.first_name, friend.last_name))
 
+    @new_line
     def quit(self):
         print('Thank you for using ChumMe.')
         sys.exit(0)
