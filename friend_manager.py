@@ -57,3 +57,8 @@ class FriendManager:
                 friends.append(Friend(row[0], row[1], row[3]))
 
         return friends
+
+    def update_friend(self, id: int, field: str, value: str):
+        with DBContextManager(self.db_path) as cursor:
+            cursor.execute(QUERIES['update_friend'].format(field),
+                           (value, id))
