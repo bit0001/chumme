@@ -52,6 +52,34 @@ class Menu:
               format(first_name, last_name))
         print()
 
+    def modify_friend(self):
+        friends = self.friend_manger.get_friends()
+        print('Friends:')
+        valid_ids = []
+        for friend in friends:
+            valid_ids.append(str(friend.id))
+            print('{0}. {1} {2}'.format(
+                friend.id, friend.name, friend.last_name))
+
+        while True:
+            id = input('What friend do you want to modify? ')
+
+            if id in valid_ids:
+                break
+
+            print('Invalid option!')
+
+        for field in ['first name', 'middle name', 'last name', 'birthdate', 'email', 'cell phone']:
+            answer = input('Do you want to modify {}? (y/n) '.format(field))
+            if answer in ('y', 'n'):
+                if answer == 'y':
+                    value = input('Enter value for {}: '.format(field))
+                    db_field = '_'.join(field.split())
+                    self.friend_manger.update_friend(id, db_field, value)
+                    print('{} has been updated'.format(field))
+                continue
+            print('{} is not a valid option.'.format(answer))
+
     def show_friends(self):
         friends = self.friend_manger.get_friends()
         if not friends:
