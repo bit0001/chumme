@@ -57,16 +57,16 @@ class Menu:
     def modify_friend(self):
         friends = self.friend_manger.get_friends()
         print('Friends:')
-        valid_ids = []
-        for friend in friends:
-            valid_ids.append(str(friend.id))
+        item_id = {}
+        for i, friend in enumerate(friends):
+            item_id[str(i + 1)] = friend.id
             print('{0}. {1} {2}'.format(
-                friend.id, friend.name, friend.last_name))
+                i + 1, friend.first_name, friend.last_name))
 
         while True:
-            id = input('What friend do you want to modify? ')
+            item = input('What friend do you want to modify? ')
 
-            if id in valid_ids:
+            if item in item_id.keys():
                 break
 
             print('Invalid option!')
@@ -77,7 +77,8 @@ class Menu:
                 if answer == 'y':
                     value = input('Enter value for {}: '.format(field))
                     db_field = '_'.join(field.split())
-                    self.friend_manger.update_friend(id, db_field, value)
+                    self.friend_manger.\
+                        update_friend(item_id[item],db_field, value)
                     print('{} has been updated'.format(field))
                 continue
             print('{} is not a valid option.'.format(answer))
