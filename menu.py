@@ -99,7 +99,7 @@ class Menu:
         for i, friend in enumerate(friends):
             item_id[str(i + 1)] = friend.id
             print('{0}. {1} {2}'.format(
-                friend.id, friend.first_name, friend.last_name))
+                i + 1, friend.first_name, friend.last_name))
 
         while True:
             item = input('What friend do you want to delete? ')
