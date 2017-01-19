@@ -83,7 +83,29 @@ class Menu:
             print('{} is not a valid option.'.format(answer))
 
     def delete_friend(self):
-        pass
+        friends = self.friend_manger.get_friends()
+        item_id = {}
+        for i, friend in enumerate(friends):
+            item_id[str(i + 1)] = friend.id
+            print('{0}. {1} {2}'.format(
+                friend.id, friend.first_name, friend.last_name))
+
+        while True:
+            item = input('What friend do you want to delete? ')
+            if item in item_id.keys():
+                while True:
+                    answer = input(
+                        'Are you sure you want to delete this friend? (y/n) ')
+                    if answer in ('y', 'n'):
+                        if answer == 'y':
+                            self.friend_manger.delete_friend(item_id[item])
+                            print('Friend has been deleted.')
+                        break
+                    print('Invalid option')
+                break
+
+            print('Invalid option!')
+        print()
 
     def show_friends(self):
         friends = self.friend_manger.get_friends()
