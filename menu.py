@@ -2,7 +2,7 @@ import sys
 
 from friend import Friend
 from friend_manager import FriendManager
-from util import get_absolute_path_of_file_parent_directory
+from util import get_absolute_path_of_file_parent_directory, get_valid_input
 
 
 def new_line(f):
@@ -64,14 +64,6 @@ class Menu:
         print('Your friend {0} {1} has been added.'.
               format(friend.first_name, friend.last_name))
 
-    @staticmethod
-    def get_valid_input(input_str: str, valid_options: tuple):
-        while True:
-            response = input(input_str)
-            if response in valid_options:
-                return response
-            print('Invalid option')
-
     @new_line
     def modify_friend(self):
         friends = self.friend_manger.get_friends()
@@ -82,11 +74,11 @@ class Menu:
             print('{0}. {1} {2}'.format(
                 i + 1, friend.first_name, friend.last_name))
 
-        item = self.get_valid_input(
+        item = get_valid_input(
             'What friend do you want to modify? ', tuple(item_id.keys()))
 
         for field in ['first name', 'middle name', 'last name', 'birthdate', 'email', 'cell phone']:
-            answer = self.get_valid_input(
+            answer = get_valid_input(
                 'Do you want to modify {}? (y/n) '.format(field), ('y', 'n'))
 
             if answer == 'y':
