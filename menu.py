@@ -90,11 +90,12 @@ class Menu:
     @new_line
     def delete_friend(self):
         friends = self.friend_manger.get_friends()
-        item_id = {}
-        for i, friend in enumerate(friends):
-            item_id[str(i + 1)] = friend.id
-            print('{0}. {1} {2}'.format(
-                i + 1, friend.first_name, friend.last_name))
+        self._print_friends(friends, 'delete')
+
+        if not friends:
+            return
+
+        item_id = {str(i + i): friend.id for i, friend in enumerate(friends)}
 
         while True:
             item = input('What friend do you want to delete? ')
