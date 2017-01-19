@@ -82,13 +82,8 @@ class Menu:
             print('{0}. {1} {2}'.format(
                 i + 1, friend.first_name, friend.last_name))
 
-        while True:
-            item = input('What friend do you want to modify? ')
-
-            if item in item_id.keys():
-                break
-
-            print('Invalid option!')
+        item = self.get_valid_input(
+            'What friend do you want to modify? ', tuple(item_id.keys()))
 
         for field in ['first name', 'middle name', 'last name', 'birthdate', 'email', 'cell phone']:
             answer = input('Do you want to modify {}? (y/n) '.format(field))
