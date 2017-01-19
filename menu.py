@@ -44,10 +44,12 @@ class Menu:
                 print('{} is not a valid choice.'.format(choice))
 
     def add_friend(self):
-        name = input("Enter friend's name: ")
+        first_name = input("Enter friend's first name: ")
         last_name = input("Enter friend's last name: ")
-        self.friend_manger.add_friend(Friend(name=name, last_name=last_name))
-        print('Your friend {0} {1} has been added.'.format(name, last_name))
+        self.friend_manger.add_friend(
+            Friend(first_name=first_name, last_name=last_name))
+        print('Your friend {0} {1} has been added.'.
+              format(first_name, last_name))
         print()
 
     def show_friends(self):
