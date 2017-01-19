@@ -122,5 +122,5 @@ class Menu:
         print()
 
     def quit(self):
-        print('Thank you for using your ChumMe.')
+        print('Thank you for using ChumMe.')
         sys.exit(0)
