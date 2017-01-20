@@ -21,10 +21,11 @@ class Menu:
             '/chumme.db')
         self.choices = {
             '1': self.add_friend,
-            '2': self.modify_friend,
-            '3': self.delete_friend,
-            '4': self.show_friends,
-            '5': self.quit,
+            '2': self.display_friend_info,
+            '3': self.modify_friend,
+            '4': self.delete_friend,
+            '5': self.show_friends,
+            '6': self.quit,
         }
 
     @staticmethod
