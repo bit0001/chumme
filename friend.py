@@ -20,4 +20,15 @@ class Friend:
         self.cell_phone = cell_phone
 
     def __repr__(self):
-        return 'Name: {0}\nLast Name: {1}'.format(self.first_name, self.last_name)
+        return """First name: {0}
+Middle name: {1}
+Last Name: {2}
+Birthdate: {3}
+Email: {4}
+Cell phone: {5}
+            """.format(self.first_name,
+                       self.middle_name,
+                       self.last_name,
+                       self.birthdate,
+                       self.email,
+                       self.cell_phone)
