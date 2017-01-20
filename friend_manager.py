@@ -59,7 +59,12 @@ class FriendManager:
 
             friends = []
             for row in cursor.fetchall():
-                friends.append(Friend(row[0], row[1], row[3]))
+                parameters = {
+                    'id': row[0],
+                    'first_name': row[1],
+                    'last_name': row[3],
+                }
+                friends.append(Friend(**parameters))
 
         return friends
 
