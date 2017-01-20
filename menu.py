@@ -67,6 +67,23 @@ class Menu:
               format(friend.first_name, friend.last_name))
 
     @new_line
+    def display_friend_info(self):
+        friends = self.friend_manger.get_friends()
+        print_friends(friends, 'modify')
+
+        if not friends:
+            return
+
+        item_friend = {str(i + 1): friend for i, friend in enumerate(friends)}
+
+        item = get_valid_input(
+            "What friend's info do you want to display? ",
+            tuple(item_friend.keys())
+        )
+
+        print(item_friend[item])
+
+    @new_line
     def modify_friend(self):
         friends = self.friend_manger.get_friends()
         print_friends(friends, 'modify')
