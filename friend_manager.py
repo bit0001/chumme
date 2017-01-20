@@ -62,7 +62,11 @@ class FriendManager:
                 parameters = {
                     'id': row[0],
                     'first_name': row[1],
+                    'middle_name': row[2],
                     'last_name': row[3],
+                    'birthdate': row[4],
+                    'email': row[5],
+                    'cell_phone': row[6],
                 }
                 friends.append(Friend(**parameters))
 
