@@ -136,7 +136,10 @@ class Menu:
             item_id[item], interest_id
         )
 
-        print('Interest "{}" has been added successfully.'.format(interest))
+        print('Interest "{}" has been added successfully to {} {}'
+              '.'.format(interest,
+                         friends[int(item) - 1].first_name,
+                         friends[int(item) - 1].last_name))
 
     def get_position_friend_id_dict(self, friends):
         return {str(i + 1): friend.id for i, friend in enumerate(friends)}
