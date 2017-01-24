@@ -16,6 +16,11 @@ QUERIES = {
     VALUES
     (?)
     """,
+    'select_interest_id':
+    """
+    SELECT id FROM interests
+    WHERE interest = ?
+    """
 }
 
 
@@ -26,6 +31,14 @@ class InterestManager:
         with DBContextManager(db_path) as cursor:
             cursor.execute(QUERIES['create_interests_table'])
 
-    def add_interest(self, interest: str):
-        with DBContextManager(self.db_path) as cursor:
-            cursor.execute(QUERIES['insert_interest'], (interest,))
+    def add_interest(self, interest: str) -> int:
+        try:
+            with DBContextManager(self.db_path) as cursor:
+                cursor.execute(QUERIES['insert_interest'], (interest,))
+        except:
+            pass
+        finally:
+            with DBContextManager(self.db_path) as cursor:
+                cursor.execute(QUERIES['select_interest_id'],
+                           (interest,))
+                return cursor.fetchone()[0]
