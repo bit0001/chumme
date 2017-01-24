@@ -38,10 +38,11 @@ class Menu:
         print("""Menu:
 1. Add a friend
 2. Display friend's info
-3. Modify friend
-4. Delete friend
-5. Show friends
-6. Quit
+3. Modify friend's info
+4. Add friend's interests
+5. Delete friend
+6. Show friends
+7. Quit
 """)
 
 
