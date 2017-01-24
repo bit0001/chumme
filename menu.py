@@ -22,10 +22,10 @@ class Menu:
         self.choices = {
             '1': self.add_friend,
             '2': self.display_friend_info,
-            '3': self.modify_friend,
             '4': self.delete_friend,
             '5': self.show_friends,
             '6': self.quit,
+            '3': self.modify_friend_info,
         }
 
     @staticmethod
@@ -86,7 +86,7 @@ class Menu:
         print(item_friend[item])
 
     @new_line
-    def modify_friend(self):
+    def modify_friend_info(self):
         friends = self.friend_manger.get_friends()
         print_friends(friends, 'modify')
 
