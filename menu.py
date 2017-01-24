@@ -1,7 +1,9 @@
 import sys
 
 from friend import Friend
+from friend_interest_manager import FriendInterestManager
 from friend_manager import FriendManager
+from interest_manager import InterestManager
 from util import get_absolute_path_of_file_parent_directory, get_valid_input, \
     print_friends
 
@@ -16,9 +18,12 @@ def new_line(f):
 
 class Menu:
     def __init__(self):
-        self.friend_manger = FriendManager(
-            get_absolute_path_of_file_parent_directory(__file__) +
-            '/chumme.db')
+        db_path = get_absolute_path_of_file_parent_directory(__file__) +\
+                  '/chumme.db'
+
+        self.friend_manger = FriendManager(db_path)
+        self.interest_manager = InterestManager(db_path)
+        self.friend_interest_manager = FriendInterestManager(db_path)
         self.choices = {
             '1': self.add_friend,
             '2': self.display_friend_info,
@@ -94,7 +99,7 @@ class Menu:
         if not friends:
             return
 
-        item_id = {str(i + 1): friend.id for i, friend in enumerate(friends)}
+        item_id = self.get_position_friend_id_dict(friends)
 
         item = get_valid_input(
             'What friend do you want to modify? ', tuple(item_id.keys()))
@@ -110,7 +115,31 @@ class Menu:
                 print('{} has been updated'.format(field.capitalize()))
 
     def add_friend_interests(self):
-        pass
+        friends = self.friend_manger.get_friends()
+        print_friends(friends, 'add interests')
+
+        if not friends:
+            return
+
+        item_id = self.get_position_friend_id_dict(friends)
+
+        item = get_valid_input(
+            'What friend you do want to add interests? ',
+            tuple(item_id.keys())
+        )
+
+        interest = input('What interest do you want to add? ')
+
+        interest_id = self.interest_manager.add_interest(interest)
+
+        self.friend_interest_manager.add_friend_interest_ids(
+            item_id[item], interest_id
+        )
+
+        print('Interest "{}" has been added successfully.'.format(interest))
+
+    def get_position_friend_id_dict(self, friends):
+        return {str(i + 1): friend.id for i, friend in enumerate(friends)}
 
     @new_line
     def delete_friend(self):
@@ -120,7 +149,7 @@ class Menu:
         if not friends:
             return
 
-        item_id = {str(i + 1): friend.id for i, friend in enumerate(friends)}
+        item_id = self.get_position_friend_id_dict(friends)
 
         item = get_valid_input(
             'What friend do you want to delete? ',
