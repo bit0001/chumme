@@ -22,10 +22,11 @@ class Menu:
         self.choices = {
             '1': self.add_friend,
             '2': self.display_friend_info,
-            '4': self.delete_friend,
-            '5': self.show_friends,
-            '6': self.quit,
             '3': self.modify_friend_info,
+            '4': self.add_friend_interests,
+            '5': self.delete_friend,
+            '6': self.show_friends,
+            '7': self.quit,
         }
 
     @staticmethod
@@ -107,6 +108,9 @@ class Menu:
                 db_field = '_'.join(field.split())
                 self.friend_manger.update_friend(item_id[item],db_field, value)
                 print('{} has been updated'.format(field.capitalize()))
+
+    def add_friend_interests(self):
+        pass
 
     @new_line
     def delete_friend(self):
