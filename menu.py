@@ -80,17 +80,17 @@ class Menu:
         friends = self.friend_manger.get_friends()
         print_friends(friends, 'display')
 
-        if not friends:
-            return
+        if friends:
+            friend = self._get_friend(friends)
+            print(friend)
 
+    def _get_friend(self, friends: [Friend]) -> Friend:
         item_friend = {str(i + 1): friend for i, friend in enumerate(friends)}
-
         item = get_valid_input(
             "What friend's info do you want to display? ",
             tuple(item_friend.keys())
         )
-
-        print(item_friend[item])
+        return item_friend[item]
 
     @new_line
     def modify_friend_info(self):
