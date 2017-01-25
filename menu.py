@@ -61,7 +61,7 @@ class Menu:
             try:
                 self.choices[choice]()
             except KeyError:
-                print('{} is not a valid choice.'.format(choice))
+                print('"{}" is not a valid choice.'.format(choice))
 
     @new_line
     def add_friend(self):
