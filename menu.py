@@ -98,10 +98,7 @@ class Menu:
         print_friends(friends, 'modify')
 
         if friends:
-            item_id = self.get_position_friend_id_dict(friends)
-
-            item = get_valid_input(
-                'What friend do you want to modify? ', tuple(item_id.keys()))
+            friend = self._get_friend(friends)
 
             for field in Friend.attributes:
                 answer = get_valid_input(
@@ -111,7 +108,7 @@ class Menu:
                 if answer == 'y':
                     value = input('Enter value for {}: '.format(field))
                     db_field = '_'.join(field.split())
-                    self.friend_manger.update_friend(item_id[item], db_field,
+                    self.friend_manger.update_friend(friend.id, db_field,
                                                      value)
                     print('{} has been updated'.format(field.capitalize()))
 
@@ -119,28 +116,19 @@ class Menu:
         friends = self.friend_manger.get_friends()
         print_friends(friends, 'add interests')
 
-        if not friends:
-            return
+        if friends:
+            friend = self._get_friend(friends)
 
-        item_id = self.get_position_friend_id_dict(friends)
+            interest = input('What interest do you want to add? ')
 
-        item = get_valid_input(
-            'What friend you do want to add interests? ',
-            tuple(item_id.keys())
-        )
+            interest_id = self.interest_manager.add_interest(interest)
 
-        interest = input('What interest do you want to add? ')
+            self.friend_interest_manager.add_friend_interest_ids(
+                friend.id, interest_id
+            )
 
-        interest_id = self.interest_manager.add_interest(interest)
-
-        self.friend_interest_manager.add_friend_interest_ids(
-            item_id[item], interest_id
-        )
-
-        print('Interest "{}" has been added successfully to {} {}'
-              '.'.format(interest,
-                         friends[int(item) - 1].first_name,
-                         friends[int(item) - 1].last_name))
+            print('Interest "{}" has been added successfully to {}.'
+                  .format(interest, friend.full_name))
 
     def get_position_friend_id_dict(self, friends):
         return {str(i + 1): friend.id for i, friend in enumerate(friends)}
