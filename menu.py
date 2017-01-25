@@ -19,7 +19,7 @@ def new_line(f):
 class Menu:
     def __init__(self):
         db_path = '{}/{}'.format(
-            get_absolute_path_of_file_parent_directory(__file__),
+            get_absolute_path_of_parent_directory(__file__),
             'chumme.db'
         )
 
