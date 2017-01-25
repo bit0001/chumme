@@ -110,14 +110,11 @@ class Menu:
 
         if friends:
             friend = self._get_friend(friends)
-
             interest = input('What interest do you want to add? ')
-
             interest_id = self.interest_manager.add_interest(interest)
 
             self.friend_interest_manager.add_friend_interest_ids(
-                friend.id, interest_id
-            )
+                friend.id, interest_id)
 
             print('Interest "{}" has been added successfully to {}.'
                   .format(interest, friend.full_name))
@@ -129,12 +126,10 @@ class Menu:
 
         if friends:
             friend = self._get_friend(friends)
-
             answer = get_valid_input(
                 'Are you sure you want to delete your friend {}? (y/n) '.
                     format(friend.full_name),
-                ('y', 'n')
-            )
+                ('y', 'n'))
 
             if answer == 'y':
                 self.friend_manger.delete_friend(friend.id)
