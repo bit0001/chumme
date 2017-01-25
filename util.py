@@ -26,6 +26,15 @@ def print_friends(friends, action):
               format(i + 1, friend.full_name))
 
 
+def get_friend(friends):
+    item_friend = {str(i + 1): friend for i, friend in enumerate(friends)}
+    item = get_valid_input(
+        "What friend's info do you want to display? ",
+        tuple(item_friend.keys())
+    )
+    return item_friend[item]
+
+
 def new_line(f):
     def wrapper(*args, **kwargs):
         print()

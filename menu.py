@@ -4,7 +4,7 @@ from friend import Friend
 from friend_interest_manager import FriendInterestManager
 from friend_manager import FriendManager
 from interest_manager import InterestManager
-from util import get_absolute_path_of_parent_directory, new_line
+from util import get_absolute_path_of_parent_directory, new_line, get_friend
 from util import print_friends, get_valid_input
 
 
@@ -45,7 +45,6 @@ class Menu:
 7. Quit
 """)
 
-
     def run(self):
         self._display_welcome_message()
         while True:
@@ -73,16 +72,8 @@ class Menu:
         print_friends(friends, 'display')
 
         if friends:
-            friend = self._get_friend(friends)
+            friend = get_friend(friends)
             print(friend)
-
-    def _get_friend(self, friends: [Friend]) -> Friend:
-        item_friend = {str(i + 1): friend for i, friend in enumerate(friends)}
-        item = get_valid_input(
-            "What friend's info do you want to display? ",
-            tuple(item_friend.keys())
-        )
-        return item_friend[item]
 
     @new_line
     def modify_friend_info(self):
@@ -90,7 +81,7 @@ class Menu:
         print_friends(friends, 'modify')
 
         if friends:
-            friend = self._get_friend(friends)
+            friend = get_friend(friends)
 
             for field in Friend.attributes:
                 answer = get_valid_input(
@@ -109,7 +100,7 @@ class Menu:
         print_friends(friends, 'add interests')
 
         if friends:
-            friend = self._get_friend(friends)
+            friend = get_friend(friends)
             interest = input('What interest do you want to add? ')
             interest_id = self.interest_manager.add_interest(interest)
 
@@ -125,10 +116,10 @@ class Menu:
         print_friends(friends, 'delete')
 
         if friends:
-            friend = self._get_friend(friends)
+            friend = get_friend(friends)
             answer = get_valid_input(
-                'Are you sure you want to delete your friend {}? (y/n) '.
-                    format(friend.full_name),
+                'Are you sure you want to delete '
+                'your friend {}? (y/n) '.format(friend.full_name),
                 ('y', 'n'))
 
             if answer == 'y':
