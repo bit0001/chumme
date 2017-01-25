@@ -5,12 +5,14 @@ def get_absolute_path_of_file_parent_directory(file_name: str) -> str:
     return os.sep.join(__file__.split(os.sep)[:-1])
 
 
-def get_valid_input(input_str: str, valid_options: tuple):
+def get_valid_input(input_str: str,
+                    valid_options: tuple,
+                    invalid_option_message: str='Invalid option') -> str:
     while True:
         response = input(input_str)
         if response in valid_options:
             return response
-        print('Invalid option')
+        print(invalid_option_message)
 
 
 def print_friends(friends, action):
