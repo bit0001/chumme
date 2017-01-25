@@ -97,23 +97,23 @@ class Menu:
         friends = self.friend_manger.get_friends()
         print_friends(friends, 'modify')
 
-        if not friends:
-            return
+        if friends:
+            item_id = self.get_position_friend_id_dict(friends)
 
-        item_id = self.get_position_friend_id_dict(friends)
+            item = get_valid_input(
+                'What friend do you want to modify? ', tuple(item_id.keys()))
 
-        item = get_valid_input(
-            'What friend do you want to modify? ', tuple(item_id.keys()))
+            for field in Friend.attributes:
+                answer = get_valid_input(
+                    'Do you want to modify {}? (y/n) '.format(field),
+                    ('y', 'n'))
 
-        for field in Friend.attributes:
-            answer = get_valid_input(
-                'Do you want to modify {}? (y/n) '.format(field), ('y', 'n'))
-
-            if answer == 'y':
-                value = input('Enter value for {}: '.format(field))
-                db_field = '_'.join(field.split())
-                self.friend_manger.update_friend(item_id[item],db_field, value)
-                print('{} has been updated'.format(field.capitalize()))
+                if answer == 'y':
+                    value = input('Enter value for {}: '.format(field))
+                    db_field = '_'.join(field.split())
+                    self.friend_manger.update_friend(item_id[item], db_field,
+                                                     value)
+                    print('{} has been updated'.format(field.capitalize()))
 
     def add_friend_interests(self):
         friends = self.friend_manger.get_friends()
