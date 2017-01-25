@@ -20,5 +20,5 @@ def print_friends(friends, action):
 
     print('Friends:')
     for i, friend in enumerate(friends):
-        print('{0}. {1} {2}'.
-              format(i + 1, friend.first_name, friend.last_name))
+        print('{0}. {1}'.
+              format(i + 1, friend.full_name))
