@@ -4,8 +4,8 @@ from friend import Friend
 from friend_interest_manager import FriendInterestManager
 from friend_manager import FriendManager
 from interest_manager import InterestManager
-from util import get_absolute_path_of_file_parent_directory, get_valid_input, \
-    print_friends
+from util import get_absolute_path_of_parent_directory
+from util import print_friends, get_valid_input
 
 
 def new_line(f):
