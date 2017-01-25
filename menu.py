@@ -130,9 +130,6 @@ class Menu:
             print('Interest "{}" has been added successfully to {}.'
                   .format(interest, friend.full_name))
 
-    def get_position_friend_id_dict(self, friends):
-        return {str(i + 1): friend.id for i, friend in enumerate(friends)}
-
     @new_line
     def delete_friend(self):
         friends = self.friend_manger.get_friends()
