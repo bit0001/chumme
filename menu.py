@@ -71,8 +71,7 @@ class Menu:
         }
         friend = Friend(**user_input)
         self.friend_manger.add_friend(friend)
-        print('Your friend {0} {1} has been added.'.
-              format(friend.first_name, friend.last_name))
+        print('Your friend {} has been added.'.format(friend.full_name))
 
     @new_line
     def display_friend_info(self):
