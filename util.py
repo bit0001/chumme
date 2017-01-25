@@ -24,3 +24,11 @@ def print_friends(friends, action):
     for i, friend in enumerate(friends):
         print('{0}. {1}'.
               format(i + 1, friend.full_name))
+
+
+def new_line(f):
+    def wrapper(*args, **kwargs):
+        print()
+        f(*args, **kwargs)
+        print()
+    return wrapper
