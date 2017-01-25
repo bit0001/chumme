@@ -150,24 +150,22 @@ class Menu:
         friends = self.friend_manger.get_friends()
         print_friends(friends, 'delete')
 
-        if not friends:
-            return
+        if friends:
+            item_id = self.get_position_friend_id_dict(friends)
 
-        item_id = self.get_position_friend_id_dict(friends)
+            item = get_valid_input(
+                'What friend do you want to delete? ',
+                tuple(item_id.keys())
+            )
 
-        item = get_valid_input(
-            'What friend do you want to delete? ',
-            tuple(item_id.keys())
-        )
+            answer = get_valid_input(
+                'Are you sure you want to delete this friend? (y/n) ',
+                ('y', 'n')
+            )
 
-        answer = get_valid_input(
-            'Are you sure you want to delete this friend? (y/n) ',
-            ('y', 'n')
-        )
-
-        if answer == 'y':
-            self.friend_manger.delete_friend(item_id[item])
-            print('Your friend has been deleted.')
+            if answer == 'y':
+                self.friend_manger.delete_friend(item_id[item])
+                print('Your friend has been deleted.')
 
     @new_line
     def show_friends(self):
