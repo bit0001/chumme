@@ -19,6 +19,16 @@ class Friend:
         self.email = email
         self.cell_phone = cell_phone
 
+    @property
+    def full_name(self):
+        if self.middle_name is None:
+            return '{} {}'.format(self.first_name, self.last_name)
+
+        return '{} {} {}'.format(
+            self.first_name,
+            self.middle_name,
+            self.last_name)
+
     def __repr__(self):
         return """First name: {0}
 Middle name: {1}
