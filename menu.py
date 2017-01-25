@@ -76,7 +76,7 @@ class Menu:
     @new_line
     def display_friend_info(self):
         friends = self.friend_manger.get_friends()
-        print_friends(friends, 'modify')
+        print_friends(friends, 'display')
 
         if not friends:
             return
