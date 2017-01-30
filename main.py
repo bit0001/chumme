@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-from menu import Menu
+from gui import ChumMeApp
 
 
 def main():
-    Menu().run()
+    ChumMeApp().run()
 
 
 if __name__ == '__main__':
