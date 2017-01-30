@@ -3,5 +3,52 @@ ChumMeRoot:
     FriendList
 
 <FriendList>:
+    orientation: 'vertical'
+    Button:
+        height: '40dp'
+        size_hint_y: None
+        text: 'Add Friend'
+        on_press: app.root.show_add_friend_form()
     ListView:
         item_strings: root.get_friends()
+
+
+<AddFriendFormInput@BoxLayout>
+    height: '30dp'
+    size_hint_y: None
+
+
+<AddFriendForm>:
+    orientation: 'vertical'
+    AddFriendFormInput:
+        Label:
+            text: 'First Name'
+        TextInput:
+    AddFriendFormInput:
+        Label:
+            text: 'Middle Name'
+        TextInput:
+    AddFriendFormInput:
+        Label:
+            text: 'Last Name'
+        TextInput:
+    AddFriendFormInput:
+        Label:
+            text: 'Birthdate'
+        TextInput:
+    AddFriendFormInput:
+        Label:
+            text: 'Email'
+        TextInput:
+    AddFriendFormInput:
+        Label:
+            text: 'Cell Phone'
+        TextInput:
+    BoxLayout:
+    BoxLayout:
+        height: '40dp'
+        size_hint_y: None
+        Button:
+            text: 'Cancel'
+        Button:
+            text: 'Add friend'

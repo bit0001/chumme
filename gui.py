@@ -1,7 +1,6 @@
 import os
 
 from kivy.app import App
-from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
 
 from friend_manager import FriendManager
@@ -16,7 +15,14 @@ def get_friend_manager():
 
 
 class ChumMeRoot(BoxLayout):
+    def show_add_friend_form(self):
+        self.clear_widgets()
+        self.add_widget(AddFriendForm())
+
+
+class AddFriendForm(BoxLayout):
     pass
+
 
 
 class FriendList(BoxLayout):
@@ -34,4 +40,4 @@ def main():
 
 
 if __name__ == '__main__':
-    ChumMeApp().run()
+    main()
