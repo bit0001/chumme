@@ -15,14 +15,14 @@ def get_friend_manager():
     return FriendManager(db_path)
 
 
-class FriendList(BoxLayout):
-    friend_list = ObjectProperty()
+class ChumMeRoot(BoxLayout):
+    pass
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.friend_list.item_strings = [
-            friend.full_name for friend in get_friend_manager().get_friends()
-            ]
+
+class FriendList(BoxLayout):
+    def get_friends(self):
+        return [friend.full_name
+                for friend in get_friend_manager().get_friends()]
 
 
 class ChumMeApp(App):
