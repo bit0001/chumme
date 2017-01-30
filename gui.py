@@ -1,14 +1,15 @@
+import os
+
 from kivy.app import App
 from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
 
 from friend_manager import FriendManager
-from util import get_absolute_path_of_parent_directory
 
 
 def get_friend_manager():
     db_path = '{}/{}'.format(
-        get_absolute_path_of_parent_directory(__file__),
+        os.path.dirname(os.path.abspath(__file__)),
         'chumme.db'
     )
     return FriendManager(db_path)
@@ -26,3 +27,11 @@ class FriendList(BoxLayout):
 
 class ChumMeApp(App):
     pass
+
+
+def main():
+    ChumMeApp().run()
+
+
+if __name__ == '__main__':
+    ChumMeApp().run()

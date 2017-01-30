@@ -1,10 +1,3 @@
-import os
-
-
-def get_absolute_path_of_parent_directory(file_name: str) -> str:
-    return os.sep.join(file_name.split(os.sep)[:-1])
-
-
 def get_valid_input(input_str: str,
                     valid_options: tuple,
                     invalid_option_message: str='Invalid option') -> str:

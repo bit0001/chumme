@@ -1,19 +1,22 @@
+import os
 import sys
 
 from friend import Friend
 from friend_interest_manager import FriendInterestManager
 from friend_manager import FriendManager
 from interest_manager import InterestManager
-from util import get_absolute_path_of_parent_directory, new_line, get_friend
-from util import print_friends, get_valid_input
+from util import new_line, get_friend, print_friends, get_valid_input
 
 
 class Menu:
     def __init__(self):
+        print(__file__)
         db_path = '{}/{}'.format(
-            get_absolute_path_of_parent_directory(__file__),
+            os.path.dirname(os.path.abspath(__file__)),
             'chumme.db'
         )
+
+        print(db_path)
 
         self.friend_manger = FriendManager(db_path)
         self.interest_manager = InterestManager(db_path)
@@ -134,3 +137,11 @@ class Menu:
     def quit(self):
         print('Thank you for using ChumMe.')
         sys.exit(0)
+
+
+def main():
+    Menu().run()
+
+
+if __name__ == '__main__':
+    main()
