@@ -1,8 +1,10 @@
 import os
 
 from kivy.app import App
+from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
 
+from friend import Friend
 from friend_manager import FriendManager
 
 
@@ -15,13 +17,27 @@ def get_friend_manager():
 
 
 class ChumMeRoot(BoxLayout):
+    add_friend_form = ObjectProperty()
+
     def show_add_friend_form(self):
         self.clear_widgets()
-        self.add_widget(AddFriendForm())
+        self.add_friend_form = AddFriendForm()
+        self.add_widget(self.add_friend_form)
+
+    def show_friend_list(self):
+        self.clear_widgets()
+        self.add_widget(FriendList())
+
+    def add_friend(self):
+        friend = Friend(first_name=self.add_friend_form.first_name_input.text,
+                        last_name=self.add_friend_form.last_name_input.text)
+        get_friend_manager().add_friend(friend)
+        self.show_friend_list()
 
 
 class AddFriendForm(BoxLayout):
-    pass
+    first_name_input = ObjectProperty()
+    last_name_input = ObjectProperty()
 
 
 

@@ -20,10 +20,13 @@ ChumMeRoot:
 
 <AddFriendForm>:
     orientation: 'vertical'
+    first_name_input: first_name
+    last_name_input: last_name
     AddFriendFormInput:
         Label:
             text: 'First Name'
         TextInput:
+            id: first_name
     AddFriendFormInput:
         Label:
             text: 'Middle Name'
@@ -32,6 +35,7 @@ ChumMeRoot:
         Label:
             text: 'Last Name'
         TextInput:
+            id: last_name
     AddFriendFormInput:
         Label:
             text: 'Birthdate'
@@ -50,5 +54,7 @@ ChumMeRoot:
         size_hint_y: None
         Button:
             text: 'Cancel'
+            on_press: app.root.show_friend_list()
         Button:
             text: 'Add friend'
+            on_press: app.root.add_friend()
