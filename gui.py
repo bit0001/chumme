@@ -42,6 +42,7 @@ class AddFriendForm(BoxLayout):
 
 
 class FriendList(BoxLayout):
+    friend_list = ObjectProperty()
     def get_friends(self):
         return [friend.full_name
                 for friend in get_friend_manager().get_friends()]

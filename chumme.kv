@@ -1,15 +1,19 @@
+#: import ListAdapter kivy.adapters.listadapter.ListAdapter
+
 ChumMeRoot:
 <ChumMeRoot>:
     FriendList
 
 <FriendList>:
     orientation: 'vertical'
+    friend_list: friend_list_view
     Button:
         height: '40dp'
         size_hint_y: None
         text: 'Add Friend'
         on_press: app.root.show_add_friend_form()
     ListView:
+        id: friend_list_view
         item_strings: root.get_friends()
 
 
