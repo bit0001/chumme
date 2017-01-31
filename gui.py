@@ -27,6 +27,9 @@ class ChumMeRoot(BoxLayout):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.update_friend_list_view()
+
+    def update_friend_list_view(self):
         friend_list = self.friend_list_view.friend_list
         friend_list.adapter.data.clear()
         friend_list.adapter.data.extend(get_friends())
@@ -39,7 +42,8 @@ class ChumMeRoot(BoxLayout):
 
     def show_friend_list(self):
         self.clear_widgets()
-        self.add_widget(FriendList())
+        self.update_friend_list_view()
+        self.add_widget(self.friend_list_view)
 
     def add_friend(self):
         friend = Friend(first_name=self.add_friend_form.first_name_input.text,
