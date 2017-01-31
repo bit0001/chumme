@@ -1,7 +1,7 @@
 import os
 
 from kivy.app import App
-from kivy.properties import ObjectProperty
+from kivy.properties import ObjectProperty, ListProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.listview import ListItemButton
 
@@ -17,7 +17,7 @@ def get_friend_manager():
     return FriendManager(db_path)
 
 def get_friends():
-    return [friend.full_name
+    return [(friend.full_name,)
             for friend in get_friend_manager().get_friends()]
 
 
@@ -61,9 +61,13 @@ class AddFriendForm(BoxLayout):
 class FriendList(BoxLayout):
     friend_list = ObjectProperty()
 
+    def args_converter(self, index, data_item):
+        full_name = data_item[0]
+        return {'full_name': (full_name,)}
+
 
 class FriendItemButton(ListItemButton):
-    pass
+    full_name = ListProperty()
 
 
 class ChumMeApp(App):

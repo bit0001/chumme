@@ -9,6 +9,13 @@ ChumMeRoot:
     FriendList:
         id: friend_list_view
 
+
+<FriendItemButton>:
+    text: "{}".format(self.full_name[0])
+    height: "40dp"
+    size_hint_y: None
+
+
 <FriendList>:
     orientation: 'vertical'
     friend_list: friend_list_view
@@ -22,7 +29,8 @@ ChumMeRoot:
         adapter:
             ListAdapter(
             data=[],
-            cls=FriendItemButton)
+            cls=FriendItemButton,
+            args_converter=root.args_converter)
 
 
 <AddFriendFormInput@BoxLayout>
