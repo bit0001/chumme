@@ -11,7 +11,7 @@ ChumMeRoot:
 
 
 <FriendItemButton>:
-    text: "{}".format(self.full_name[0])
+    text: self.full_name
     height: "40dp"
     size_hint_y: None
 
@@ -20,7 +20,7 @@ ChumMeRoot:
     orientation: 'vertical'
     friend_list: friend_list_view
     Button:
-        height: '40dp'
+        height: '45dp'
         size_hint_y: None
         text: 'Add Friend'
         on_press: app.root.show_add_friend_form()
