@@ -3,6 +3,7 @@ import os
 from kivy.app import App
 from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.listview import ListItemButton
 
 from friend import Friend
 from friend_manager import FriendManager
@@ -46,6 +47,10 @@ class FriendList(BoxLayout):
     def get_friends(self):
         return [friend.full_name
                 for friend in get_friend_manager().get_friends()]
+
+
+class FriendItemButton(ListItemButton):
+    pass
 
 
 class ChumMeApp(App):
