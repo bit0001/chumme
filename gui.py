@@ -19,6 +19,7 @@ def get_friend_manager():
 
 class ChumMeRoot(BoxLayout):
     add_friend_form = ObjectProperty()
+    friend_list_view = ObjectProperty()
 
     def show_add_friend_form(self):
         self.clear_widgets()
