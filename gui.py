@@ -1,7 +1,7 @@
 import os
 
 from kivy.app import App
-from kivy.properties import ObjectProperty, ListProperty
+from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.listview import ListItemButton
 
@@ -62,12 +62,11 @@ class FriendList(BoxLayout):
     friend_list = ObjectProperty()
 
     def args_converter(self, index, data_item):
-        full_name = data_item[0]
-        return {'full_name': (full_name,)}
+        return {'full_name': (data_item[0])}
 
 
 class FriendItemButton(ListItemButton):
-    full_name = ListProperty()
+    full_name = StringProperty()
 
 
 class ChumMeApp(App):
