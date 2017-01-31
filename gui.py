@@ -16,10 +16,21 @@ def get_friend_manager():
     )
     return FriendManager(db_path)
 
+def get_friends():
+    return [friend.full_name
+            for friend in get_friend_manager().get_friends()]
+
 
 class ChumMeRoot(BoxLayout):
     add_friend_form = ObjectProperty()
     friend_list_view = ObjectProperty()
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        friend_list = self.friend_list_view.friend_list
+        friend_list.adapter.data.clear()
+        friend_list.adapter.data.extend(get_friends())
+        friend_list._trigger_reset_populate()
 
     def show_add_friend_form(self):
         self.clear_widgets()
@@ -45,9 +56,6 @@ class AddFriendForm(BoxLayout):
 
 class FriendList(BoxLayout):
     friend_list = ObjectProperty()
-    def get_friends(self):
-        return [friend.full_name
-                for friend in get_friend_manager().get_friends()]
 
 
 class FriendItemButton(ListItemButton):
