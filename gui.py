@@ -89,6 +89,7 @@ class AddFriendForm(BoxLayout):
 
 class FriendInfoView(BoxLayout):
     EMPTY_FIELD = '-'
+    full_name = StringProperty()
     first_name = StringProperty()
     middle_name = StringProperty()
     last_name = StringProperty()
@@ -97,6 +98,7 @@ class FriendInfoView(BoxLayout):
     cell_phone = StringProperty()
 
     def update_friend_information(self, friend):
+        self.full_name = friend.full_name
         self.first_name = friend.first_name
         self.middle_name = self.get_field(friend.middle_name)
         self.last_name = friend.last_name

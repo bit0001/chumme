@@ -84,40 +84,46 @@ ChumMeRoot:
             on_press: app.root.add_friend()
 
 <FriendInfoView>:
-    GridLayout:
-        cols: 2
-        orientation: 'vertical'
-        Label:
-            text: 'First Name'
-        Label:
-            text: root.first_name
-        Label:
-            text: 'Middle Name'
-        Label:
-            text: root.middle_name
-        Label:
-            text: 'Last Name'
-        Label:
-            text: root.last_name
-        Label:
-            text: 'Birthdate'
-        Label:
-            text: root.birthdate
-        Label:
-            text: 'Email'
-        Label:
-            text: root.email
-        Label:
-            text: 'Cell Phone'
-        Label:
-            text: root.cell_phone
+    orientation: 'vertical'
+    Label:
+        text: root.full_name
+        size_hint_y: None
+        height: '40dp'
     BoxLayout:
-        orientation: 'vertical'
-        AnchorLayout:
-            Image:
-                anchor_x: 'center'
-                anchor_y: 'center'
-                size_hint: (0.75, 0.75)
-                source: 'chumme_profile.png'
-        Label:
-            text: 'Social Networks'
+        GridLayout:
+            cols: 2
+            orientation: 'vertical'
+            Label:
+                text: 'First Name'
+            Label:
+                text: root.first_name
+            Label:
+                text: 'Middle Name'
+            Label:
+                text: root.middle_name
+            Label:
+                text: 'Last Name'
+            Label:
+                text: root.last_name
+            Label:
+                text: 'Birthdate'
+            Label:
+                text: root.birthdate
+            Label:
+                text: 'Email'
+            Label:
+                text: root.email
+            Label:
+                text: 'Cell Phone'
+            Label:
+                text: root.cell_phone
+        BoxLayout:
+            orientation: 'vertical'
+            AnchorLayout:
+                Image:
+                    anchor_x: 'center'
+                    anchor_y: 'center'
+                    size_hint: (0.75, 0.75)
+                    source: 'chumme_profile.png'
+            Label:
+                text: 'Social Networks'
