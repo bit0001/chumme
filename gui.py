@@ -175,9 +175,6 @@ class OkPopup(PopupLayout):
 
 
 class FriendList(BoxLayout):
-    friend_list = ObjectProperty()
-    no_friends_label = ObjectProperty()
-
     def args_converter(self, index, data_item):
         return {'friend': data_item}
 
