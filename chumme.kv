@@ -164,3 +164,14 @@ ChumMeRoot:
 		Button:
 			text: 'No'
 			on_release: root.dispatch('on_answer', False)
+
+
+<AddFriendErrorPopup>:
+    orientation: 'vertical'
+    Label:
+        text: root.text
+    Button:
+        size_hint_y: None
+        height: '40dp'
+        text: 'OK'
+        on_release: root.dispatch('on_answer')
