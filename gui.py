@@ -20,6 +20,7 @@ def get_friend_manager():
 class ChumMeRoot(BoxLayout):
     add_friend_form = ObjectProperty()
     friend_list_view = ObjectProperty()
+    friend_info_view = ObjectProperty()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -73,6 +74,12 @@ class ChumMeRoot(BoxLayout):
                         last_name=self.add_friend_form.last_name_input.text)
         get_friend_manager().add_friend(friend)
         self.show_friend_list()
+
+    def show_friend_details(self, friend):
+        self.clear_widgets()
+        self.friend_info_view = FriendInfoView()
+        self.friend_info_view.update_friend_information(friend)
+        self.add_widget(self.friend_info_view)
 
 
 class AddFriendForm(BoxLayout):
