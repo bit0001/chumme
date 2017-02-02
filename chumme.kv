@@ -81,3 +81,38 @@ ChumMeRoot:
         Button:
             text: 'Add friend'
             on_press: app.root.add_friend()
+
+<FriendInfoView>:
+    GridLayout:
+        cols: 2
+        orientation: 'vertical'
+        Label:
+            text: 'First Name'
+        Label:
+            text: root.first_name
+        Label:
+            text: 'Middle Name'
+        Label:
+            text: root.middle_name
+        Label:
+            text: 'Last Name'
+        Label:
+            text: root.last_name
+        Label:
+            text: 'Birthdate'
+        Label:
+            text: root.birthdate
+        Label:
+            text: 'Email'
+        Label:
+            text: root.email
+        Label:
+            text: 'Cell Phone'
+        Label:
+            text: root.cell_phone
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'This is supposed to be a photo'
+        Label:
+            text: 'Social Networks'
