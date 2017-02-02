@@ -59,15 +59,17 @@ class FriendManager:
             cursor.execute(QUERIES['create_friends_table'])
 
     def add_friend(self, friend: Friend):
-        if friend.first_name == '' or friend.last_name == '':
-            raise AddFriendError()
-
+        self.check_mandatory_fields(friend)
         with DBContextManager(self.db_path) as cursor:
             cursor.execute(
                 QUERIES['insert_friend'],
                 (friend.first_name, friend.middle_name, friend.last_name,
                  friend.birthdate, friend.email, friend.cell_phone)
             )
+
+    def check_mandatory_fields(self, friend):
+        if friend.first_name == '' or friend.last_name == '':
+            raise AddFriendError()
 
     def get_friends(self) -> [Friend]:
         with DBContextManager(self.db_path) as cursor:
