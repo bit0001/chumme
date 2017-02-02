@@ -35,19 +35,32 @@ class ChumMeRoot(BoxLayout):
         friend_list = self.friend_list_view.friend_list
 
         if friends:
-            friend_list.size_hint_y = 1
-            friend_list.adapter.data.clear()
-            friend_list.adapter.data.extend(friends)
-            friend_list._trigger_reset_populate()
-            no_friends_label.size_hint_y = None
-            no_friends_label.height = '0dp'
-            no_friends_label.text = ''
+            self.hide_label(no_friends_label)
+            self.show_list_view(friend_list, friends)
         else:
-            no_friends_label = self.friend_list_view.no_friends_label
-            no_friends_label.size_hint_y = 1
-            no_friends_label.text = 'There are no friends to show.'
-            friend_list.size_hint_y = None
-            friend_list.height = '0dp'
+            self.show_label(no_friends_label, 'There are no friends to show.')
+            self.hide_widget(friend_list)
+
+    def show_label(self, no_friends_label, text):
+        self.show_widget(no_friends_label)
+        no_friends_label.text = text
+
+    def show_list_view(self, list_view, data):
+        self.show_widget(list_view)
+        list_view.adapter.data.clear()
+        list_view.adapter.data.extend(data)
+        list_view._trigger_reset_populate()
+
+    def show_widget(self, friend_list):
+        friend_list.size_hint_y = 1
+
+    def hide_widget(self, friend_list):
+        friend_list.size_hint_y = None
+        friend_list.height = '0dp'
+
+    def hide_label(self, no_friends_label):
+        self.hide_widget(no_friends_label)
+        no_friends_label.text = ''
 
     def show_add_friend_form(self):
         self.clear_widgets()
