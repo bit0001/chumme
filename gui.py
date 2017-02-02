@@ -8,7 +8,7 @@ from kivy.uix.listview import ListItemButton
 from kivy.uix.popup import Popup
 
 from friend import Friend
-from friend_manager import FriendManager
+from friend_manager import FriendManager, AddFriendError
 
 
 def get_friend_manager():
@@ -72,10 +72,33 @@ class ChumMeRoot(BoxLayout):
         self.add_widget(self.friend_list_view)
 
     def add_friend(self):
-        friend = Friend(first_name=self.add_friend_form.first_name_input.text,
-                        last_name=self.add_friend_form.last_name_input.text)
-        get_friend_manager().add_friend(friend)
-        self.show_friend_list()
+        friend_form = self.add_friend_form
+        parameters = {
+            'first_name': friend_form.first_name.text,
+            'middle_name': friend_form.middle_name.text,
+            'last_name': friend_form.last_name.text,
+            'birthdate': friend_form.birthdate.text,
+            'email': friend_form.email.text,
+            'cell_phone': friend_form.cell_phone.text
+        }
+
+        try:
+            get_friend_manager().add_friend(Friend(**parameters))
+        except AddFriendError:
+            content = AddFriendErrorPopup(
+                text='First name and last name are mandatory fields.'
+            )
+            content.bind(on_answer=self._on_answer)
+            self.popup = Popup(
+                title='Error adding friend',
+                content=content,
+                auto_dismiss=False)
+            self.popup.open()
+        else:
+            self.show_friend_list()
+
+    def _on_answer(self, instance):
+        self.popup.dismiss()
 
     def show_friend_details(self, friend):
         self.clear_widgets()
