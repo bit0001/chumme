@@ -84,7 +84,7 @@ class ChumMeRoot(BoxLayout):
         try:
             get_friend_manager().add_friend(Friend(**parameters))
         except AddFriendError:
-            content = AddFriendErrorPopup(
+            content = OkPopup(
                 text='First name and last name are mandatory fields.'
             )
             content.bind(on_answer=self._on_answer)
@@ -170,7 +170,7 @@ class ConfirmPopup(PopupLayout):
     pass
 
 
-class AddFriendErrorPopup(PopupLayout):
+class OkPopup(PopupLayout):
     pass
 
 
