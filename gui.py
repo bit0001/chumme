@@ -107,12 +107,7 @@ class ChumMeRoot(BoxLayout):
 
 
 class AddFriendForm(BoxLayout):
-    first_name = ObjectProperty()
-    last_name = ObjectProperty()
-    middle_name = ObjectProperty()
-    birthdate = ObjectProperty()
-    email = ObjectProperty()
-    cell_phone = ObjectProperty()
+    pass
 
 
 class FriendInfoView(BoxLayout):
