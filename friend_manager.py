@@ -19,8 +19,8 @@ QUERIES = {
     'insert_friend':
         """
         INSERT INTO friends
-        (first_name, last_name)
-        VALUES (?, ?)
+        (first_name, middle_name, last_name, birthdate, email, cell_phone)
+        VALUES (?, ?, ?, ?, ?, ?)
         """,
     'update_friend':
         """
@@ -40,6 +40,10 @@ QUERIES = {
 }
 
 
+class AddFriendError(Exception):
+    pass
+
+
 class FriendManager:
     def __init__(self, db_path: str):
         self.db_path = db_path
@@ -48,10 +52,15 @@ class FriendManager:
             cursor.execute(QUERIES['create_friends_table'])
 
     def add_friend(self, friend: Friend):
+        if friend.first_name == '' or friend.last_name == '':
+            raise AddFriendError()
+
         with DBContextManager(self.db_path) as cursor:
             cursor.execute(
                 QUERIES['insert_friend'],
-                (friend.first_name, friend.last_name))
+                (friend.first_name, friend.middle_name, friend.last_name,
+                 friend.birthdate, friend.email, friend.cell_phone)
+            )
 
     def get_friends(self) -> [Friend]:
         with DBContextManager(self.db_path) as cursor:
