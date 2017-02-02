@@ -139,7 +139,17 @@ class ConfirmPopup(GridLayout):
 
     def __init__(self, **kwargs):
         self.register_event_type('on_answer')
-        super(ConfirmPopup, self).__init__(**kwargs)
+        super().__init__(**kwargs)
+
+    def on_answer(self, *args):
+        pass
+
+class AddFriendErrorPopup(BoxLayout):
+    text = StringProperty()
+
+    def __init__(self, **kwargs):
+        self.register_event_type('on_answer')
+        super().__init__(**kwargs)
 
     def on_answer(self, *args):
         pass
