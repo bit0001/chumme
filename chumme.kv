@@ -25,7 +25,7 @@ ChumMeRoot:
         height: '45dp'
         size_hint_y: None
         text: 'Add Friend'
-        on_press: app.root.show_add_friend_form()
+        on_press: app.root.show_add_update_friend_form('add')
     Label:
         id: no_friends_label
     ListView:
@@ -55,31 +55,37 @@ ChumMeRoot:
             text: 'First Name'
         TextInput:
             id: first_name
+            text: '' if root.friend is None else root.friend.first_name
     AddFriendFormInput:
         Label:
             text: 'Middle Name'
         TextInput:
             id: middle_name
+            text: '' if root.friend is None else root.friend.middle_name
     AddFriendFormInput:
         Label:
             text: 'Last Name'
         TextInput:
             id: last_name
+            text: '' if root.friend is None else root.friend.last_name
     AddFriendFormInput:
         Label:
             text: 'Birthdate'
         TextInput:
             id: birthdate
+            text: '' if root.friend is None else root.friend.birthdate
     AddFriendFormInput:
         Label:
             text: 'Email'
         TextInput:
             id: email
+            text: '' if root.friend is None else root.friend.email
     AddFriendFormInput:
         Label:
             text: 'Cell Phone'
         TextInput:
             id: cell_phone
+            text: '' if root.friend is None else root.friend.cell_phone
     BoxLayout:
     BoxLayout:
         height: '40dp'
@@ -88,8 +94,10 @@ ChumMeRoot:
             text: 'Cancel'
             on_press: app.root.show_friend_list()
         Button:
-            text: 'Add friend'
-            on_press: app.root.add_friend()
+            text: '{} friend'.format(root.action)
+            on_press:
+                app.root.add_update_friend(root.action,
+                0 if root.friend is None else root.friend.id)
 
 <FriendInfoView>:
     orientation: 'vertical'
@@ -102,6 +110,8 @@ ChumMeRoot:
         height: '40dp'
         Button:
             text: 'Update'
+            on_press:
+                app.root.show_add_update_friend_form('update', root.friend)
         Button:
             text: 'Delete'
             on_press: root.delete_friend()
