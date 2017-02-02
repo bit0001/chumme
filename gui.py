@@ -1,7 +1,7 @@
 import os
 
 from kivy.app import App
-from kivy.properties import ObjectProperty
+from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.listview import ListItemButton
 
@@ -79,6 +79,26 @@ class AddFriendForm(BoxLayout):
     first_name_input = ObjectProperty()
     last_name_input = ObjectProperty()
 
+
+class FriendInfoView(BoxLayout):
+    EMPTY_FIELD = '-'
+    first_name = StringProperty()
+    middle_name = StringProperty()
+    last_name = StringProperty()
+    birthdate = StringProperty()
+    email = StringProperty()
+    cell_phone = StringProperty()
+
+    def update_friend_information(self, friend):
+        self.first_name = friend.first_name
+        self.middle_name = self.get_field(friend.middle_name)
+        self.last_name = friend.last_name
+        self.birthdate = self.get_field(friend.birthdate)
+        self.email = self.get_field(friend.email)
+        self.cell_phone = self.get_field(friend.cell_phone)
+
+    def get_field(self, field):
+        return field if field else FriendInfoView.EMPTY_FIELD
 
 
 class FriendList(BoxLayout):
