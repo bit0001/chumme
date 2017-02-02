@@ -60,9 +60,9 @@ class ChumMeRoot(BoxLayout):
         self.hide_widget(no_friends_label)
         no_friends_label.text = ''
 
-    def show_add_friend_form(self):
+    def show_add_update_friend_form(self, action, friend=None):
         self.clear_widgets()
-        self.add_friend_form = AddFriendForm()
+        self.add_friend_form = AddFriendForm(friend=friend, action=action)
         self.add_widget(self.add_friend_form)
 
     def show_friend_list(self):
@@ -70,7 +70,12 @@ class ChumMeRoot(BoxLayout):
         self.update_friend_list_view()
         self.add_widget(self.friend_list_view)
 
-    def add_friend(self):
+    def add_update_friend(self, action, friend_id):
+        actions = {
+            'add': get_friend_manager().add_friend,
+            'update': get_friend_manager().update_friend
+        }
+
         friend_form = self.add_friend_form
         parameters = {
             'first_name': friend_form.first_name.text,
@@ -81,15 +86,22 @@ class ChumMeRoot(BoxLayout):
             'cell_phone': friend_form.cell_phone.text
         }
 
+        if action.lower() == 'update':
+            parameters['id'] = friend_id
+
         try:
-            get_friend_manager().add_friend(Friend(**parameters))
+            actions[action.lower()](Friend(**parameters))
         except AddFriendError:
             content = OkPopup(
                 text='First name and last name are mandatory fields.'
             )
             content.bind(on_answer=self._on_answer)
+
+            if action[-1] == 'e':
+                action = action[:-1]
+
             self.popup = Popup(
-                title='Error adding friend',
+                title='Error {}ing friend'.format(action.lower()),
                 content=content,
                 auto_dismiss=False)
             self.popup.open()
@@ -107,8 +119,13 @@ class ChumMeRoot(BoxLayout):
 
 
 class AddFriendForm(BoxLayout):
-    pass
+    friend = ObjectProperty()
+    action = StringProperty()
 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.friend = kwargs['friend']
+        self.action = kwargs['action'].capitalize()
 
 class FriendInfoView(BoxLayout):
     EMPTY_FIELD = '-'
