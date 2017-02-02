@@ -151,13 +151,12 @@ ChumMeRoot:
 
 
 <ConfirmPopup>:
-    cols:1
+    orientation: 'vertical'
 	Label:
 		text: root.text
-	GridLayout:
-		cols: 2
+	BoxLayout:
 		size_hint_y: None
-		height: '44sp'
+		height: '40dp'
 		Button:
 			text: 'Yes'
 			on_release: root.dispatch('on_answer', True)
