@@ -44,8 +44,12 @@ ChumMeRoot:
 
 <AddFriendForm>:
     orientation: 'vertical'
-    first_name_input: first_name
-    last_name_input: last_name
+    first_name: first_name
+    middle_name: middle_name
+    last_name: last_name
+    birthdate: birthdate
+    email: email
+    cell_phone: cell_phone
     AddFriendFormInput:
         Label:
             text: 'First Name'
@@ -55,6 +59,7 @@ ChumMeRoot:
         Label:
             text: 'Middle Name'
         TextInput:
+            id: middle_name
     AddFriendFormInput:
         Label:
             text: 'Last Name'
@@ -64,14 +69,17 @@ ChumMeRoot:
         Label:
             text: 'Birthdate'
         TextInput:
+            id: birthdate
     AddFriendFormInput:
         Label:
             text: 'Email'
         TextInput:
+            id: email
     AddFriendFormInput:
         Label:
             text: 'Cell Phone'
         TextInput:
+            id: cell_phone
     BoxLayout:
     BoxLayout:
         height: '40dp'
