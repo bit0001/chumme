@@ -90,9 +90,18 @@ class FriendManager:
 
         return friends
 
-    def update_friend(self, id: int, field: str, value: str):
+    def update_friend(self, friend: Friend):
+        self.check_mandatory_fields(friend)
         with DBContextManager(self.db_path) as cursor:
-            cursor.execute(QUERIES['update_friend'].format(field),
+            cursor.execute(QUERIES['update_friend'],
+                           (friend.first_name, friend.middle_name,
+                            friend.last_name, friend.birthdate,
+                            friend.email, friend.cell_phone,
+                            friend.id))
+
+    def update_friend_on_field(self, id: int, field: str, value: str):
+        with DBContextManager(self.db_path) as cursor:
+            cursor.execute(QUERIES['update_friend_on_field'].format(field),
                            (value, id))
 
     def delete_friend(self, id: int):
