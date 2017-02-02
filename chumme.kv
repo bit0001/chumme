@@ -113,7 +113,11 @@ ChumMeRoot:
             text: root.cell_phone
     BoxLayout:
         orientation: 'vertical'
-        Label:
-            text: 'This is supposed to be a photo'
+        AnchorLayout:
+            Image:
+                anchor_x: 'center'
+                anchor_y: 'center'
+                size_hint: (0.75, 0.75)
+                source: 'chumme_profile.png'
         Label:
             text: 'Social Networks'
