@@ -3,7 +3,6 @@ import os
 from kivy.app import App
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.gridlayout import GridLayout
 from kivy.uix.listview import ListItemButton
 from kivy.uix.popup import Popup
 
@@ -161,7 +160,7 @@ class FriendInfoView(BoxLayout):
             self.parent.show_friend_list()
 
 
-class ConfirmPopup(GridLayout):
+class PopupLayout(BoxLayout):
     text = StringProperty()
 
     def __init__(self, **kwargs):
@@ -171,15 +170,13 @@ class ConfirmPopup(GridLayout):
     def on_answer(self, *args):
         pass
 
-class AddFriendErrorPopup(BoxLayout):
-    text = StringProperty()
 
-    def __init__(self, **kwargs):
-        self.register_event_type('on_answer')
-        super().__init__(**kwargs)
+class ConfirmPopup(PopupLayout):
+    pass
 
-    def on_answer(self, *args):
-        pass
+
+class AddFriendErrorPopup(PopupLayout):
+    pass
 
 
 class FriendList(BoxLayout):
