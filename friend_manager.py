@@ -22,10 +22,17 @@ QUERIES = {
         (first_name, middle_name, last_name, birthdate, email, cell_phone)
         VALUES (?, ?, ?, ?, ?, ?)
         """,
-    'update_friend':
+    'update_friend_on_field':
         """
         UPDATE friends
         SET {} = ?
+        WHERE id = ?
+        """,
+    'update_friend':
+        """
+        UPDATE friends
+        SET first_name = ?, middle_name = ?, last_name = ?,
+            birthdate = ?, email = ?, cell_phone = ?
         WHERE id = ?
         """,
     'delete_friend':
