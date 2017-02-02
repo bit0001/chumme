@@ -90,11 +90,11 @@ class FriendList(BoxLayout):
     no_friends_label = ObjectProperty()
 
     def args_converter(self, index, data_item):
-        return {'full_name': (data_item[0])}
+        return {'friend': (data_item[0])}
 
 
 class FriendItemButton(ListItemButton):
-    full_name = StringProperty()
+    friend = StringProperty()
 
 
 class ChumMeApp(App):
