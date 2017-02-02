@@ -3,6 +3,7 @@ import os
 from kivy.app import App
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.gridlayout import GridLayout
 from kivy.uix.listview import ListItemButton
 
 from friend import Friend
@@ -108,6 +109,16 @@ class FriendInfoView(BoxLayout):
 
     def get_field(self, field):
         return field if field else FriendInfoView.EMPTY_FIELD
+
+class ConfirmPopup(GridLayout):
+    text = StringProperty()
+
+    def __init__(self, **kwargs):
+        self.register_event_type('on_answer')
+        super(ConfirmPopup, self).__init__(**kwargs)
+
+    def on_answer(self, *args):
+        pass
 
 
 class FriendList(BoxLayout):
