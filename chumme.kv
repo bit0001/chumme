@@ -19,11 +19,14 @@ ChumMeRoot:
 <FriendList>:
     orientation: 'vertical'
     friend_list: friend_list_view
+    no_friends_label: no_friends_label
     Button:
         height: '45dp'
         size_hint_y: None
         text: 'Add Friend'
         on_press: app.root.show_add_friend_form()
+    Label:
+        id: no_friends_label
     ListView:
         id: friend_list_view
         adapter:
