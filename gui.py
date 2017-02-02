@@ -30,10 +30,24 @@ class ChumMeRoot(BoxLayout):
         self.update_friend_list_view()
 
     def update_friend_list_view(self):
+        friends = get_friends()
+        no_friends_label = self.friend_list_view.no_friends_label
         friend_list = self.friend_list_view.friend_list
-        friend_list.adapter.data.clear()
-        friend_list.adapter.data.extend(get_friends())
-        friend_list._trigger_reset_populate()
+
+        if friends:
+            friend_list.size_hint_y = 1
+            friend_list.adapter.data.clear()
+            friend_list.adapter.data.extend(friends)
+            friend_list._trigger_reset_populate()
+            no_friends_label.size_hint_y = None
+            no_friends_label.height = '0dp'
+            no_friends_label.text = ''
+        else:
+            no_friends_label = self.friend_list_view.no_friends_label
+            no_friends_label.size_hint_y = 1
+            no_friends_label.text = 'There are no friends to show.'
+            friend_list.size_hint_y = None
+            friend_list.height = '0dp'
 
     def show_add_friend_form(self):
         self.clear_widgets()
@@ -60,6 +74,7 @@ class AddFriendForm(BoxLayout):
 
 class FriendList(BoxLayout):
     friend_list = ObjectProperty()
+    no_friends_label = ObjectProperty()
 
     def args_converter(self, index, data_item):
         return {'full_name': (data_item[0])}
