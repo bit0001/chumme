@@ -1,0 +1,58 @@
+<AddFriendFormInput@BoxLayout>
+    height: '30dp'
+    size_hint_y: None
+    label_text: ''
+    Label:
+        text: root.label_text
+
+
+<AddFriendForm>:
+    orientation: 'vertical'
+    first_name: first_name
+    middle_name: middle_name
+    last_name: last_name
+    birthdate: birthdate
+    email: email
+    cell_phone: cell_phone
+    AddFriendFormInput:
+        label_text: 'First Name'
+        TextInput:
+            id: first_name
+            text: '' if root.friend is None else root.friend.first_name
+    AddFriendFormInput:
+        label_text: 'Middle Name'
+        TextInput:
+            id: middle_name
+            text: '' if root.friend is None else root.friend.middle_name
+    AddFriendFormInput:
+        label_text: 'Last Name'
+        TextInput:
+            id: last_name
+            text: '' if root.friend is None else root.friend.last_name
+    AddFriendFormInput:
+        label_text: 'Birthdate'
+        TextInput:
+            id: birthdate
+            text: '' if root.friend is None else root.friend.birthdate
+    AddFriendFormInput:
+        label_text: 'Email'
+        TextInput:
+            id: email
+            text: '' if root.friend is None else root.friend.email
+    AddFriendFormInput:
+        label_text: 'Cell Phone'
+        TextInput:
+            id: cell_phone
+            text: '' if root.friend is None else root.friend.cell_phone
+    BoxLayout:
+    BoxLayout:
+        height: '40dp'
+        size_hint_y: None
+        Button:
+            text: 'Cancel'
+            on_press: app.root.show_friend_list()
+        Button:
+            text: '{} friend'.format(root.action)
+            on_press:
+                app.root.add_update_friend(root.action,
+                0 if root.friend is None else root.friend.id)

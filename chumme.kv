@@ -2,6 +2,7 @@
 #: include popup.kv
 #: include friend_list.kv
 #: include friend_info.kv
+#: include add_friend_form.kv
 
 ChumMeRoot:
 
@@ -9,66 +10,3 @@ ChumMeRoot:
     friend_list_view: friend_list_view
     FriendList:
         id: friend_list_view
-
-
-<AddFriendFormInput@BoxLayout>
-    height: '30dp'
-    size_hint_y: None
-
-
-<AddFriendForm>:
-    orientation: 'vertical'
-    first_name: first_name
-    middle_name: middle_name
-    last_name: last_name
-    birthdate: birthdate
-    email: email
-    cell_phone: cell_phone
-    AddFriendFormInput:
-        Label:
-            text: 'First Name'
-        TextInput:
-            id: first_name
-            text: '' if root.friend is None else root.friend.first_name
-    AddFriendFormInput:
-        Label:
-            text: 'Middle Name'
-        TextInput:
-            id: middle_name
-            text: '' if root.friend is None else root.friend.middle_name
-    AddFriendFormInput:
-        Label:
-            text: 'Last Name'
-        TextInput:
-            id: last_name
-            text: '' if root.friend is None else root.friend.last_name
-    AddFriendFormInput:
-        Label:
-            text: 'Birthdate'
-        TextInput:
-            id: birthdate
-            text: '' if root.friend is None else root.friend.birthdate
-    AddFriendFormInput:
-        Label:
-            text: 'Email'
-        TextInput:
-            id: email
-            text: '' if root.friend is None else root.friend.email
-    AddFriendFormInput:
-        Label:
-            text: 'Cell Phone'
-        TextInput:
-            id: cell_phone
-            text: '' if root.friend is None else root.friend.cell_phone
-    BoxLayout:
-    BoxLayout:
-        height: '40dp'
-        size_hint_y: None
-        Button:
-            text: 'Cancel'
-            on_press: app.root.show_friend_list()
-        Button:
-            text: '{} friend'.format(root.action)
-            on_press:
-                app.root.add_update_friend(root.action,
-                0 if root.friend is None else root.friend.id)
