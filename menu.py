@@ -94,8 +94,8 @@ class Menu:
                 if answer == 'y':
                     value = input('Enter value for {}: '.format(field))
                     db_field = '_'.join(field.split())
-                    self.friend_manger.update_friend(friend.id, db_field,
-                                                     value)
+                    self.friend_manger.update_friend_on_field(
+                        friend.id, db_field,value)
                     print('{} has been updated'.format(field.capitalize()))
 
     def add_friend_interests(self):
