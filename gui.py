@@ -19,19 +19,7 @@ class ChumMeRoot(BoxLayout):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.update_friend_list_view()
-
-    def update_friend_list_view(self):
-        friends = get_friend_manager().get_friends()
-        no_friends_label = self.friend_list_view.no_friends_label
-        friend_list = self.friend_list_view.friend_list
-
-        if friends:
-            hide_label(no_friends_label)
-            show_list_view(friend_list, friends)
-        else:
-            hide_widget(friend_list)
-            show_label(no_friends_label, 'There are no friends to show.')
+        self.friend_list_view.update()
 
     def show_add_friend_form(self):
         self.clear_widgets()
@@ -45,7 +33,7 @@ class ChumMeRoot(BoxLayout):
 
     def show_friend_list(self):
         self.clear_widgets()
-        self.update_friend_list_view()
+        self.friend_list_view.update()
         self.add_widget(self.friend_list_view)
 
     def show_friend_details(self, friend):
@@ -58,6 +46,18 @@ class ChumMeRoot(BoxLayout):
 class FriendList(BoxLayout):
     def args_converter(self, index, data_item):
         return {'friend': data_item}
+
+    def update(self):
+        friends = get_friend_manager().get_friends()
+        no_friends_label = self.no_friends_label
+        friend_list = self.friend_list
+
+        if friends:
+            hide_label(no_friends_label)
+            show_list_view(friend_list, friends)
+        else:
+            hide_widget(friend_list)
+            show_label(no_friends_label, 'There are no friends to show.')
 
 
 class FriendItemButton(ListItemButton):
