@@ -1,41 +1,44 @@
-<AddFriendFormInput@BoxLayout>
+<FormInput@BoxLayout>
     height: '30dp'
     size_hint_y: None
     label_text: ''
-    input_text: input_text
+    input_text_id: input_text_id
     Label:
         text: root.label_text
     TextInput:
-        id: input_text
+        id: input_text_id
 
 
-<AddFriendForm>:
+<FriendForm>:
     orientation: 'vertical'
-    first_name: first_name.input_text
-    middle_name: middle_name.input_text
-    last_name: last_name.input_text
-    birthdate: birthdate.input_text
-    email: email.input_text
-    cell_phone: cell_phone.input_text
-    AddFriendFormInput:
+    first_name: first_name.input_text_id
+    middle_name: middle_name.input_text_id
+    last_name: last_name.input_text_id
+    birthdate: birthdate.input_text_id
+    email: email.input_text_id
+    cell_phone: cell_phone.input_text_id
+    FormInput:
         id: first_name
         label_text: 'First Name'
-    AddFriendFormInput:
+    FormInput:
         id: middle_name
         label_text: 'Middle Name'
-    AddFriendFormInput:
+    FormInput:
         id: last_name
         label_text: 'Last Name'
-    AddFriendFormInput:
+    FormInput:
         id: birthdate
         label_text: 'Birthdate'
-    AddFriendFormInput:
+    FormInput:
         id: email
         label_text: 'Email'
-    AddFriendFormInput:
+    FormInput:
         id: cell_phone
         label_text: 'Cell Phone'
     BoxLayout:
+
+
+<AddFriendForm>:
     BoxLayout:
         height: '40dp'
         size_hint_y: None
