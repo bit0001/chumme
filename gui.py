@@ -85,8 +85,7 @@ class ChumMeRoot(BoxLayout):
 
 
 class AddFriendForm(BoxLayout):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    pass
 
 
 class FriendList(BoxLayout):

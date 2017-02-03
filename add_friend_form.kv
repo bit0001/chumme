@@ -2,42 +2,39 @@
     height: '30dp'
     size_hint_y: None
     label_text: ''
+    input_text: input_text
     Label:
         text: root.label_text
+    TextInput:
+        id: input_text
 
 
 <AddFriendForm>:
     orientation: 'vertical'
-    first_name: first_name
-    middle_name: middle_name
-    last_name: last_name
-    birthdate: birthdate
-    email: email
-    cell_phone: cell_phone
+    first_name: first_name.input_text
+    middle_name: middle_name.input_text
+    last_name: last_name.input_text
+    birthdate: birthdate.input_text
+    email: email.input_text
+    cell_phone: cell_phone.input_text
     AddFriendFormInput:
+        id: first_name
         label_text: 'First Name'
-        TextInput:
-            id: first_name
     AddFriendFormInput:
+        id: middle_name
         label_text: 'Middle Name'
-        TextInput:
-            id: middle_name
     AddFriendFormInput:
+        id: last_name
         label_text: 'Last Name'
-        TextInput:
-            id: last_name
     AddFriendFormInput:
+        id: birthdate
         label_text: 'Birthdate'
-        TextInput:
-            id: birthdate
     AddFriendFormInput:
+        id: email
         label_text: 'Email'
-        TextInput:
-            id: email
     AddFriendFormInput:
+        id: cell_phone
         label_text: 'Cell Phone'
-        TextInput:
-            id: cell_phone
     BoxLayout:
     BoxLayout:
         height: '40dp'
