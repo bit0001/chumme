@@ -49,40 +49,6 @@ class ChumMeRoot(BoxLayout):
         self.update_friend_list_view()
         self.add_widget(self.friend_list_view)
 
-    def add_friend(self):
-        friend_form = self.add_friend_form
-        parameters = {
-            'first_name': friend_form.first_name.text,
-            'middle_name': friend_form.middle_name.text,
-            'last_name': friend_form.last_name.text,
-            'birthdate': friend_form.birthdate.text,
-            'email': friend_form.email.text,
-            'cell_phone': friend_form.cell_phone.text
-        }
-
-        try:
-            get_friend_manager().add_friend(Friend(**parameters))
-        except AddFriendError:
-            content = OkPopup(
-                text='First name and last name are mandatory fields.'
-            )
-            content.bind(on_answer=self._on_answer)
-
-            self.popup = Popup(
-                title='Error adding friend',
-                content=content,
-                auto_dismiss=False)
-            self.popup.open()
-        else:
-            self.show_friend_list()
-
-    def update_friend(self, id):
-        pass
-
-
-    def _on_answer(self, instance):
-        self.popup.dismiss()
-
     def show_friend_details(self, friend):
         self.clear_widgets()
         self.friend_info_view = FriendInfoView()
@@ -91,11 +57,65 @@ class ChumMeRoot(BoxLayout):
 
 
 class FriendForm(BoxLayout):
-    pass
+    friend = ObjectProperty()
+    def __init__(self, friend, **kwargs):
+        self.friend = friend
+        super().__init__(**kwargs)
+
+    def build_friend(self, form):
+        parameters = {
+            'first_name': form.first_name.text,
+            'middle_name': form.middle_name.text,
+            'last_name': form.last_name.text,
+            'birthdate': form.birthdate.text,
+            'email': form.email.text,
+            'cell_phone': form.cell_phone.text
+        }
+        print(parameters)
+        friend = Friend(**parameters)
+
+        return friend
+
+    def display_error_popup(self, action):
+        content = OkPopup(
+            text='First name and last name are mandatory fields.'
+        )
+        content.bind(on_answer=self._on_answer)
+        self.popup = Popup(
+            title='Error {} friend'.format(action),
+            content=content,
+            auto_dismiss=False)
+        self.popup.open()
+
+    def _on_answer(self, instance):
+        self.popup.dismiss()
 
 
 class AddFriendForm(FriendForm):
-    pass
+    def add_friend(self):
+        friend = self.build_friend(self.parent.add_friend_form)
+        try:
+            get_friend_manager().add_friend(friend)
+        except MinimumFriendParameterException:
+            self.display_error_popup('adding')
+        else:
+            self.parent.show_friend_list()
+
+
+class UpdateFriendForm(FriendForm):
+    def update_friend(self):
+        updated_friend = self.build_friend(self.parent.update_friend_form)
+        try:
+            get_friend_manager().update_friend(updated_friend)
+        except MinimumFriendParameterException:
+            self.display_error_popup('updating')
+        else:
+            self.parent.show_friend_details(updated_friend)
+
+    def build_friend(self, form):
+        friend = super().build_friend(form)
+        friend.id = self.friend.id
+        return friend
 
 
 class FriendList(BoxLayout):
