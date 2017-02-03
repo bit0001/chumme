@@ -1,10 +1,11 @@
 import os
 import sys
 
+from database_manager.friend_interest_manager import FriendInterestManager
+
+from database_manager.friend_manager import FriendManager
+from database_manager.interest_manager import InterestManager
 from friend import Friend
-from friend_interest_manager import FriendInterestManager
-from friend_manager import FriendManager
-from interest_manager import InterestManager
 from util import new_line, get_friend, print_friends, get_valid_input
 
 

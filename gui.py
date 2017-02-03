@@ -6,8 +6,8 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.listview import ListItemButton
 from kivy.uix.popup import Popup
 
+from database_manager.friend_manager import FriendManager, AddFriendError
 from friend import Friend
-from friend_manager import FriendManager, AddFriendError
 
 
 def get_friend_manager():
