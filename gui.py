@@ -1,22 +1,13 @@
-import os
-
 from kivy.app import App
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.listview import ListItemButton
 from kivy.uix.popup import Popup
 
-from database_manager.friend_manager import FriendManager, AddFriendError
+from database_manager.friend_manager import AddFriendError
 from model.friend import Friend
 from popup import OkPopup, ConfirmPopup
-
-
-def get_friend_manager():
-    db_path = '{}/{}'.format(
-        os.path.dirname(os.path.abspath(__file__)),
-        'chumme.db'
-    )
-    return FriendManager(db_path)
+from util import get_friend_manager
 
 
 class ChumMeRoot(BoxLayout):
