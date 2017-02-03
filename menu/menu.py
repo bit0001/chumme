@@ -2,18 +2,19 @@ import os
 import sys
 
 from database_manager.friend_interest_manager import FriendInterestManager
-
 from database_manager.friend_manager import FriendManager
 from database_manager.interest_manager import InterestManager
 from friend import Friend
-from util import new_line, get_friend, print_friends, get_valid_input
+from .util import new_line, get_friend, print_friends, get_valid_input
 
 
 class Menu:
     def __init__(self):
         print(__file__)
         db_path = '{}/{}'.format(
-            os.path.dirname(os.path.abspath(__file__)),
+            os.path.dirname(
+                    os.path.dirname(os.path.abspath(__file__))
+            ),
             'chumme.db'
         )
 
