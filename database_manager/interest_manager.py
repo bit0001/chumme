@@ -1,4 +1,4 @@
-from db_context_manager import DBContextManager
+from .db_context_manager import DBContextManager
 
 QUERIES = {
     'create_interests_table':
