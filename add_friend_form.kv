@@ -55,4 +55,17 @@
             on_press: app.root.show_friend_list()
         Button:
             text: 'Add friend'
+            on_press: root.add_friend()
+
+
+<UpdateFriendForm>:
+    BoxLayout:
+        height: '40dp'
+        size_hint_y: None
+        Button:
+            text: 'Cancel'
+            on_press: app.root.show_friend_details(root.friend)
+        Button:
+            text: 'Update friend'
             on_press: app.root.add_friend()
+
