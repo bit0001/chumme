@@ -84,7 +84,11 @@ class ChumMeRoot(BoxLayout):
         self.add_widget(self.friend_info_view)
 
 
-class AddFriendForm(BoxLayout):
+class FriendForm(BoxLayout):
+    pass
+
+
+class AddFriendForm(FriendForm):
     pass
 
 
