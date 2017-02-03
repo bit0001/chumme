@@ -1,7 +1,6 @@
 #: kivy 1.9.1
-#: import ListAdapter kivy.adapters.listadapter.ListAdapter
-#: import FriendItemButton gui.FriendItemButton
 #: include popup.kv
+#: include friend_list.kv
 
 ChumMeRoot:
 
@@ -9,33 +8,6 @@ ChumMeRoot:
     friend_list_view: friend_list_view
     FriendList:
         id: friend_list_view
-
-
-<FriendItemButton>:
-    text: self.friend.full_name
-    height: '40dp'
-    size_hint_y: None
-    on_press: app.root.show_friend_details(self.friend)
-
-
-<FriendList>:
-    orientation: 'vertical'
-    friend_list: friend_list_view
-    no_friends_label: no_friends_label
-    Button:
-        height: '45dp'
-        size_hint_y: None
-        text: 'Add Friend'
-        on_press: app.root.show_add_update_friend_form('add')
-    Label:
-        id: no_friends_label
-    ListView:
-        id: friend_list_view
-        adapter:
-            ListAdapter(
-            data=[],
-            cls=FriendItemButton,
-            args_converter=root.args_converter)
 
 
 <AddFriendFormInput@BoxLayout>
