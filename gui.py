@@ -35,7 +35,7 @@ class ChumMeRoot(BoxLayout):
 
     def show_add_friend_form(self):
         self.clear_widgets()
-        self.add_friend_form = AddFriendForm()
+        self.add_friend_form = AddFriendForm(friend=Friend())
         self.add_widget(self.add_friend_form)
 
     def show_friend_list(self):
