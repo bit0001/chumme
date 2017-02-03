@@ -7,7 +7,7 @@ from kivy.uix.listview import ListItemButton
 from kivy.uix.popup import Popup
 
 from database_manager.friend_manager import FriendManager, AddFriendError
-from friend import Friend
+from model.friend import Friend
 
 
 def get_friend_manager():
