@@ -46,7 +46,7 @@ QUERIES = {
 }
 
 
-class AddFriendError(Exception):
+class MinimumFriendParameterException(Exception):
     pass
 
 
@@ -68,7 +68,7 @@ class FriendManager:
 
     def check_mandatory_fields(self, friend):
         if friend.first_name == '' or friend.last_name == '':
-            raise AddFriendError()
+            raise MinimumFriendParameterException()
 
     def get_friends(self) -> [Friend]:
         with DBContextManager(self.db_path) as cursor:
