@@ -8,6 +8,7 @@ from kivy.uix.popup import Popup
 
 from database_manager.friend_manager import FriendManager, AddFriendError
 from model.friend import Friend
+from popup import OkPopup, ConfirmPopup
 
 
 def get_friend_manager():
@@ -170,25 +171,6 @@ class FriendInfoView(BoxLayout):
         if answer:
             get_friend_manager().delete_friend(self.friend.id)
             self.parent.show_friend_list()
-
-
-class PopupLayout(BoxLayout):
-    text = StringProperty()
-
-    def __init__(self, **kwargs):
-        self.register_event_type('on_answer')
-        super().__init__(**kwargs)
-
-    def on_answer(self, *args):
-        pass
-
-
-class ConfirmPopup(PopupLayout):
-    pass
-
-
-class OkPopup(PopupLayout):
-    pass
 
 
 class FriendList(BoxLayout):
