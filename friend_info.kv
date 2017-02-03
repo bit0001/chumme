@@ -1,3 +1,12 @@
+<InfoField@BoxLayout>:
+    field_label: ''
+    field_text: ''
+    Label:
+        text: root.field_label
+    Label:
+        text: root.field_text
+
+
 <FriendInfoView>:
     orientation: 'vertical'
     Label:
@@ -15,33 +24,26 @@
             text: 'Delete'
             on_press: root.delete_friend()
     BoxLayout:
-        GridLayout:
-            cols: 2
+        BoxLayout:
             orientation: 'vertical'
-            Label:
-                text: 'First Name'
-            Label:
-                text: root.first_name
-            Label:
-                text: 'Middle Name'
-            Label:
-                text: root.middle_name
-            Label:
-                text: 'Last Name'
-            Label:
-                text: root.last_name
-            Label:
-                text: 'Birthdate'
-            Label:
-                text: root.birthdate
-            Label:
-                text: 'Email'
-            Label:
-                text: root.email
-            Label:
-                text: 'Cell Phone'
-            Label:
-                text: root.cell_phone
+            InfoField:
+                field_label: 'First Name'
+                field_text: root.first_name
+            InfoField:
+                field_label: 'Middle Name'
+                field_text: root.middle_name
+            InfoField:
+                field_label: 'Last Name'
+                field_text: root.last_name
+            InfoField:
+                field_label: 'Birthdate'
+                field_text: root.birthdate
+            InfoField:
+                field_label: 'Email'
+                field_text: root.email
+            InfoField:
+                field_label: 'Cell Phone'
+                field_text: root.cell_phone
         BoxLayout:
             orientation: 'vertical'
             AnchorLayout:
