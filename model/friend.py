@@ -6,11 +6,11 @@ class Friend:
     def __init__(self,
                  id: int = 0,
                  first_name: str = '',
-                 middle_name: str = None,
+                 middle_name: str = '',
                  last_name: str = '',
-                 birthdate: str = None,
-                 email: str = None,
-                 cell_phone: str = None):
+                 birthdate: str = '',
+                 email: str = '',
+                 cell_phone: str = ''):
         self.id = id
         self.first_name = first_name
         self.middle_name = middle_name
