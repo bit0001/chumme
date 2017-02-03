@@ -1,6 +1,5 @@
+from model.friend import Friend
 from .db_context_manager import DBContextManager
-from friend import Friend
-
 
 QUERIES = {
     'create_friends_table':
