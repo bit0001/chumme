@@ -7,7 +7,8 @@ from kivy.uix.popup import Popup
 from database_manager.friend_manager import AddFriendError
 from model.friend import Friend
 from popup import OkPopup, ConfirmPopup
-from util import get_friend_manager
+from utils.getter import get_friend_manager
+from utils.widget import hide_label, show_list_view, show_label, hide_widget
 
 
 class ChumMeRoot(BoxLayout):
@@ -25,32 +26,11 @@ class ChumMeRoot(BoxLayout):
         friend_list = self.friend_list_view.friend_list
 
         if friends:
-            self.hide_label(no_friends_label)
-            self.show_list_view(friend_list, friends)
+            hide_label(no_friends_label)
+            show_list_view(friend_list, friends)
         else:
-            self.show_label(no_friends_label, 'There are no friends to show.')
-            self.hide_widget(friend_list)
-
-    def show_label(self, no_friends_label, text):
-        self.show_widget(no_friends_label)
-        no_friends_label.text = text
-
-    def show_list_view(self, list_view, data):
-        self.show_widget(list_view)
-        list_view.adapter.data.clear()
-        list_view.adapter.data.extend(data)
-        list_view._trigger_reset_populate()
-
-    def show_widget(self, friend_list):
-        friend_list.size_hint_y = 1
-
-    def hide_widget(self, friend_list):
-        friend_list.size_hint_y = None
-        friend_list.height = '0dp'
-
-    def hide_label(self, no_friends_label):
-        self.hide_widget(no_friends_label)
-        no_friends_label.text = ''
+            hide_widget(friend_list)
+            show_label(no_friends_label, 'There are no friends to show.')
 
     def show_add_update_friend_form(self, action, friend=None):
         self.clear_widgets()
