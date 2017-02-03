@@ -1,0 +1,24 @@
+<OkPopup>:
+    orientation: 'vertical'
+    Label:
+        text: root.text
+    Button:
+        size_hint_y: None
+        height: '40dp'
+        text: 'OK'
+        on_release: root.dispatch('on_answer')
+
+
+<ConfirmPopup>:
+    orientation: 'vertical'
+	Label:
+		text: root.text
+	BoxLayout:
+		size_hint_y: None
+		height: '40dp'
+		Button:
+			text: 'Yes'
+			on_release: root.dispatch('on_answer', True)
+		Button:
+			text: 'No'
+			on_release: root.dispatch('on_answer', False)

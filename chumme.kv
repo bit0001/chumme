@@ -1,6 +1,7 @@
 #: kivy 1.9.1
 #: import ListAdapter kivy.adapters.listadapter.ListAdapter
 #: import FriendItemButton gui.FriendItemButton
+#: include popup.kv
 
 ChumMeRoot:
 
@@ -158,29 +159,3 @@ ChumMeRoot:
         size_hint_y: None
         height: '40dp'
         on_press: app.root.show_friend_list()
-
-
-<ConfirmPopup>:
-    orientation: 'vertical'
-	Label:
-		text: root.text
-	BoxLayout:
-		size_hint_y: None
-		height: '40dp'
-		Button:
-			text: 'Yes'
-			on_release: root.dispatch('on_answer', True)
-		Button:
-			text: 'No'
-			on_release: root.dispatch('on_answer', False)
-
-
-<OkPopup>:
-    orientation: 'vertical'
-    Label:
-        text: root.text
-    Button:
-        size_hint_y: None
-        height: '40dp'
-        text: 'OK'
-        on_release: root.dispatch('on_answer')
