@@ -14,6 +14,7 @@ from utils.widget import hide_label, show_list_view, show_label, hide_widget
 
 class ChumMeRoot(BoxLayout):
     add_friend_form = ObjectProperty()
+    update_friend_form = ObjectProperty()
     friend_list_view = ObjectProperty()
     friend_info_view = ObjectProperty()
 
