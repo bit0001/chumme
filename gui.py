@@ -4,7 +4,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.listview import ListItemButton
 from kivy.uix.popup import Popup
 
-from database_manager.friend_manager import AddFriendError
+from database_manager.friend_manager import MinimumFriendParameterException
 from friend_info import FriendInfoView
 from model.friend import Friend
 from popup import OkPopup
