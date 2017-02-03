@@ -23,7 +23,6 @@ class FriendForm(BoxLayout):
             'email': form.email.text,
             'cell_phone': form.cell_phone.text
         }
-        print(parameters)
         friend = Friend(**parameters)
 
         return friend
