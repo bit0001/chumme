@@ -1,6 +1,7 @@
 #: kivy 1.9.1
 #: include popup.kv
 #: include friend_list.kv
+#: include friend_info.kv
 
 ChumMeRoot:
 
@@ -71,64 +72,3 @@ ChumMeRoot:
             on_press:
                 app.root.add_update_friend(root.action,
                 0 if root.friend is None else root.friend.id)
-
-
-<FriendInfoView>:
-    orientation: 'vertical'
-    Label:
-        text: root.full_name
-        size_hint_y: None
-        height: '40dp'
-    BoxLayout:
-        size_hint_y: None
-        height: '40dp'
-        Button:
-            text: 'Update'
-            on_press:
-                app.root.show_add_update_friend_form('update', root.friend)
-        Button:
-            text: 'Delete'
-            on_press: root.delete_friend()
-    BoxLayout:
-        GridLayout:
-            cols: 2
-            orientation: 'vertical'
-            Label:
-                text: 'First Name'
-            Label:
-                text: root.first_name
-            Label:
-                text: 'Middle Name'
-            Label:
-                text: root.middle_name
-            Label:
-                text: 'Last Name'
-            Label:
-                text: root.last_name
-            Label:
-                text: 'Birthdate'
-            Label:
-                text: root.birthdate
-            Label:
-                text: 'Email'
-            Label:
-                text: root.email
-            Label:
-                text: 'Cell Phone'
-            Label:
-                text: root.cell_phone
-        BoxLayout:
-            orientation: 'vertical'
-            AnchorLayout:
-                Image:
-                    anchor_x: 'center'
-                    anchor_y: 'center'
-                    size_hint: (0.75, 0.75)
-                    source: 'chumme_profile.png'
-            Label:
-                text: 'Social Networks'
-    Button:
-        text: 'Show friends'
-        size_hint_y: None
-        height: '40dp'
-        on_press: app.root.show_friend_list()
