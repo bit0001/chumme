@@ -22,6 +22,15 @@ class OkPopup(PopupLayout):
     pass
 
 
+def get_add_edit_friend_error_popup(action, on_answer):
+    content = OkPopup(text='First name and last name are mandatory fields.')
+    content.bind(on_answer=on_answer)
+    return Popup(
+        title='Error {} friend'.format(action),
+        content=content,
+        auto_dismiss=False)
+
+
 def get_delete_friend_confirmation_popup(friend, on_answer):
     content = ConfirmPopup(
         text='Are you sure you want to delete '
