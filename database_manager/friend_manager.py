@@ -19,7 +19,10 @@ QUERIES = {
         """
         INSERT INTO friends
         (first_name, middle_name, last_name, birthdate, email, cell_phone)
-        VALUES (?, ?, ?, ?, ?, ?)
+        VALUES
+        (
+          trim(?), trim(?), trim(?), trim(?), trim(?), trim(?)
+        )
         """,
     'update_friend_on_field':
         """
