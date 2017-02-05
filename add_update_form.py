@@ -9,6 +9,7 @@ from utils.getter import get_friend_manager
 
 class FriendForm(BoxLayout):
     friend = ObjectProperty()
+
     def __init__(self, friend, **kwargs):
         self.friend = friend
         super().__init__(**kwargs)
