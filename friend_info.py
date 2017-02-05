@@ -1,8 +1,7 @@
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.popup import Popup
 
-from popup import ConfirmPopup
+from popup import get_delete_friend_confirmation_popup
 from utils.getter import get_friend_manager
 
 
@@ -31,17 +30,8 @@ class FriendInfoView(BoxLayout):
         return field if field else FriendInfoView.EMPTY_FIELD
 
     def delete_friend(self):
-        content = ConfirmPopup(
-            text='Are you sure you want to delete'
-                 'your friend {}?'.format(self.friend.full_name))
-        content.bind(on_answer=self._on_answer)
-
-        self.popup = Popup(
-            title='Deleting friend...',
-            content=content,
-            auto_dismiss=False
-        )
-
+        self.popup = get_delete_friend_confirmation_popup(
+            self.friend, self._on_answer)
         self.popup.open()
 
     def _on_answer(self, instance, answer):
