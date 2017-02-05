@@ -1,10 +1,9 @@
 from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.popup import Popup
 
 from database_manager.friend_manager import MinimumFriendParameterException
 from model.friend import Friend
-from popup import OkPopup
+from popup import get_add_edit_friend_error_popup
 from utils.getter import get_friend_manager
 
 
@@ -28,14 +27,7 @@ class FriendForm(BoxLayout):
         return friend
 
     def display_error_popup(self, action):
-        content = OkPopup(
-            text='First name and last name are mandatory fields.'
-        )
-        content.bind(on_answer=self._on_answer)
-        self.popup = Popup(
-            title='Error {} friend'.format(action),
-            content=content,
-            auto_dismiss=False)
+        self.popup = get_add_edit_friend_error_popup(action, self._on_answer)
         self.popup.open()
 
     def _on_answer(self, instance):
