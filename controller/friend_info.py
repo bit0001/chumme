@@ -5,7 +5,7 @@ from controller.popup import get_delete_friend_confirmation_popup
 from utils.getter import get_friend_manager
 
 
-class FriendInfoView(BoxLayout):
+class FriendInfoCarousel(BoxLayout):
     general_info = ObjectProperty()
 
 
@@ -22,8 +22,6 @@ class FriendGeneralInfo(BoxLayout):
     status = StringProperty()
 
     def update_friend_information(self, friend):
-        print(friend)
-        print('UPDATING FRIEND')
         self.friend = friend
         self.full_name = friend.full_name
         self.first_name = friend.first_name

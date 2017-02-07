@@ -2,7 +2,7 @@ from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
 
 from controller.add_update_form import AddFriendForm, UpdateFriendForm
-from controller.friend_info import FriendInfoView
+from controller.friend_info import FriendInfoCarousel
 from model.friend import Friend
 
 
@@ -33,6 +33,6 @@ class ChumMeRoot(BoxLayout):
 
     def show_friend_details(self, friend):
         self.clear_widgets()
-        self.friend_info_view = FriendInfoView()
+        self.friend_info_view = FriendInfoCarousel()
         self.friend_info_view.general_info.update_friend_information(friend)
         self.add_widget(self.friend_info_view)
