@@ -51,16 +51,9 @@
                 anchor_y: 'center'
                 size_hint: (0.95, 0.95)
                 source: 'chumme_profile.png'
-            BoxLayout:
-                height: '40dp'
-                size_hint_y: None
-                Label:
-                    width: '40dp'
-                    size_hint_x: None
-                    text: '{}'.format(icon('fa-heart'))
-                    markup: True
-                Label:
-                    text: root.status
+            Label:
+                text: '{}   {}'.format(icon('fa-heart'), root.status)
+                markup: True
             Label:
                 text: 'Social Networks'
     Button:
