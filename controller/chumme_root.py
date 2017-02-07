@@ -10,7 +10,7 @@ class ChumMeRoot(BoxLayout):
     add_friend_form = ObjectProperty()
     update_friend_form = ObjectProperty()
     friend_list_view = ObjectProperty()
-    friend_info_view = ObjectProperty()
+    friend_info_carousel = ObjectProperty()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -33,6 +33,6 @@ class ChumMeRoot(BoxLayout):
 
     def show_friend_details(self, friend):
         self.clear_widgets()
-        self.friend_info_view = FriendInfoCarousel()
-        self.friend_info_view.general_info.update_friend_information(friend)
-        self.add_widget(self.friend_info_view)
+        self.friend_info_carousel = FriendInfoCarousel()
+        self.friend_info_carousel.general_info.update_friend_information(friend)
+        self.add_widget(self.friend_info_carousel)
