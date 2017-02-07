@@ -13,7 +13,7 @@ class Friend:
                  birthdate: str = '',
                  email: str = '',
                  cell_phone: str = '',
-                 status: str = ''):
+                 status: str = STATUSES[-1]):
         self.id = id
         self.first_name = first_name
         self.middle_name = middle_name
