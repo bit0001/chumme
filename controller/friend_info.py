@@ -21,7 +21,7 @@ class FriendGeneralInfo(BoxLayout):
     cell_phone = StringProperty()
     status = StringProperty()
 
-    def update_friend_information(self, friend):
+    def update_friend_info(self, friend):
         self.friend = friend
         self.full_name = friend.full_name
         self.first_name = friend.first_name
