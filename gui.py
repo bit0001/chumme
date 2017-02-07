@@ -9,8 +9,8 @@ from friend_info import FriendInfoView
 from model.friend import Friend
 
 iconfonts.register('default_font',
-                   'fontawesome-webfont.ttf',
-                   'font-awesome.fontd')
+                   'resources/fontawesome-webfont.ttf',
+                   'resources/font-awesome.fontd')
 
 class ChumMeRoot(BoxLayout):
     add_friend_form = ObjectProperty()
