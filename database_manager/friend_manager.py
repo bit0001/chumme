@@ -13,15 +13,19 @@ QUERIES = {
           birthdate DATE,
           email VARCHAR(320),
           cell_phone VARCHAR(50)
+          status VARCHAR(30)
           )
         """,
     'insert_friend':
         """
         INSERT INTO friends
-        (first_name, middle_name, last_name, birthdate, email, cell_phone)
+        (
+          first_name, middle_name, last_name, birthdate,
+          email, cell_phone, status
+        )
         VALUES
         (
-          trim(?), trim(?), trim(?), trim(?), trim(?), trim(?)
+          trim(?), trim(?), trim(?), trim(?), trim(?), trim(?), ?
         )
         """,
     'update_friend_on_field':
@@ -34,7 +38,7 @@ QUERIES = {
         """
         UPDATE friends
         SET first_name = ?, middle_name = ?, last_name = ?,
-            birthdate = ?, email = ?, cell_phone = ?
+            birthdate = ?, email = ?, cell_phone = ?, status = ?
         WHERE id = ?
         """,
     'delete_friend':
@@ -87,6 +91,7 @@ class FriendManager:
                     'birthdate': row[4],
                     'email': row[5],
                     'cell_phone': row[6],
+                    'status': row[7]
                 }
                 friends.append(Friend(**parameters))
 
@@ -99,7 +104,7 @@ class FriendManager:
                            (friend.first_name, friend.middle_name,
                             friend.last_name, friend.birthdate,
                             friend.email, friend.cell_phone,
-                            friend.id))
+                            friend.status, friend.id))
 
     def update_friend_on_field(self, id: int, field: str, value: str):
         with DBContextManager(self.db_path) as cursor:
