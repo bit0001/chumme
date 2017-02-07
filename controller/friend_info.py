@@ -6,6 +6,10 @@ from utils.getter import get_friend_manager
 
 
 class FriendInfoView(BoxLayout):
+    general_info = ObjectProperty()
+
+
+class FriendGeneralInfo(BoxLayout):
     EMPTY_FIELD = '-'
     friend = ObjectProperty()
     full_name = StringProperty()
@@ -18,6 +22,8 @@ class FriendInfoView(BoxLayout):
     status = StringProperty()
 
     def update_friend_information(self, friend):
+        print(friend)
+        print('UPDATING FRIEND')
         self.friend = friend
         self.full_name = friend.full_name
         self.first_name = friend.first_name
@@ -29,7 +35,7 @@ class FriendInfoView(BoxLayout):
         self.status = friend.status
 
     def get_field(self, field):
-        return field if field else FriendInfoView.EMPTY_FIELD
+        return field if field else self.EMPTY_FIELD
 
     def delete_friend(self):
         self.popup = get_delete_friend_confirmation_popup(

@@ -34,5 +34,5 @@ class ChumMeRoot(BoxLayout):
     def show_friend_details(self, friend):
         self.clear_widgets()
         self.friend_info_view = FriendInfoView()
-        self.friend_info_view.update_friend_information(friend)
+        self.friend_info_view.general_info.update_friend_information(friend)
         self.add_widget(self.friend_info_view)
