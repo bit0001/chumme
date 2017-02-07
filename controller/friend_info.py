@@ -6,13 +6,24 @@ from utils.getter import get_friend_manager
 
 
 class FriendInfoCarousel(BoxLayout):
-    general_info = ObjectProperty()
-
-
-class FriendGeneralInfo(BoxLayout):
-    EMPTY_FIELD = '-'
     friend = ObjectProperty()
-    full_name = StringProperty()
+    general_info = ObjectProperty()
+    interests = ObjectProperty()
+
+    def __init__(self, friend, **kwargs):
+        self.friend = friend
+        super().__init__(**kwargs)
+
+
+class FriendInfo(BoxLayout):
+    friend = ObjectProperty()
+
+    def update_friend_info(self, friend):
+        self.friend = friend
+
+
+class FriendGeneralInfo(FriendInfo):
+    EMPTY_FIELD = '-'
     first_name = StringProperty()
     middle_name = StringProperty()
     last_name = StringProperty()
@@ -22,8 +33,7 @@ class FriendGeneralInfo(BoxLayout):
     status = StringProperty()
 
     def update_friend_info(self, friend):
-        self.friend = friend
-        self.full_name = friend.full_name
+        super().update_friend_info(friend)
         self.first_name = friend.first_name
         self.middle_name = self.get_field(friend.middle_name)
         self.last_name = friend.last_name
@@ -45,3 +55,7 @@ class FriendGeneralInfo(BoxLayout):
         if answer:
             get_friend_manager().delete_friend(self.friend.id)
             self.parent.show_friend_list()
+
+
+class FriendInterests(FriendInfo):
+    pass

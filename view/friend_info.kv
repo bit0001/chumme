@@ -8,17 +8,26 @@
         text: root.field_text
 
 <FriendInfoCarousel>:
+    orientation: 'vertical'
     general_info: general_info
+    interests: interests
+    Label:
+        text: root.friend.full_name
+        size_hint_y: None
+        height: '40dp'
     Carousel:
         FriendGeneralInfo:
             id: general_info
+        FriendInterests:
+            id: interests
+    Button:
+        text: 'Show friends'
+        size_hint_y: None
+        height: '40dp'
+        on_press: app.root.show_friend_list()
 
 <FriendGeneralInfo>:
     orientation: 'vertical'
-    Label:
-        text: root.full_name
-        size_hint_y: None
-        height: '40dp'
     BoxLayout:
         size_hint_y: None
         height: '40dp'
@@ -66,8 +75,7 @@
                 markup: True
             Label:
                 text: 'Social Networks'
-    Button:
-        text: 'Show friends'
-        size_hint_y: None
-        height: '40dp'
-        on_press: app.root.show_friend_list()
+
+<FriendInterests>:
+    orientation: 'vertical'
+    BoxLayout:
