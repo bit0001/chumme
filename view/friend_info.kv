@@ -26,6 +26,19 @@
         height: '40dp'
         on_press: app.root.show_friend_list()
 
+<GroupTitle@BoxLayout>:
+    title: ''
+    size_hint_y: None
+    height: '40dp'
+    BoxLayout:
+        size_hint_x: None
+        width: '40dp'
+    Label:
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+        text: root.title
+
 <FriendGeneralInfo>:
     orientation: 'vertical'
     BoxLayout:
@@ -37,6 +50,8 @@
         Button:
             text: 'Delete'
             on_press: root.delete_friend()
+    GroupTitle:
+        title: 'General Information'
     BoxLayout:
         BoxLayout:
             orientation: 'vertical'
@@ -78,4 +93,6 @@
 
 <FriendInterests>:
     orientation: 'vertical'
+    GroupTitle:
+        title: 'Interests'
     BoxLayout:
