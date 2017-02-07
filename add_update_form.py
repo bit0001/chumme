@@ -21,7 +21,8 @@ class FriendForm(BoxLayout):
             'last_name': form.last_name.text,
             'birthdate': form.birthdate.text,
             'email': form.email.text,
-            'cell_phone': form.cell_phone.text
+            'cell_phone': form.cell_phone.text,
+            'status': form.status.text
         }
         friend = Friend(**parameters)
 
