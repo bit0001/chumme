@@ -7,8 +7,13 @@
     Label:
         text: root.field_text
 
-
 <FriendInfoView>:
+    general_info: general_info
+    Carousel:
+        FriendGeneralInfo:
+            id: general_info
+
+<FriendGeneralInfo>:
     orientation: 'vertical'
     Label:
         text: root.full_name
