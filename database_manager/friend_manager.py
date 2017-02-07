@@ -70,7 +70,8 @@ class FriendManager:
             cursor.execute(
                 QUERIES['insert_friend'],
                 (friend.first_name, friend.middle_name, friend.last_name,
-                 friend.birthdate, friend.email, friend.cell_phone)
+                 friend.birthdate, friend.email, friend.cell_phone,
+                 friend.status)
             )
 
     def check_mandatory_fields(self, friend):
