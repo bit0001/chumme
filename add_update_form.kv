@@ -21,6 +21,7 @@
     birthdate: birthdate.input_text_id
     email: email.input_text_id
     cell_phone: cell_phone.input_text_id
+    status: status
     FormInput:
         id: first_name
         label_text: 'First Name'
@@ -45,6 +46,15 @@
         id: cell_phone
         label_text: 'Cell Phone'
         input_text: root.friend.cell_phone
+    BoxLayout:
+        height: '30dp'
+        size_hint_y: None
+        Label:
+            text: 'Status'
+        Spinner:
+            id: status
+            text: root.STATUSES[-1]
+            values: root.STATUSES
     BoxLayout:
 
 
