@@ -7,7 +7,8 @@ class Friend:
                  last_name: str = '',
                  birthdate: str = '',
                  email: str = '',
-                 cell_phone: str = ''):
+                 cell_phone: str = '',
+                 status: str = ''):
         self.id = id
         self.first_name = first_name
         self.middle_name = middle_name
@@ -15,6 +16,7 @@ class Friend:
         self.birthdate = birthdate
         self.email = email
         self.cell_phone = cell_phone
+        self.status = status
 
     @property
     def full_name(self):
@@ -27,15 +29,17 @@ class Friend:
             self.last_name)
 
     def __repr__(self):
-        return """First name: {0}
-Middle name: {1}
-Last Name: {2}
-Birthdate: {3}
-Email: {4}
-Cell phone: {5}
+        return """First name: {}
+Middle name: {}
+Last Name: {}
+Birthdate: {}
+Email: {}
+Cell phone: {}
+Status: {}
             """.format(self.first_name,
                        self.middle_name,
                        self.last_name,
                        self.birthdate,
                        self.email,
-                       self.cell_phone)
+                       self.cell_phone,
+                       self.status)
