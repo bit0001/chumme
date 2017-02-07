@@ -1,4 +1,9 @@
 class Friend:
+    STATUSES = [
+        'single', 'in a relationship', 'engaged', 'in civil union', 'married',
+        'separated', 'divorced', 'widowed', 'in an open relationship',
+        "it's complicated", 'unknown'
+    ]
 
     def __init__(self,
                  id: int = 0,

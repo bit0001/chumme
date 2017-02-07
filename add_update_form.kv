@@ -1,3 +1,4 @@
+#: import Friend model.friend.Friend
 <FormInput@BoxLayout>
     height: '30dp'
     size_hint_y: None
@@ -53,8 +54,8 @@
             text: 'Status'
         Spinner:
             id: status
-            text: root.STATUSES[-1]
-            values: root.STATUSES
+            text: Friend.STATUSES[-1]
+            values: Friend.STATUSES
     BoxLayout:
 
 
