@@ -8,6 +8,12 @@ from utils.getter import get_friend_manager
 
 
 class FriendForm(BoxLayout):
+    STATUSES = [
+        'single', 'in a relationship', 'engaged', 'in civil union', 'married',
+        'separated', 'divorced', 'widowed', 'in an open relationship',
+        "it's complicated", 'unknown'
+    ]
+
     friend = ObjectProperty()
 
     def __init__(self, friend, **kwargs):
