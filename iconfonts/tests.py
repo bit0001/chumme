@@ -1,6 +1,6 @@
 import unittest
 
-from kivy.garden import iconfonts
+import iconfonts
 
 
 class Tests(unittest.TestCase):

@@ -2,11 +2,15 @@ from kivy.app import App
 from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
 
+import iconfonts
 from add_update_form import AddFriendForm
 from add_update_form import UpdateFriendForm
 from friend_info import FriendInfoView
 from model.friend import Friend
 
+iconfonts.register('default_font',
+                   'fontawesome-webfont.ttf',
+                   'font-awesome.fontd')
 
 class ChumMeRoot(BoxLayout):
     add_friend_form = ObjectProperty()
