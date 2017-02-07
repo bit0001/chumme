@@ -1,9 +1,9 @@
 from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
 
+from controller.popup import get_add_edit_friend_error_popup
 from database_manager.friend_manager import MinimumFriendParameterException
 from model.friend import Friend
-from popup import get_add_edit_friend_error_popup
 from utils.getter import get_friend_manager
 
 

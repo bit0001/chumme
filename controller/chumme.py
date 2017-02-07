@@ -1,11 +1,15 @@
+import os
+
 from kivy.app import App
+from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
+from os.path import dirname
 
 import iconfonts
-from add_update_form import AddFriendForm
-from add_update_form import UpdateFriendForm
-from friend_info import FriendInfoView
+from controller.add_update_form import AddFriendForm
+from controller.add_update_form import UpdateFriendForm
+from controller.friend_info import FriendInfoView
 from model.friend import Friend
 
 iconfonts.register('default_font',
@@ -45,12 +49,7 @@ class ChumMeRoot(BoxLayout):
 
 
 class ChumMeApp(App):
-    pass
-
-
-def main():
-    ChumMeApp().run()
-
-
-if __name__ == '__main__':
-    main()
+    def build(self):
+        return Builder.load_file(
+            os.path.join(dirname(__file__), '../view/chumme.kv')
+        )

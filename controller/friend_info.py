@@ -1,7 +1,7 @@
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
 
-from popup import get_delete_friend_confirmation_popup
+from controller.popup import get_delete_friend_confirmation_popup
 from utils.getter import get_friend_manager
 
 
