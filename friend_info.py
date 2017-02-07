@@ -15,6 +15,7 @@ class FriendInfoView(BoxLayout):
     birthdate = StringProperty()
     email = StringProperty()
     cell_phone = StringProperty()
+    status = StringProperty()
 
     def update_friend_information(self, friend):
         self.friend = friend
@@ -25,6 +26,7 @@ class FriendInfoView(BoxLayout):
         self.birthdate = self.get_field(friend.birthdate)
         self.email = self.get_field(friend.email)
         self.cell_phone = self.get_field(friend.cell_phone)
+        self.status = friend.status
 
     def get_field(self, field):
         return field if field else FriendInfoView.EMPTY_FIELD
