@@ -2,6 +2,7 @@ from sqlite3 import IntegrityError
 
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.label import Label
 from kivy.uix.modalview import ModalView
 
 from controller.popup import get_delete_friend_confirmation_popup, \
@@ -63,7 +64,13 @@ class FriendGeneralInfo(FriendInfo):
 
 
 class FriendInterests(FriendInfo):
-    pass
+    def update_friend_info(self, friend):
+        super().update_friend_info(friend)
+        interests = get_friend_manager().get_interest_by_friend_id(
+            self.friend.id)
+
+        for interest in interests:
+            self.interests_container.add_widget(InterestLabel(text=interest))
 
 
 class EditFriendInterests(ModalView):
@@ -89,3 +96,6 @@ class EditFriendInterests(ModalView):
 
     def _on_answer(self, instance):
         self.popup.dismiss()
+
+class InterestLabel(Label):
+    pass
