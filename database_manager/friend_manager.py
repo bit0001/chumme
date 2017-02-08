@@ -50,6 +50,15 @@ QUERIES = {
         """
         SELECT * FROM friends
         """,
+    'select_interests_by_friend_id':
+    """
+      SELECT i.interest
+      FROM friends f
+      INNER JOIN friends_interests fi
+      INNER JOIN interests i
+      ON f.id = fi.friend_id
+      WHERE f.id = ?;
+    """
 }
 
 
