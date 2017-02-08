@@ -1,3 +1,5 @@
+from sqlite3 import IntegrityError
+
 from .db_context_manager import DBContextManager
 
 QUERIES = {
@@ -35,7 +37,7 @@ class InterestManager:
         try:
             with DBContextManager(self.db_path) as cursor:
                 cursor.execute(QUERIES['insert_interest'], (interest,))
-        except:
+        except IntegrityError:
             pass
         finally:
             with DBContextManager(self.db_path) as cursor:
