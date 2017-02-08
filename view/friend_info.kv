@@ -105,8 +105,10 @@
         BoxLayout:
             size_hint_x: None
             width: '40dp'
-        BoxLayout
+        StackLayout:
             id: interests_container
+            spacing: [25, 25]
+            orientation: 'lr-tb'
         BoxLayout:
             size_hint_x: None
             width: '40dp'
@@ -141,3 +143,14 @@
                 on_press: root.cancel_edition()
             Button:
                 text: 'Update'
+
+<InterestLabel>:
+    size_hint: (None, None)
+    text_size: self.size
+    height: '25dp'
+    canvas.before:
+        Color:
+            rgba: 0.435, 0.737, 0.839, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
