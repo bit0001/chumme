@@ -2,7 +2,7 @@ from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
 
 from controller.add_update_form import AddFriendForm, UpdateFriendForm
-from controller.friend_info import FriendInfoCarousel
+from controller.friend_info import FriendInfoCarousel, EditFriendInterests
 from model.friend import Friend
 
 
@@ -11,6 +11,7 @@ class ChumMeRoot(BoxLayout):
     update_friend_form = ObjectProperty()
     friend_list_view = ObjectProperty()
     friend_info_carousel = ObjectProperty()
+    edit_friend_interests = ObjectProperty()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -37,3 +38,7 @@ class ChumMeRoot(BoxLayout):
         self.friend_info_carousel.general_info.update_friend_info(friend)
         self.friend_info_carousel.interests.update_friend_info(friend)
         self.add_widget(self.friend_info_carousel)
+
+    def show_edit_interests_view(self, friend):
+        self.edit_friend_interests = EditFriendInterests(friend)
+        self.edit_friend_interests.open()
