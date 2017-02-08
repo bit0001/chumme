@@ -1,9 +1,13 @@
+from sqlite3 import IntegrityError
+
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.modalview import ModalView
 
-from controller.popup import get_delete_friend_confirmation_popup
-from utils.getter import get_friend_manager
+from controller.popup import get_delete_friend_confirmation_popup, \
+    get_repeated_interest_popup
+from utils.getter import get_friend_manager, get_interest_manager, \
+    get_friend_interest_manager
 
 
 class FriendInfoCarousel(BoxLayout):
@@ -72,3 +76,16 @@ class EditFriendInterests(ModalView):
     def cancel_edition(self):
         self.dismiss()
 
+    def append_interest(self, interest):
+        interest_id = get_interest_manager().add_interest(interest)
+        try:
+            get_friend_interest_manager().add_friend_interest_ids(
+                self.friend.id, interest_id
+            )
+        except IntegrityError:
+            self.popup = get_repeated_interest_popup(
+                interest, self._on_answer)
+            self.popup.open()
+
+    def _on_answer(self, instance):
+        self.popup.dismiss()
