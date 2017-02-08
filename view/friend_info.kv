@@ -112,6 +112,7 @@
             width: '40dp'
 
 <EditFriendInterests>:
+    interest_text: interest_text
     BoxLayout:
         orientation: 'vertical'
         Label:
@@ -122,10 +123,15 @@
             size_hint_y: None
             height: '40dp'
             TextInput:
+                id: interest_text
                 size_hint_x: 2
+                focus: True
+                multiline: False
+                on_text_validate: root.append_interest(self.text)
             Button:
                 size_hint_x: 1
                 text: 'Add Interest'
+                on_press: root.append_interest(root.interest_text.text)
         BoxLayout:
         BoxLayout:
             size_hint_y: None
