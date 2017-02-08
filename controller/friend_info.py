@@ -1,5 +1,6 @@
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.modalview import ModalView
 
 from controller.popup import get_delete_friend_confirmation_popup
 from utils.getter import get_friend_manager
@@ -59,3 +60,15 @@ class FriendGeneralInfo(FriendInfo):
 
 class FriendInterests(FriendInfo):
     pass
+
+
+class EditFriendInterests(ModalView):
+    friend = ObjectProperty()
+
+    def __init__(self, friend, **kwargs):
+        self.friend = friend
+        super().__init__(**kwargs)
+
+    def cancel_edition(self):
+        self.dismiss()
+
