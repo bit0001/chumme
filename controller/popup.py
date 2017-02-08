@@ -22,13 +22,30 @@ class OkPopup(PopupLayout):
     pass
 
 
-def get_add_edit_friend_error_popup(action, on_answer):
-    content = OkPopup(text='First name and last name are mandatory fields.')
+def get_ok_popup(title, text, on_answer):
+    content = OkPopup(text=text)
     content.bind(on_answer=on_answer)
     return Popup(
-        title='Error {} friend'.format(action),
+        title=title,
         content=content,
-        auto_dismiss=False)
+        auto_dismiss=False
+    )
+
+
+def get_repeated_interest_popup(interest, on_answer):
+    return get_ok_popup(
+        title='Repeated interest',
+        text="The interest '{}' has been already added.".format(interest),
+        on_answer=on_answer
+    )
+
+
+def get_add_edit_friend_error_popup(action, on_answer):
+    return get_ok_popup(
+        title='Error {} friend'.format(action),
+        text='First name and last name are mandatory fields.',
+        on_answer=on_answer
+    )
 
 
 def get_delete_friend_confirmation_popup(friend, on_answer):
