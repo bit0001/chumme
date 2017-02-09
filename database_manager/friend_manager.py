@@ -55,9 +55,10 @@ QUERIES = {
       SELECT i.interest
       FROM friends f
       INNER JOIN friends_interests fi
-      INNER JOIN interests i
       ON f.id = fi.friend_id
-      WHERE f.id = ?;
+      INNER JOIN interests i
+      ON fi.interest_id = i.id
+      WHERE f.id = ?
     """
 }
 
