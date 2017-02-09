@@ -70,14 +70,14 @@ class FriendInterests(FriendInfo):
         interests = get_friend_manager().get_interest_by_friend_id(
             self.friend.id)
         no_interests_label = self.no_interests_label
-
+        interest_scroll = self.interest_scroll_view
 
         if interests:
             hide_label(no_interests_label)
-            show_widget(self.interests_container)
+            show_widget(interest_scroll)
             self.display_interests(interests)
         else:
-            hide_widget(self.interests_container)
+            hide_widget(interest_scroll)
             show_label(no_interests_label, 'There are no interests to show')
 
     def display_interests(self, interests):
