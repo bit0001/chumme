@@ -70,7 +70,8 @@ class FriendInterests(FriendInfo):
             self.friend.id)
 
         for interest in interests:
-            self.interests_container.add_widget(InterestLabel(text=interest))
+            interest_label = InterestLabel(text=interest)
+            self.interests_container.add_widget(interest_label)
 
 
 class EditFriendInterests(ModalView):
