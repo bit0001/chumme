@@ -1,3 +1,5 @@
+from sqlite3 import OperationalError
+
 from model.friend import Friend
 from .db_context_manager import DBContextManager
 
@@ -128,6 +130,9 @@ class FriendManager:
 
     def get_interest_by_friend_id(self, id) -> list:
         with DBContextManager(self.db_path) as cursor:
-            cursor.execute(QUERIES['select_interests_by_friend_id'], (id,))
-
-            return [row[0] for row in cursor.fetchall()]
+            try:
+                cursor.execute(QUERIES['select_interests_by_friend_id'], (id,))
+            except OperationalError:
+                return []
+            else:
+                return [row[0] for row in cursor.fetchall()]
