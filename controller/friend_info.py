@@ -75,12 +75,15 @@ class FriendInterests(FriendInfo):
         if interests:
             hide_label(no_interests_label)
             show_widget(self.interests_container)
-            for interest in interests:
-                interest_label = InterestLabel(text=interest)
-                self.interests_container.add_widget(interest_label)
+            self.display_interests(interests)
         else:
             hide_widget(self.interests_container)
             show_label(no_interests_label, 'There are no interests to show')
+
+    def display_interests(self, interests):
+        for interest in interests:
+            interest_label = InterestLabel(text=interest)
+            self.interests_container.add_widget(interest_label)
 
 
 class EditFriendInterests(ModalView):
@@ -106,6 +109,7 @@ class EditFriendInterests(ModalView):
 
     def _on_answer(self, instance):
         self.popup.dismiss()
+
 
 class InterestLabel(Label):
     pass
