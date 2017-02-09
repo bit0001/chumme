@@ -61,7 +61,7 @@ class FriendGeneralInfo(FriendInfo):
         self.popup.dismiss()
         if answer:
             get_friend_manager().delete_friend(self.friend.id)
-            self.parent.show_friend_list()
+            self.parent.parent.parent.parent.show_friend_list()
 
 
 class FriendInterests(FriendInfo):
