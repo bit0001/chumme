@@ -8,6 +8,7 @@ class DBContextManager:
     def __enter__(self):
         self.connection = sqlite3.connect(self.db_path)
         self.cursor = self.connection.cursor()
+        self.cursor.execute('PRAGMA FOREIGN_KEYS = ON')
         return self.cursor
 
     def __exit__(self, exc_type, exc_val, exc_tb):

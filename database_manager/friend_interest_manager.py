@@ -8,7 +8,9 @@ QUERIES = {
     (
       friend_id INTEGER NOT NULL,
       interest_id INTEGER NOT NULL,
-      FOREIGN KEY (friend_id) REFERENCES friends(id),
+      FOREIGN KEY (friend_id)
+        REFERENCES friends(id)
+        ON DELETE CASCADE,
       FOREIGN KEY (interest_id) REFERENCES interests(id),
       PRIMARY KEY (friend_id, interest_id)
     )
