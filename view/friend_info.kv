@@ -103,18 +103,13 @@
     GroupTitle:
         title: 'Interests:'
     BoxLayout:
-        BoxLayout:
-            size_hint_x: None
-            width: '40dp'
         Label:
             id: no_interests_label
         StackLayout:
             id: interests_container
+            padding:  ['40dp', 0, '40dp', 0]
             spacing: [20, 20]
             orientation: 'lr-tb'
-        BoxLayout:
-            size_hint_x: None
-            width: '40dp'
 
 <EditFriendInterests>:
     interest_text: interest_text
