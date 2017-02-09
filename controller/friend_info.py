@@ -81,9 +81,10 @@ class FriendInterests(FriendInfo):
             show_label(no_interests_label, 'There are no interests to show')
 
     def display_interests(self, interests):
+        interest_container = self.interest_scroll_view.interest_container
         for interest in interests:
             interest_label = InterestLabel(text=interest)
-            self.interests_container.add_widget(interest_label)
+            interest_container.add_widget(interest_label)
 
 
 class EditFriendInterests(ModalView):
