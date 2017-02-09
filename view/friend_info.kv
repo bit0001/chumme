@@ -93,6 +93,7 @@
 
 <FriendInterests>:
     interests_container: interests_container
+    no_interests_label: no_interests_label
     orientation: 'vertical'
     Button:
         size_hint_y: None
@@ -105,6 +106,8 @@
         BoxLayout:
             size_hint_x: None
             width: '40dp'
+        Label:
+            id: no_interests_label
         StackLayout:
             id: interests_container
             spacing: [20, 20]

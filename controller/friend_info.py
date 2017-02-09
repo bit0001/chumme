@@ -9,6 +9,7 @@ from controller.popup import get_delete_friend_confirmation_popup, \
     get_repeated_interest_popup
 from utils.getter import get_friend_manager, get_interest_manager, \
     get_friend_interest_manager
+from utils.widget import hide_label, show_widget, hide_widget, show_label
 
 
 class FriendInfoCarousel(BoxLayout):
@@ -68,10 +69,18 @@ class FriendInterests(FriendInfo):
         super().update_friend_info(friend)
         interests = get_friend_manager().get_interest_by_friend_id(
             self.friend.id)
+        no_interests_label = self.no_interests_label
 
-        for interest in interests:
-            interest_label = InterestLabel(text=interest)
-            self.interests_container.add_widget(interest_label)
+
+        if interests:
+            hide_label(no_interests_label)
+            show_widget(self.interests_container)
+            for interest in interests:
+                interest_label = InterestLabel(text=interest)
+                self.interests_container.add_widget(interest_label)
+        else:
+            hide_widget(self.interests_container)
+            show_label(no_interests_label, 'There are no interests to show')
 
 
 class EditFriendInterests(ModalView):
