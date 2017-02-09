@@ -94,6 +94,7 @@
 <FriendInterests>:
     interests_container: interests_container
     no_interests_label: no_interests_label
+    interest_scroll_view: interest_scroll_view
     orientation: 'vertical'
     Button:
         size_hint_y: None
@@ -102,10 +103,15 @@
         on_press: app.root.show_edit_interests_view(root.friend)
     GroupTitle:
         title: 'Interests:'
-    BoxLayout:
-        Label:
-            id: no_interests_label
+    Label:
+        id: no_interests_label
+        valign: 'middle'
+    ScrollView:
+        do_scroll_x: False
+        id: interest_scroll_view
         StackLayout:
+            size_hint_y: None
+            height: self.minimum_height
             id: interests_container
             padding:  ['40dp', 0, '40dp', 0]
             spacing: [20, 20]
