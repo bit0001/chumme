@@ -1,3 +1,4 @@
+#: include view/friend_info/edit_friend_interests.kv
 #: import FriendInterests controller.friend_info.friend_interests.FriendInterests
 <FriendInterests>:
     no_interests_label: no_interests_label
@@ -15,77 +16,3 @@
         valign: 'middle'
     InterestScrollableContainer:
         id: interest_scroll_view
-
-
-<InterestScrollableContainer@ScrollView>:
-    interest_container: interest_container
-    do_scroll_x: False
-    StackLayout:
-        size_hint_y: None
-        height: self.minimum_height
-        id: interest_container
-        padding:  ['40dp', 0, '40dp', 0]
-        spacing: [20, 20]
-        orientation: 'lr-tb'
-
-<EditFriendInterests>:
-    interest_text: interest_text
-    friend_interests: friend_interests
-    db_interests: db_interests
-    on_dismiss: app.root.show_friend_interests(self.friend)
-    BoxLayout:
-        orientation: 'vertical'
-        Label:
-            size_hint_y: None
-            height: '40dp'
-            text: root.friend.full_name
-        BoxLayout:
-            size_hint_y: None
-            height: '40dp'
-            TextInput:
-                id: interest_text
-                size_hint_x: 2
-                focus: True
-                multiline: False
-                on_text_validate: root.add_interest(self.text)
-            Button:
-                size_hint_x: 1
-                text: 'Add Interest'
-                on_press: root.add_interest(root.interest_text.text)
-        BoxLayout:
-            orientation: 'vertical'
-            GroupTitle:
-                title: 'Current interests:'
-            InterestScrollableContainer:
-                id: friend_interests
-            GroupTitle:
-                title: 'Other interests:'
-            InterestScrollableContainer:
-                id: db_interests
-        BoxLayout:
-            size_hint_y: None
-            height: '40dp'
-            Button:
-                text: 'Cancel'
-                on_press: root.cancel_edition()
-            Button:
-                text: 'Update'
-                on_press: root.update_interests()
-
-<InterestLabel>:
-    padding: [10, 10]
-    size_hint: None, None
-    text_size: None, None
-    size: self.texture_size
-    canvas.before:
-        Color:
-            rgba: 0.145, 0.475, 0.639, 1
-        Rectangle:
-            pos: self.pos
-            size: self.size
-
-<InterestButton>:
-    padding: [10, 10]
-    size_hint: None, None
-    text_size: None, None
-    size: self.texture_size
