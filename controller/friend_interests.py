@@ -52,22 +52,26 @@ class EditFriendInterests(ModalView):
         other_interests = get_interest_manager().get_interests()
         other_interests = set(other_interests) - set(friend_interests)
 
-        for interest in friend_interests:
+        self._add_interests_to_container(
+            self.friend_interests.interest_container,
+            friend_interests,
+            self._remove_interest
+        )
+
+        self._add_interests_to_container(
+            self.db_interests.interest_container,
+            other_interests,
+            self._add_interest
+        )
+
+    def _add_interests_to_container(self, container, interests, on_press):
+        for interest in interests:
             interest_button = InterestButton(
                 text=interest,
-                on_press=self._remove_interest
+                on_press=on_press
             )
-            self.friend_interests.interest_container.add_widget(interest_button)
+            container.add_widget(interest_button)
 
-        for interest in other_interests:
-            interest_button  = InterestButton(
-                text=interest,
-                on_press=self._add_interest
-            )
-            self.db_interests.interest_container.add_widget(interest_button)
-
-        print(self.interests_to_add)
-        print(self.interests_to_remove)
 
     def _add_interest(self, instance):
         new_button = InterestButton(
