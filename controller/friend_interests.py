@@ -133,17 +133,18 @@ class EditFriendInterests(ModalView):
         self.dismiss()
 
     def add_interests(self, interests):
-        to_add = interests - set(get_friend_manager().\
-            get_interest_by_friend_id(self.friend.id))
-        for interest in to_add:
+        for interest in interests:
             interest_id = get_interest_manager().get_interest_id(interest)
-            get_friend_interest_manager().\
-                add_friend_interest_ids(self.friend.id, interest_id)
+            try:
+                get_friend_interest_manager().\
+                    add_friend_interest_ids(self.friend.id, interest_id)
+            except IntegrityError:
+                pass
 
     def remove_interests(self, interests):
         for interest in interests:
             interest_id = get_interest_manager().get_interest_id(interest)
-            get_friend_interest_manager().\
+            get_friend_interest_manager(). \
                 delete_friend_interest_ids(self.friend.id, interest_id)
 
     def _on_answer(self, instance):
