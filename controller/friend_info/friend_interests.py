@@ -1,16 +1,16 @@
 from sqlite3 import IntegrityError
 
 from kivy.properties import ObjectProperty
-from kivy.uix.button import Button
-from kivy.uix.label import Label
 from kivy.uix.modalview import ModalView
 
-from .friend_carousel import FriendInfo
+from .interest_util import InterestLabel, InterestButton, \
+    perform_operation_with_interests
 from controller.popup import get_interest_already_in_list_popup, \
     get_interest_in_other_interests_popup
 from utils.getter import get_friend_manager, get_interest_manager, \
     get_friend_interest_manager
 from utils.widget import hide_label, show_widget, hide_widget, show_label
+from .friend_carousel import FriendInfo
 
 
 class FriendInterests(FriendInfo):
@@ -139,34 +139,18 @@ class EditFriendInterests(ModalView):
         self.dismiss()
 
     def add_interests(self, interests):
-        self._perform_operation_with_interests(
+        perform_operation_with_interests(
             get_friend_interest_manager().add_friend_interest_ids,
-            interests
+            interests, self.friend
         )
 
     def remove_interests(self, interests):
-        self._perform_operation_with_interests(
+        perform_operation_with_interests(
             get_friend_interest_manager().delete_friend_interest_ids,
-            interests
+            interests, self.friend
         )
-
-    def _perform_operation_with_interests(self, operation, interests):
-        for interest in interests:
-            interest_id = get_interest_manager().get_interest_id(interest)
-            try:
-                operation(self.friend.id, interest_id)
-            except IntegrityError:
-                pass
 
     def _on_answer(self, instance):
         self.popup.dismiss()
         self.interest_text.text = ''
         self.interest_text.focus = True
-
-
-class InterestLabel(Label):
-    pass
-
-
-class InterestButton(Button):
-    pass
