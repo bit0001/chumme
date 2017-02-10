@@ -8,7 +8,7 @@ from kivy.uix.modalview import ModalView
 from kivy.uix.scrollview import ScrollView
 
 from controller.popup import get_delete_friend_confirmation_popup, \
-    get_repeated_interest_popup
+    get_interest_in_other_interests_popup, get_interest_already_in_list_popup
 from utils.getter import get_friend_manager, get_interest_manager, \
     get_friend_interest_manager
 from utils.widget import hide_label, show_widget, hide_widget, show_label
@@ -130,10 +130,18 @@ class EditFriendInterests(ModalView):
         self.friend_interests.interest_container.add_widget(new_button)
 
     def add_interest(self, interest):
+        if interest in (self.interests_to_add - self.interests_to_remove) or\
+            interest in get_friend_manager().\
+            get_interest_by_friend_id(self.friend.id):
+            self.popup = get_interest_already_in_list_popup(
+                interest, self._on_answer)
+            self.popup.open()
+            return
+
         try:
             get_interest_manager().add_interest(interest)
         except IntegrityError:
-            self.popup = get_repeated_interest_popup(
+            self.popup = get_interest_in_other_interests_popup(
                 interest, self._on_answer)
             self.popup.open()
         else:
