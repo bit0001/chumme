@@ -1,12 +1,28 @@
 #: import FriendThoughts controller.friend_info.friend_thoughts.FriendThoughts
+<ThoughtScrollableContainer@ScrollView>:
+    thought_container: thought_container
+    do_scroll_x: False
+    StackLayout:
+        size_hint_y: None
+        height: self.minimum_height
+        id: thought_container
+        padding:  ['40dp', 0, '40dp', 0]
+        spacing: [20, 20]
+        orientation: 'lr-tb'
+
 <FriendThoughts>:
+    no_thoughts_label: no_thoughts_label
+    thought_scroll_view: thought_scroll_view
     orientation: 'vertical'
     GroupTitle:
         title: 'Thoughts about your friend:'
     BoxLayout:
+        orientation: 'vertical'
         Label:
+            id: no_thoughts_label
             text: 'There are no thoughts about your friend.'
-
+        ThoughtScrollableContainer:
+            id: thought_scroll_view
     BoxLayout:
         size_hint_y: None
         height: '80dp'
