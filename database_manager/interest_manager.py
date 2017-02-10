@@ -26,6 +26,7 @@ QUERIES = {
     'select_all_interests':
     """
     SELECT interest FROM interests
+    ORDER BY interest
     """
 }
 
