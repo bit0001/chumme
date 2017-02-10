@@ -7,7 +7,7 @@ QUERIES = {
         CREATE TABLE IF NOT EXISTS thoughts
         (
           friend_id INTEGER NOT NULL,
-          thougth TEXT NOT NULL,
+          thought TEXT NOT NULL,
           creation_date DATETIME,
           FOREIGN KEY (friend_id)
             REFERENCES friends(id)
