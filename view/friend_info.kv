@@ -107,7 +107,7 @@
         id: interest_scroll_view
 
 
-<InterestScrollableContainer@ScrollView>
+<InterestScrollableContainer>:
     interest_container: interest_container
     do_scroll_x: False
     StackLayout:
@@ -122,6 +122,7 @@
     interest_text: interest_text
     friend_interests: friend_interests
     db_interests: db_interests
+    on_dismiss: app.root.show_friend_interests(self.friend)
     BoxLayout:
         orientation: 'vertical'
         Label:
@@ -136,11 +137,11 @@
                 size_hint_x: 2
                 focus: True
                 multiline: False
-                on_text_validate: root.append_interest(self.text)
+                on_text_validate: root.add_interest(self.text)
             Button:
                 size_hint_x: 1
                 text: 'Add Interest'
-                on_press: root.append_interest(root.interest_text.text)
+                on_press: root.add_interest(root.interest_text.text)
         BoxLayout:
             orientation: 'vertical'
             GroupTitle:
@@ -159,6 +160,7 @@
                 on_press: root.cancel_edition()
             Button:
                 text: 'Update'
+                on_press: root.update_interests()
 
 <InterestLabel>:
     padding: [10, 10]
