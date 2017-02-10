@@ -1,5 +1,5 @@
 from database_manager.db_context_manager import DBContextManager
-
+from model.thought import Thought
 
 QUERIES = {
     'create_thoughts_table':
@@ -54,4 +54,4 @@ class ThoughtManager:
             cursor.execute(QUERIES['select_thoughts_by_friend_id'],
                            (friend_id,))
 
-            return [row[0] for row in cursor.fetchall()]
+            return [Thought(row[0], row[1]) for row in cursor.fetchall()]
