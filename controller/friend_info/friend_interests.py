@@ -6,7 +6,7 @@ from kivy.uix.label import Label
 from kivy.uix.modalview import ModalView
 
 from .friend_carousel import FriendInfo
-from .popup import get_interest_already_in_list_popup, \
+from controller.popup import get_interest_already_in_list_popup, \
     get_interest_in_other_interests_popup
 from utils.getter import get_friend_manager, get_interest_manager, \
     get_friend_interest_manager

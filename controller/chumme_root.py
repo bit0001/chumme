@@ -1,10 +1,10 @@
 from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
 
-from .friend_interests import EditFriendInterests
-from .add_update_form import AddFriendForm, UpdateFriendForm
-from .friend_carousel import FriendInfoCarousel
+from controller.friend_info.friend_carousel import FriendInfoCarousel
 from model.friend import Friend
+from .add_update_form import AddFriendForm, UpdateFriendForm
+from .friend_info.friend_interests import EditFriendInterests
 
 
 class ChumMeRoot(BoxLayout):
