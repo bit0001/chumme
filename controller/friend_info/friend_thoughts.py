@@ -1,6 +1,10 @@
+import datetime
+
 from kivy.uix.label import Label
 
+from controller.popup import get_empty_thought_popup
 from database_manager.thought_manager import EmptyThoughtException
+from model.thought import Thought
 from utils.getter import get_thought_manager
 from utils.widget import hide_label, show_label, hide_widget, show_widget
 from .friend_carousel import FriendInfo
@@ -27,7 +31,7 @@ class FriendThoughts(FriendInfo):
     def display_thoughts(self, thoughts):
         container = self.thought_scroll_view.thought_container
         for thought in thoughts:
-            label = ThoughtLabel(text = thought.text)
+            label = ThoughtLabel(thought)
             container.add_widget(label)
 
     def add_thought(self, text):
@@ -36,11 +40,28 @@ class FriendThoughts(FriendInfo):
                 self.friend.id, text.strip()
             )
         except EmptyThoughtException:
-            # show pop up saying that no empty thought
-            pass
+            self.popup = get_empty_thought_popup(self._on_answer)
+            self.popup.open()
         else:
+            thought = Thought(text)
+            label = ThoughtLabel(thought)
+            self.thought_scroll_view.thought_container.add_widget(label)
             self.thought_input.text = ''
             self.thought_input.focus = True
 
+    def _on_answer(self, instance):
+        self.popup.dismiss()
+        self.thought_input.text = ''
+        self.thought_input.focus = True
+
+
 class ThoughtLabel(Label):
-    pass
+    def __init__(self, thought, **kwargs):
+        super().__init__(**kwargs)
+        self._format_thougth(thought)
+
+    def _format_thougth(self, thought):
+        template = "[b]Added on:[/b] {}\n"\
+                   "[b]Thought:[/b]\n"\
+                   "[i]{}[/i]"
+        self.text = template.format(thought.creation_date, thought.text)
