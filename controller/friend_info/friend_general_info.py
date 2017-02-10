@@ -1,7 +1,7 @@
 from kivy.properties import StringProperty
 
 from .friend_carousel import FriendInfo
-from .popup import get_delete_friend_confirmation_popup
+from controller.popup import get_delete_friend_confirmation_popup
 from utils.getter import get_friend_manager
 
 
