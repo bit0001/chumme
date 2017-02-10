@@ -88,9 +88,7 @@ class EditFriendInterests(ModalView):
             self.popup.open()
             return
 
-        if interest in (self.interests_to_add - self.interests_to_remove) or\
-            interest in get_friend_manager().\
-            get_interest_by_friend_id(self.friend.id):
+        if self.is_interest_already_added(interest):
             self.popup = get_interest_already_in_list_popup(
                 interest, self._on_answer)
             self.popup.open()
@@ -111,6 +109,11 @@ class EditFriendInterests(ModalView):
             self.interests_to_add.add(interest)
             self.interest_text.text = ''
             self.interest_text.focus = True
+
+    def is_interest_already_added(self, interest):
+        return interest in self.interests_to_add or\
+               interest in get_friend_manager().\
+                   get_interest_by_friend_id(self.friend.id)
 
     def update_friend_property(self):
         self.friend = get_friend_manager().\
