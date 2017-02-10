@@ -22,7 +22,7 @@ QUERIES = {
         """,
     'select_thoughts_by_friend_id':
         """
-        SELECT thougth FROM thoughts t
+        SELECT thought, creation_date FROM thoughts t
         INNER JOIN friends f
         ON f.id = t.friend_id
         WHERE f.id = ?
