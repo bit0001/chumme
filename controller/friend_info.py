@@ -98,20 +98,45 @@ class EditFriendInterests(ModalView):
         print(self.friend_interests)
         print(self.db_interests)
 
+        self.interests_to_add = []
+        self.interests_to_remove = []
+
         friend_interests = get_friend_manager().\
             get_interest_by_friend_id(self.friend.id)
         other_interests = get_interest_manager().get_interests()
         other_interests = set(other_interests) - set(friend_interests)
 
         for interest in friend_interests:
-            interest_button = InterestButton(text=interest)
+            interest_button = InterestButton(
+                text=interest,
+                on_press=self._remove_interest
+            )
             self.friend_interests.interest_container.add_widget(interest_button)
 
         for interest in other_interests:
-            interest_button  = InterestButton(text=interest)
+            interest_button  = InterestButton(
+                text=interest,
+                on_press=self._add_interest
+            )
             self.db_interests.interest_container.add_widget(interest_button)
 
+    def _add_interest(self, instance):
+        new_button = InterestButton(
+            text=instance.text,
+            on_press=self._remove_interest
+        )
+        self.interests_to_add.append(instance.text)
+        self.db_interests.interest_container.remove_widget(instance)
+        self.friend_interests.interest_container.add_widget(new_button)
 
+    def _remove_interest(self, instance):
+        new_button = InterestButton(
+            text=instance.text,
+            on_press=self._add_interest
+        )
+        self.interests_to_remove.append(instance.text)
+        self.friend_interests.interest_container.remove_widget(instance)
+        self.db_interests.interest_container.add_widget(new_button)
 
     def cancel_edition(self):
         self.dismiss()
