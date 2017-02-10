@@ -81,8 +81,6 @@ class EditFriendInterests(ModalView):
 
         self.interests_to_add.add(instance.text)
         self.interests_to_remove.discard(instance.text)
-        print(self.interests_to_add)
-        print(self.interests_to_remove)
         self.db_interests.interest_container.remove_widget(instance)
         self.friend_interests.interest_container.add_widget(new_button)
 
@@ -94,8 +92,6 @@ class EditFriendInterests(ModalView):
 
         self.interests_to_remove.add(instance.text)
         self.interests_to_add.discard(instance.text)
-        print(self.interests_to_add)
-        print(self.interests_to_remove)
         self.friend_interests.interest_container.remove_widget(instance)
         self.db_interests.interest_container.add_widget(new_button)
 
