@@ -21,3 +21,18 @@ def perform_operation_with_interests(operation, interests, friend):
             operation(friend.id, interest_id)
         except IntegrityError:
             pass
+
+
+def add_interest_button_to_container(container, interest, on_press):
+    new_button = InterestButton(
+        text=interest,
+        on_press=on_press
+    )
+    container.add_widget(new_button)
+
+
+def add_interests_to_container(container, interests, on_press):
+    for interest in interests:
+        add_interest_button_to_container(
+            container, interest, on_press
+        )

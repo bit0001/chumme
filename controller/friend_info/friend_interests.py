@@ -3,14 +3,15 @@ from sqlite3 import IntegrityError
 from kivy.properties import ObjectProperty
 from kivy.uix.modalview import ModalView
 
-from .interest_util import InterestLabel, InterestButton, \
-    perform_operation_with_interests
 from controller.popup import get_interest_already_in_list_popup, \
-    get_interest_in_other_interests_popup
+    get_interest_in_other_interests_popup, \
+    get_interest_should_not_be_empty_string_popup
 from utils.getter import get_friend_manager, get_interest_manager, \
     get_friend_interest_manager
 from utils.widget import hide_label, show_widget, hide_widget, show_label
 from .friend_carousel import FriendInfo
+from .interest_util import InterestLabel, perform_operation_with_interests, \
+    add_interest_button_to_container, add_interests_to_container
 
 
 class FriendInterests(FriendInfo):
@@ -52,34 +53,21 @@ class EditFriendInterests(ModalView):
         other_interests = get_interest_manager().get_interests()
         other_interests = set(other_interests) - set(friend_interests)
 
-        self._add_interests_to_container(
+        add_interests_to_container(
             self.friend_interests.interest_container,
             friend_interests,
             self._remove_interest
         )
 
-        self._add_interests_to_container(
+        add_interests_to_container(
             self.db_interests.interest_container,
             other_interests,
             self._add_interest
         )
 
-    def _add_interest_button_to_container(self, container, interest, on_press):
-        new_button = InterestButton(
-            text=interest,
-            on_press=on_press
-        )
-        container.add_widget(new_button)
-
-    def _add_interests_to_container(self, container, interests, on_press):
-        for interest in interests:
-            self._add_interest_button_to_container(
-                container, interest, on_press
-            )
-
     def _add_interest(self, instance):
         interest = instance.text
-        self._add_interest_button_to_container(
+        add_interest_button_to_container(
             self.friend_interests.interest_container,
             interest,
             self._remove_interest
@@ -91,7 +79,7 @@ class EditFriendInterests(ModalView):
 
     def _remove_interest(self, instance):
         interest = instance.text
-        self._add_interest_button_to_container(
+        add_interest_button_to_container(
             self.db_interests.interest_container,
             interest,
             self._add_interest
@@ -102,6 +90,13 @@ class EditFriendInterests(ModalView):
         self.friend_interests.interest_container.remove_widget(instance)
 
     def add_interest(self, interest):
+        if not interest:
+            self.popup = get_interest_should_not_be_empty_string_popup(
+                self._on_answer
+            )
+            self.popup.open()
+            return
+
         if interest in (self.interests_to_add - self.interests_to_remove) or\
             interest in get_friend_manager().\
             get_interest_by_friend_id(self.friend.id):
@@ -117,7 +112,7 @@ class EditFriendInterests(ModalView):
                 interest, self._on_answer)
             self.popup.open()
         else:
-            self._add_interest_button_to_container(
+            add_interest_button_to_container(
                 self.friend_interests.interest_container,
                 interest, self._remove_interest
             )
