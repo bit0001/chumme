@@ -13,16 +13,16 @@ from .friend_carousel import FriendInfo
 class FriendThoughts(FriendInfo):
     def update_friend_info(self, friend):
         super().update_friend_info(friend)
-        thoughts = get_thought_manager().get_thoughts_by_friend_id(
+        self.thoughts = get_thought_manager().get_thoughts_by_friend_id(
             self.friend.id
         )
         no_thoughts_label = self.no_thoughts_label
         thought_scroll = self.thought_scroll_view
 
-        if thoughts:
+        if self.thoughts:
             hide_label(no_thoughts_label)
             show_widget(thought_scroll)
-            self.display_thoughts(thoughts)
+            self.display_thoughts(self.thoughts)
         else:
             show_label(no_thoughts_label,
                        'There are no thoughts about your friend.')
@@ -43,6 +43,10 @@ class FriendThoughts(FriendInfo):
             self.popup = get_empty_thought_popup(self._on_answer)
             self.popup.open()
         else:
+            if not self.thoughts:
+                hide_label(self.no_thoughts_label)
+                show_widget(self.thought_scroll_view)
+
             thought = Thought(text)
             label = ThoughtLabel(thought)
             self.thought_scroll_view.thought_container.add_widget(label)
