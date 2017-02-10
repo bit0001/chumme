@@ -2,6 +2,7 @@ from sqlite3 import IntegrityError
 
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.modalview import ModalView
 
@@ -94,6 +95,24 @@ class EditFriendInterests(ModalView):
         self.friend = friend
         super().__init__(**kwargs)
 
+        print(self.friend_interests)
+        print(self.db_interests)
+
+        friend_interests = get_friend_manager().\
+            get_interest_by_friend_id(self.friend.id)
+        other_interests = get_interest_manager().get_interests()
+        other_interests = set(other_interests) - set(friend_interests)
+
+        for interest in friend_interests:
+            interest_button = InterestButton(text=interest)
+            self.friend_interests.interest_container.add_widget(interest_button)
+
+        for interest in other_interests:
+            interest_button  = InterestButton(text=interest)
+            self.db_interests.interest_container.add_widget(interest_button)
+
+
+
     def cancel_edition(self):
         self.dismiss()
 
@@ -113,4 +132,8 @@ class EditFriendInterests(ModalView):
 
 
 class InterestLabel(Label):
+    pass
+
+
+class InterestButton(Button):
     pass
