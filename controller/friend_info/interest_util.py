@@ -31,6 +31,17 @@ def add_interest_button_to_container(container, interest, on_press):
     container.add_widget(new_button)
 
 
+def add_interest_label_to_container(container, interest):
+    label = InterestLabel(text=interest)
+    container.add_widget(label)
+
+
+def add_interests_to_friend_interests(container, interests):
+    container.clear_widgets()
+    for interest in interests:
+        add_interest_label_to_container(container, interest)
+
+
 def add_interests_to_container(container, interests, on_press):
     for interest in interests:
         add_interest_button_to_container(

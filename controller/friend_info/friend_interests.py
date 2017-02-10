@@ -10,8 +10,9 @@ from utils.getter import get_friend_manager, get_interest_manager, \
     get_friend_interest_manager
 from utils.widget import hide_label, show_widget, hide_widget, show_label
 from .friend_carousel import FriendInfo
-from .interest_util import InterestLabel, perform_operation_with_interests, \
-    add_interest_button_to_container, add_interests_to_container
+from .interest_util import perform_operation_with_interests, \
+    add_interest_button_to_container, add_interests_to_container, \
+    add_interests_to_friend_interests
 
 
 class FriendInterests(FriendInfo):
@@ -25,17 +26,11 @@ class FriendInterests(FriendInfo):
         if interests:
             hide_label(no_interests_label)
             show_widget(interest_scroll)
-            self.display_interests(interests)
+            add_interests_to_friend_interests(
+                self.interest_scroll_view.interest_container, interests)
         else:
             hide_widget(interest_scroll)
             show_label(no_interests_label, 'There are no interests to show')
-
-    def display_interests(self, interests):
-        interest_container = self.interest_scroll_view.interest_container
-        interest_container.clear_widgets()
-        for interest in interests:
-            interest_label = InterestLabel(text=interest)
-            interest_container.add_widget(interest_label)
 
 
 class EditFriendInterests(ModalView):
@@ -55,22 +50,19 @@ class EditFriendInterests(ModalView):
 
         add_interests_to_container(
             self.friend_interests.interest_container,
-            friend_interests,
-            self._remove_interest
+            friend_interests, self._remove_interest
         )
 
         add_interests_to_container(
             self.db_interests.interest_container,
-            other_interests,
-            self._add_interest
+            other_interests, self._add_interest
         )
 
     def _add_interest(self, instance):
         interest = instance.text
         add_interest_button_to_container(
             self.friend_interests.interest_container,
-            interest,
-            self._remove_interest
+            interest, self._remove_interest
         )
 
         self.interests_to_add.add(interest)
@@ -81,8 +73,7 @@ class EditFriendInterests(ModalView):
         interest = instance.text
         add_interest_button_to_container(
             self.db_interests.interest_container,
-            interest,
-            self._add_interest
+            interest, self._add_interest
         )
 
         self.interests_to_remove.add(interest)
