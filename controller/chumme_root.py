@@ -42,3 +42,6 @@ class ChumMeRoot(BoxLayout):
     def show_edit_interests_view(self, friend):
         self.edit_friend_interests = EditFriendInterests(friend)
         self.edit_friend_interests.open()
+
+    def show_friend_interests(self, friend):
+        self.friend_info_carousel.interests.update_friend_info(friend)

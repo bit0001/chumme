@@ -5,6 +5,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.modalview import ModalView
+from kivy.uix.scrollview import ScrollView
 
 from controller.popup import get_delete_friend_confirmation_popup, \
     get_repeated_interest_popup
@@ -83,6 +84,7 @@ class FriendInterests(FriendInfo):
 
     def display_interests(self, interests):
         interest_container = self.interest_scroll_view.interest_container
+        interest_container.clear_widgets()
         for interest in interests:
             interest_label = InterestLabel(text=interest)
             interest_container.add_widget(interest_label)
@@ -95,11 +97,8 @@ class EditFriendInterests(ModalView):
         self.friend = friend
         super().__init__(**kwargs)
 
-        print(self.friend_interests)
-        print(self.db_interests)
-
-        self.interests_to_add = []
-        self.interests_to_remove = []
+        self.interests_to_add = set()
+        self.interests_to_remove = set()
 
         friend_interests = get_friend_manager().\
             get_interest_by_friend_id(self.friend.id)
@@ -125,35 +124,73 @@ class EditFriendInterests(ModalView):
             text=instance.text,
             on_press=self._remove_interest
         )
-        self.interests_to_add.append(instance.text)
+
+        self.interests_to_add.add(instance.text)
         self.db_interests.interest_container.remove_widget(instance)
         self.friend_interests.interest_container.add_widget(new_button)
+
+    def add_interest(self, interest):
+        try:
+            get_interest_manager().add_interest(interest)
+        except IntegrityError:
+            self.popup = get_repeated_interest_popup(
+                interest, self._on_answer)
+            self.popup.open()
+        else:
+            new_button = InterestButton(
+                text=interest,
+                on_press=self._remove_interest
+            )
+
+            self.interests_to_add.add(interest)
+            self.friend_interests.interest_container.add_widget(new_button)
+            self.interest_text.text = ''
 
     def _remove_interest(self, instance):
         new_button = InterestButton(
             text=instance.text,
             on_press=self._add_interest
         )
-        self.interests_to_remove.append(instance.text)
+
+        self.interests_to_remove.add(instance.text)
         self.friend_interests.interest_container.remove_widget(instance)
         self.db_interests.interest_container.add_widget(new_button)
+
+    def update_friend_property(self):
+        self.friend = get_friend_manager().\
+            get_interest_by_friend_id(self.friend.id)
 
     def cancel_edition(self):
         self.dismiss()
 
-    def append_interest(self, interest):
-        interest_id = get_interest_manager().add_interest(interest)
-        try:
-            get_friend_interest_manager().add_friend_interest_ids(
-                self.friend.id, interest_id
-            )
-        except IntegrityError:
-            self.popup = get_repeated_interest_popup(
-                interest, self._on_answer)
-            self.popup.open()
+    def update_interests(self):
+        to_add = self.interests_to_add - self.interests_to_remove
+        to_remove = self.interests_to_remove - self.interests_to_add
+
+        self.add_interests(to_add)
+        self.remove_interests(to_remove)
+        self.dismiss()
+
+    def add_interests(self, interests):
+        for interest in interests:
+            interest_id = get_interest_manager().get_interest_id(interest)
+            get_friend_interest_manager().\
+                add_friend_interest_ids(self.friend.id, interest_id)
+
+    def remove_interests(self, interests):
+        for interest in interests:
+            interest_id = get_interest_manager().get_interest_id(interest)
+            get_friend_interest_manager().\
+                delete_friend_interest_ids(self.friend.id, interest_id)
 
     def _on_answer(self, instance):
         self.popup.dismiss()
+        self.interest_text.text = ''
+        self.interest_text.focus = True
+
+
+class InterestScrollableContainer(ScrollView):
+    pass
 
 
 class InterestLabel(Label):
