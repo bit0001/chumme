@@ -22,6 +22,10 @@ QUERIES = {
     """
     SELECT id FROM interests
     WHERE interest = ?
+    """,
+    'select_all_interests':
+    """
+    SELECT interest FROM interests
     """
 }
 
