@@ -1,10 +1,12 @@
 #: include view/friend_info/friend_general_info.kv
 #: include view/friend_info/friend_interests.kv
+#: include view/friend_info/friend_thoughts.kv
 #: import icon iconfonts.icon
 <FriendInfoCarousel>:
     orientation: 'vertical'
     general_info: general_info
     interests: interests
+    thoughts: thoughts
     Label:
         text: root.friend.full_name
         size_hint_y: None
@@ -14,6 +16,8 @@
             id: general_info
         FriendInterests:
             id: interests
+        FriendThoughts:
+            id: thoughts
     Button:
         text: 'Show friends'
         size_hint_y: None

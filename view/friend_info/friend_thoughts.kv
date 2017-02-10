@@ -1,0 +1,18 @@
+<FriendThoughts@BoxLayout>:
+    orientation: 'vertical'
+    BoxLayout:
+        Label:
+            text: 'There are no thoughts about your friend.'
+    BoxLayout:
+        size_hint_y: None
+        height: '80dp'
+        TextInput:
+            hint_text:
+                'Once a thought has been added, you will not be able to ' +\
+                'neither delete it nor modify it.'
+            size_hint_x: 5
+        Button:
+            size_hint_x: 2
+            halign: 'center'
+            valign: 'middle'
+            text: 'Add\nThought'
