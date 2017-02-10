@@ -1,4 +1,4 @@
-from sqlite3 import IntegrityError
+from sqlite3 import IntegrityError, OperationalError
 
 from .db_context_manager import DBContextManager
 
@@ -36,6 +36,15 @@ class InterestManager:
 
         with DBContextManager(db_path) as cursor:
             cursor.execute(QUERIES['create_interests_table'])
+
+    def get_interests(self):
+        with DBContextManager(self.db_path) as cursor:
+            try:
+                cursor.execute(QUERIES['select_all_interests'])
+            except OperationalError:
+                return []
+            else:
+                return [row[0] for row in cursor.fetchall()]
 
     def add_interest(self, interest: str) -> int:
         try:
