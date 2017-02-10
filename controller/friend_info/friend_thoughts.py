@@ -61,7 +61,6 @@ class ThoughtLabel(Label):
         self._format_thougth(thought)
 
     def _format_thougth(self, thought):
-        template = "[b]Added on:[/b] {}\n"\
-                   "[b]Thought:[/b]\n"\
+        template = "[b][size=22]{}[/size][/b]\n"\
                    "[i]{}[/i]"
         self.text = template.format(thought.creation_date, thought.text)
