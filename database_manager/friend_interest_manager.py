@@ -15,12 +15,12 @@ QUERIES = {
       PRIMARY KEY (friend_id, interest_id)
     )
     """,
-    'insert_friend_interst_id':
+    'insert_friend_interest_id':
     """
     INSERT INTO friends_interests
     VALUES
     (?, ?)
-    """,
+    """
 }
 
 class FriendInterestManager:
@@ -32,5 +32,5 @@ class FriendInterestManager:
 
     def add_friend_interest_ids(self, friend_id: int, interest_id: int):
         with DBContextManager(self.db_path) as cursor:
-            cursor.execute(QUERIES['insert_friend_interst_id'],
+            cursor.execute(QUERIES['insert_friend_interest_id'],
                            (friend_id, interest_id))
