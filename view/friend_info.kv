@@ -120,6 +120,8 @@
 
 <EditFriendInterests>:
     interest_text: interest_text
+    friend_interests: friend_interests
+    db_interests: db_interests
     BoxLayout:
         orientation: 'vertical'
         Label:
@@ -140,6 +142,15 @@
                 text: 'Add Interest'
                 on_press: root.append_interest(root.interest_text.text)
         BoxLayout:
+            orientation: 'vertical'
+            GroupTitle:
+                title: 'Current interests:'
+            InterestScrollableContainer:
+                id: friend_interests
+            GroupTitle:
+                title: 'Other interests:'
+            InterestScrollableContainer:
+                id: db_interests
         BoxLayout:
             size_hint_y: None
             height: '40dp'
@@ -160,3 +171,9 @@
         Rectangle:
             pos: self.pos
             size: self.size
+
+<InterestButton>:
+    padding: [10, 10]
+    size_hint: None, None
+    text_size: None, None
+    size: self.texture_size
