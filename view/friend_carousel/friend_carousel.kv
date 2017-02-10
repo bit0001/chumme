@@ -1,0 +1,32 @@
+#: include view/friend_carousel/friend_general_info.kv
+#: include view/friend_carousel/friend_interests.kv
+#: import icon iconfonts.icon
+<FriendInfoCarousel>:
+    orientation: 'vertical'
+    general_info: general_info
+    interests: interests
+    Label:
+        text: root.friend.full_name
+        size_hint_y: None
+        height: '40dp'
+    Carousel:
+        FriendGeneralInfo:
+            id: general_info
+        FriendInterests:
+            id: interests
+    Button:
+        text: 'Show friends'
+        size_hint_y: None
+        height: '40dp'
+        on_press: app.root.show_friend_list()
+
+<GroupTitle@BoxLayout>:
+    title: ''
+    size_hint_y: None
+    height: '40dp'
+    padding: ['40dp', 0, 0, 0]
+    Label:
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+        text: root.title

@@ -1,0 +1,59 @@
+<FriendGeneralInfo>:
+    orientation: 'vertical'
+    BoxLayout:
+        size_hint_y: None
+        height: '40dp'
+        Button:
+            text: 'Edit'
+            on_press: app.root.show_update_friend_form(root.friend)
+        Button:
+            text: 'Delete'
+            on_press: root.delete_friend()
+    GroupTitle:
+        title: 'General Information'
+    BoxLayout:
+        BoxLayout:
+            orientation: 'vertical'
+            InfoField:
+                field_label: 'First Name'
+                field_text: root.first_name
+            InfoField:
+                field_label: 'Middle Name'
+                field_text: root.middle_name
+            InfoField:
+                field_label: 'Last Name'
+                field_text: root.last_name
+            InfoField:
+                field_label: 'Birthdate'
+                field_text: root.birthdate
+            InfoField:
+                field_label: 'Email'
+                field_text: root.email
+            InfoField:
+                field_label: 'Cell Phone'
+                field_text: root.cell_phone
+        BoxLayout:
+            orientation: 'vertical'
+            padding: '10dp'
+            AnchorLayout:
+                anchor_x: 'center'
+                anchor_y: 'center'
+                Image:
+                    size_hint: (0.95, 0.95)
+                    source: 'resources/chumme_profile.png'
+                    center: self.parent.center
+            Label:
+                height: '40dp'
+                size_hint_y: None
+                text: '{}   {}'.format(icon('fa-heart'), root.status)
+                markup: True
+            Label:
+                text: 'Social Networks'
+
+<InfoField@BoxLayout>:
+    field_label: ''
+    field_text: ''
+    Label:
+        text: root.field_label
+    Label:
+        text: root.field_text
