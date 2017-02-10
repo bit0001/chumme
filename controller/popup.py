@@ -48,6 +48,13 @@ def get_interest_already_in_list_popup(interest, on_answer):
         on_answer=on_answer
     )
 
+def get_interest_should_not_be_empty_string_popup(on_answer):
+    return get_ok_popup(
+        title='Interest should not be an empty string',
+        text='Please, enter an interest that is not an empty string.',
+        on_answer=on_answer
+    )
+
 
 def get_add_edit_friend_error_popup(action, on_answer):
     return get_ok_popup(
