@@ -47,14 +47,12 @@ class InterestManager:
             else:
                 return [row[0] for row in cursor.fetchall()]
 
-    def add_interest(self, interest: str) -> int:
-        try:
-            with DBContextManager(self.db_path) as cursor:
-                cursor.execute(QUERIES['insert_interest'], (interest,))
-        except IntegrityError:
-            pass
-        finally:
-            with DBContextManager(self.db_path) as cursor:
-                cursor.execute(QUERIES['select_interest_id'],
+    def add_interest(self, interest: str):
+        with DBContextManager(self.db_path) as cursor:
+            cursor.execute(QUERIES['insert_interest'], (interest,))
+
+    def get_interest_id(self, interest) -> int:
+        with DBContextManager(self.db_path) as cursor:
+            cursor.execute(QUERIES['select_interest_id'],
                            (interest,))
-                return cursor.fetchone()[0]
+            return cursor.fetchone()[0]
