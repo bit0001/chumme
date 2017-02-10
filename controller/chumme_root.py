@@ -38,6 +38,7 @@ class ChumMeRoot(BoxLayout):
         self.friend_info_carousel = FriendInfoCarousel(friend)
         self.friend_info_carousel.general_info.update_friend_info(friend)
         self.show_friend_interests(friend)
+        self.friend_info_carousel.thoughts.update_friend_info(friend)
         self.add_widget(self.friend_info_carousel)
 
     def show_edit_interests_view(self, friend):
