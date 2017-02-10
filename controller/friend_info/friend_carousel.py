@@ -6,6 +6,7 @@ class FriendInfoCarousel(BoxLayout):
     friend = ObjectProperty()
     general_info = ObjectProperty()
     interests = ObjectProperty()
+    thoughts = ObjectProperty()
 
     def __init__(self, friend, **kwargs):
         self.friend = friend
