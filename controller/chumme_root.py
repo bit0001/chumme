@@ -2,7 +2,7 @@ from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
 
 from controller.add_update_form import AddFriendForm, UpdateFriendForm
-from controller.friend_info import FriendInfoCarousel, EditFriendInterests
+from controller.friend_carousel import FriendInfoCarousel, EditFriendInterests
 from model.friend import Friend
 
 
