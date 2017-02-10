@@ -56,6 +56,15 @@ def get_interest_should_not_be_empty_string_popup(on_answer):
     )
 
 
+def get_empty_thought_popup(on_answer):
+    return get_ok_popup(
+        title='Empty thought',
+        text='Thought about your friend should not be an empty string or '
+             'a string just made of whitespaces.',
+        on_answer=on_answer
+    )
+
+
 def get_add_edit_friend_error_popup(action, on_answer):
     return get_ok_popup(
         title='Error {} friend'.format(action),
