@@ -32,11 +32,19 @@ def get_ok_popup(title, text, on_answer):
     )
 
 
-def get_repeated_interest_popup(interest, on_answer):
+def get_interest_in_other_interests_popup(interest, on_answer):
     return get_ok_popup(
         title='Interest in Other Interests',
         text="The interest '{}' is in Other Interest. "
              "Please, choose it there.".format(interest),
+        on_answer=on_answer
+    )
+
+
+def get_interest_already_in_list_popup(interest, on_answer):
+    return get_ok_popup(
+        title='Interest in list',
+        text="The interest '{}' has been already added.".format(interest),
         on_answer=on_answer
     )
 
