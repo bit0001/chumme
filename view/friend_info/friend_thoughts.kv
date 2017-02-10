@@ -2,17 +2,18 @@
 <ThoughtScrollableContainer@ScrollView>:
     thought_container: thought_container
     do_scroll_x: False
-    StackLayout:
+    GridLayout:
+        cols: 1
         size_hint_y: None
         height: self.minimum_height
         id: thought_container
         padding:  ['40dp', 0, '40dp', 0]
         spacing: [20, 20]
-        orientation: 'lr-tb'
 
 <FriendThoughts>:
     no_thoughts_label: no_thoughts_label
     thought_scroll_view: thought_scroll_view
+    thought_input: thought_input
     orientation: 'vertical'
     GroupTitle:
         title: 'Thoughts about your friend:'
@@ -20,19 +21,35 @@
         orientation: 'vertical'
         Label:
             id: no_thoughts_label
-            text: 'There are no thoughts about your friend.'
         ThoughtScrollableContainer:
             id: thought_scroll_view
     BoxLayout:
         size_hint_y: None
         height: '80dp'
         TextInput:
+            id: thought_input
+            size_hint_x: 5
             hint_text:
                 'Once a thought has been added, you will not be able to ' +\
                 'neither delete it nor modify it.'
-            size_hint_x: 5
         Button:
             size_hint_x: 2
             halign: 'center'
             valign: 'middle'
             text: 'Add\nThought'
+            on_press: root.add_thought(thought_input.text)
+
+<ThoughtLabel>:
+    padding: [10, 10]
+    size_hint_y: None
+    text_size: self.width, None
+    height: self.texture_size[1]
+    halign: 'left'
+    valign: 'middle'
+    canvas.before:
+        Color:
+            rgba: 0.165, 0.612, 0.357, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
