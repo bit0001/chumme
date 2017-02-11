@@ -67,9 +67,16 @@
             id: status
             text: root.friend.status
             values: Friend.STATUSES
+    Label:
+        size_hint_y: None
+        height: '30dp'
+        halign: 'left'
+        valign: 'middle'
+        padding: ['20dp', 0]
+        text_size: self.width, None
+        text: 'Social Networks:'
     SocialNetworkForm:
         id: social_network_form
-
 
 <SocialNetworkField>
     padding: [10, 10]
