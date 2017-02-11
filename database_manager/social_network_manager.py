@@ -1,3 +1,8 @@
+from sqlite3 import IntegrityError
+
+from database_manager.db_context_manager import DBContextManager
+from model.social_network import SocialNetwork
+
 QUERIES = {
     'create_social_networks_table':
         """
@@ -17,3 +22,19 @@ QUERIES = {
         (?, ?, ?)
         """
 }
+
+class SocialNetworkManager:
+    def __init__(self, db_path: str):
+        self.db_path = db_path
+
+        with DBContextManager(db_path) as cursor:
+            cursor.execute(QUERIES['create_social_networks_table'])
+
+            for social_network in SocialNetwork:
+                try:
+                    cursor.execute(
+                        QUERIES['insert_social_network'],
+                        tuple(social_network.value)
+                    )
+                except IntegrityError:
+                    pass
