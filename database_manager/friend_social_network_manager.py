@@ -5,6 +5,7 @@ QUERIES = {
         (
           friend_id INTEGER NOT NULL,
           social_network_id INTEGER NOT NULL,
+          social_network_link TEXT NOT NULL,
           FOREIGN KEY (friend_id)
             REFERENCES friends(id)
             ON DELETE CASCADE,
