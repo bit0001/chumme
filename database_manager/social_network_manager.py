@@ -34,7 +34,9 @@ class SocialNetworkManager:
                 try:
                     cursor.execute(
                         QUERIES['insert_social_network'],
-                        tuple(social_network.value)
+                        (social_network.social_network_name,
+                         social_network.base_url,
+                         social_network.logo_path)
                     )
                 except IntegrityError:
                     pass
