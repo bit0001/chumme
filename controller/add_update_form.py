@@ -1,5 +1,6 @@
 from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.label import Label
 
 from controller.popup import get_add_edit_friend_error_popup
 from database_manager.friend_manager import MinimumFriendParameterException
@@ -61,3 +62,7 @@ class UpdateFriendForm(FriendForm):
         friend = super().build_friend(form)
         friend.id = self.friend.id
         return friend
+
+
+class SocialNetworkField(Label):
+    pass
