@@ -13,6 +13,17 @@
         multiline: False
         text: root.input_text
 
+<SocialNetworkForm@ScrollView>
+    container: container
+    do_scroll_x: False
+    GridLayout:
+        cols: 1
+        size_hint_y: None
+        height: self.minimum_height
+        id: container
+        padding: ['40dp', 0, '40dp', 0]
+        spacing: [20, 20]
+
 <FriendForm>:
     orientation: 'vertical'
     first_name: first_name.input_text_id
@@ -59,16 +70,15 @@
     SocialNetworkForm:
         id: social_network_form
 
-<SocialNetworkForm@ScrollView>
-    container: container
-    do_scroll_x: False
-    GridLayout:
-        col: 1
-        size_hint_y: None
-        height: self.minimum_height
-        id: container
-        padding:  ['40dp', 0, '40dp', 0]
-        spacing: [20, 20]
+
+<SocialNetworkField>
+    padding: [10, 10]
+    size_hint_y: None
+    text_size: self.width, None
+    height: self.texture_size[1]
+    halign: 'left'
+    valign: 'middle'
+    markup: True
 
 <AddFriendForm>:
     BoxLayout:
