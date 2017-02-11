@@ -13,7 +13,6 @@
         multiline: False
         text: root.input_text
 
-
 <FriendForm>:
     orientation: 'vertical'
     first_name: first_name.input_text_id
@@ -23,6 +22,7 @@
     email: email.input_text_id
     cell_phone: cell_phone.input_text_id
     status: status
+    social_network_form: social_network_form
     FormInput:
         id: first_name
         label_text: 'First Name'
@@ -56,8 +56,19 @@
             id: status
             text: root.friend.status
             values: Friend.STATUSES
-    BoxLayout:
+    SocialNetworkForm:
+        id: social_network_form
 
+<SocialNetworkForm@ScrollView>
+    container: container
+    do_scroll_x: False
+    GridLayout:
+        col: 1
+        size_hint_y: None
+        height: self.minimum_height
+        id: container
+        padding:  ['40dp', 0, '40dp', 0]
+        spacing: [20, 20]
 
 <AddFriendForm>:
     BoxLayout:
@@ -70,7 +81,6 @@
             text: 'Add friend'
             on_press: root.add_friend()
 
-
 <UpdateFriendForm>:
     BoxLayout:
         height: '40dp'
@@ -81,4 +91,3 @@
         Button:
             text: 'Update friend'
             on_press: root.update_friend()
-
