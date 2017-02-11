@@ -1,3 +1,5 @@
+from database_manager.db_context_manager import DBContextManager
+
 QUERIES = {
     'create_friends_social_networks_table':
         """
@@ -21,3 +23,11 @@ QUERIES = {
         (?, ?, ?)
         """
 }
+
+
+class FriendSocialNetworkManager:
+    def __init__(self, db_path):
+        self.db_path = db_path
+
+        with DBContextManager(db_path) as cursor:
+            cursor.execute(QUERIES['create_friends_social_networks_table'])
