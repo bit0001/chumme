@@ -12,6 +12,7 @@ QUERIES = {
     'insert_social_network':
         """
         INSERT INTO social_networks
+        (social_network_name, base_url, logo_path)
         VALUES
         (?, ?, ?)
         """
