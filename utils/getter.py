@@ -2,6 +2,8 @@ import os
 
 from database_manager.friend_interest_manager import FriendInterestManager
 from database_manager.friend_manager import FriendManager
+from database_manager.friend_social_network_manager import \
+    FriendSocialNetworkManager
 from database_manager.interest_manager import InterestManager
 from database_manager.social_network_manager import SocialNetworkManager
 from database_manager.thought_manager import ThoughtManager
@@ -29,3 +31,7 @@ def get_thought_manager():
 
 def get_social_network_manager():
     return SocialNetworkManager(DB_PATH)
+
+
+def get_friend_social_network_manager():
+    return FriendSocialNetworkManager(DB_PATH)
