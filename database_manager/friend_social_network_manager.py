@@ -31,3 +31,11 @@ class FriendSocialNetworkManager:
 
         with DBContextManager(db_path) as cursor:
             cursor.execute(QUERIES['create_friends_social_networks_table'])
+
+    def add_friend_social_network(
+            self, friend_id, social_network_id, social_network_link):
+        with DBContextManager(self.db_path) as cursor:
+            cursor.execute(
+                QUERIES['insert_friend_social_network'],
+                (friend_id, social_network_id, social_network_link)
+            )
