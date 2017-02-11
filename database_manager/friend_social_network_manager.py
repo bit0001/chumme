@@ -13,5 +13,11 @@ QUERIES = {
             REFERENCES social_networks(id)
           PRIMARY KEY (friend_id, interest_id)
         )
+        """,
+    'insert_friend_':
+        """
+        INSERT INTO friends_social_networks
+        VALUES
+        (?, ?, ?)
         """
 }
