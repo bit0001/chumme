@@ -10,9 +10,9 @@ QUERIES = {
             REFERENCES friends(id)
             ON DELETE CASCADE,
           FOREIGN KEY (social_network_id)
-            REFERENCES social_networks(id)
-          PRIMARY KEY (friend_id, interest_id)
-        )
+            REFERENCES social_networks(id),
+          PRIMARY KEY (friend_id, social_network_id)
+        );
         """,
     'insert_friend_':
         """
