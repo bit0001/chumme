@@ -16,7 +16,7 @@ QUERIES = {
           PRIMARY KEY (friend_id, social_network_id)
         );
         """,
-    'insert_friend_':
+    'insert_friend_social_network':
         """
         INSERT INTO friends_social_networks
         VALUES
