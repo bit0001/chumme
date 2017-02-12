@@ -104,11 +104,18 @@
                 pos:self.center_x - 13, self.center_y - 13
                 size:[26, 26]
     Image:
-        source: root.image
+        source: 'resources/img/white_background.png'
         size_hint: None, None
         size: '35dp', '35dp'
         pos_hint: {'center_x': 0.5, 'center_y': 0.5}
         pos: self.pos
+        Image:
+            source: root.image
+            size_hint: None, None
+            size: '35dp', '35dp'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+            pos: self.pos
     BoxLayout:
         size_hint_x: None
         width: '20dp'
