@@ -48,8 +48,7 @@
                 size_hint_y: None
                 text: '{}   {}'.format(icon('fa-heart'), root.status)
                 markup: True
-            Label:
-                text: 'Social Networks'
+            SocialNetworkInfo
 
 <InfoField@BoxLayout>:
     field_label: ''
@@ -58,3 +57,27 @@
         text: root.field_label
     Label:
         text: root.field_text
+
+<SocialNetworkContainer@ScrollView>:
+    container: container
+    do_scroll_x: False
+    StackLayout:
+        size_hint_y: None
+        height: self.minimum_height
+        id: container
+        padding:  ['20dp', 0, '20dp', 0]
+        spacing: [20, 20]
+        orientation: 'lr-tb'
+
+
+<SocialNetworkInfo@BoxLayout>
+    social_network_container: social_network_container
+    orientation: 'vertical'
+    Label:
+        padding: [40, 0]
+        size_hint_y: None
+        height: '20dp'
+        text_size: self.width, None
+        text: 'Social Networks:'
+    SocialNetworkContainer:
+        id: social_network_container
