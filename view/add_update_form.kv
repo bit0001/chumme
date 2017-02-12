@@ -13,17 +13,6 @@
         multiline: False
         text: root.input_text
 
-<SocialNetworkForm@ScrollView>
-    container: container
-    do_scroll_x: False
-    GridLayout:
-        cols: 1
-        size_hint_y: None
-        height: self.minimum_height
-        id: container
-        padding: ['40dp', 0, '40dp', 0]
-        spacing: [20, 20]
-
 <FriendForm>:
     orientation: 'vertical'
     first_name: first_name.input_text_id
@@ -78,14 +67,52 @@
     SocialNetworkForm:
         id: social_network_form
 
+<SocialNetworkForm@ScrollView>
+    container: container
+    do_scroll_x: False
+    GridLayout:
+        cols: 1
+        size_hint_y: None
+        height: self.minimum_height
+        id: container
+        padding: ['20dp', 0, '20dp', 0]
+        spacing: [20, 20]
+
 <SocialNetworkField>
-    padding: [10, 10]
+    name: ''
+    image: ''
+    hint: ''
+    link: ''
     size_hint_y: None
-    text_size: self.width, None
-    height: self.texture_size[1]
-    halign: 'left'
-    valign: 'middle'
-    markup: True
+    height: '40dp'
+    spacing: ['20dp', '20dp']
+    CheckBox:
+        valign: 'middle'
+        size_hint_x: None
+        width: '50dp'
+        canvas.before:
+            Color:
+                rgb: 1, 1, 1
+            Rectangle:
+                pos:self.center_x - 13, self.center_y - 13
+                size:[26, 26]
+    Image:
+        source: root.name
+        size_hint: None, None
+        size: '35dp', '35dp'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        pos: self.pos
+    BoxLayout:
+        size_hint_x: None
+        width: '20dp'
+    TextInput:
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        size_hint_y: None
+        height: '30dp'
+        multiline: False
+        hint_text: root.hint
+        text: root.link
+        disabled: True
 
 <AddFriendForm>:
     BoxLayout:
