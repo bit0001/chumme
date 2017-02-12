@@ -71,7 +71,6 @@
         spacing: [20, 20]
         orientation: 'lr-tb'
 
-
 <SocialNetworkInfo@BoxLayout>
     social_network_container: social_network_container
     orientation: 'vertical'
@@ -83,3 +82,10 @@
         text: 'Social Networks:'
     SocialNetworkContainer:
         id: social_network_container
+
+<SocialNetworkButton@Button>
+    image: ''
+    size_hint: None, None
+    size: '50dp', '50dp'
+    Image:
+        source: root.image
