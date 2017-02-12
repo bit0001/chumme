@@ -1,3 +1,5 @@
+import webbrowser
+
 from kivy.properties import StringProperty
 from kivy.uix.button import Button
 
@@ -56,3 +58,6 @@ class SocialNetworkButton(Button):
         super().__init__(**kw)
         self.image = image
         self.link = link
+
+    def open_url(self):
+        webbrowser.open(self.link, new=2)
