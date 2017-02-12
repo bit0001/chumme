@@ -1,3 +1,5 @@
+from sqlite3 import IntegrityError
+
 from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
 
@@ -89,14 +91,23 @@ class UpdateFriendForm(FriendForm):
             self.parent.show_friend_details(updated_friend)
 
     def _update_social_networks(self):
+        print('This function is being called')
         for i, field in enumerate(self.social_network_fields):
             if field.check_box.active:
-                get_friend_social_network_manager().\
-                    update_social_network(
-                    field.text_input.text,
-                    self.friend.id,
-                    i + 1
-                )
+                try:
+                    get_friend_social_network_manager(). \
+                        add_friend_social_network(
+                        self.friend.id,
+                        i + 1,
+                        field.text_input.text
+                    )
+                except IntegrityError:
+                    get_friend_social_network_manager(). \
+                        update_social_network(
+                        field.text_input.text,
+                        self.friend.id,
+                        i + 1
+                    )
 
     def build_friend(self, form):
         friend = super().build_friend(form)
