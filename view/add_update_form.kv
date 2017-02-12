@@ -78,8 +78,11 @@
             Image:
                 source: 'resources/img/chumme_profile.png'
             Button:
-                size_hint_y: None
-                height: '40dp'
+                padding: [20, 20]
+                size_hint: None, None
+                text_size: None, None
+                size: self.texture_size
+                pos_hint: {'center_x': 0.5}
                 text: 'Choose photo'
 
 <SocialNetworkForm@ScrollView>
