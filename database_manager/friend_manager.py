@@ -50,7 +50,7 @@ QUERIES = {
         """,
     'select_social_networks_by_friend_id':
         """
-        SELECT sn.id, fsn.social_network_link
+        SELECT sn.id, fsn.social_network_link, sn.logo_path
         FROM friends f
         INNER JOIN friends_social_networks fsn
         ON f.id = fsn.friend_id
