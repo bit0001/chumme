@@ -8,6 +8,7 @@
     input_text_id: input_text_id
     Label:
         text: root.label_text
+        markup: True
     TextInput:
         id: input_text_id
         write_tab: False
@@ -27,7 +28,7 @@
     social_network_form: social_network_form
     FormInput:
         id: first_name
-        label_text: 'First Name'
+        label_text: 'First Name [b]*[/b]'
         input_text: root.friend.first_name
     FormInput:
         id: middle_name
@@ -35,7 +36,7 @@
         input_text: root.friend.middle_name
     FormInput:
         id: last_name
-        label_text: 'Last Name'
+        label_text: 'Last Name [b]*[/b]'
         input_text: root.friend.last_name
     FormInput:
         id: birthdate
