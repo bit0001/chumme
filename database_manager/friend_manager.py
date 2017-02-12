@@ -131,3 +131,11 @@ class FriendManager:
                 return []
             else:
                 return [row[0] for row in cursor.fetchall()]
+
+    def get_social_networks_by_friend_id(self, id: int):
+        with DBContextManager(self.db_path) as cursor:
+            cursor.execute(
+                QUERIES['select_social_networks_by_friend_id'], (id,)
+            )
+
+            return {row[0]: row[1] for row in cursor.fetchall()}
