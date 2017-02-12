@@ -1,3 +1,4 @@
+import os
 from sqlite3 import IntegrityError, Binary
 
 from kivy.properties import ObjectProperty
@@ -8,7 +9,8 @@ from controller.popup import get_add_edit_friend_error_popup
 from database_manager.friend_manager import MinimumFriendParameterException
 from model.friend import Friend
 from model.social_network import SocialNetwork
-from utils.getter import get_friend_manager, get_friend_social_network_manager
+from utils.getter import get_friend_manager, get_friend_social_network_manager, \
+    get_profile_photo_manager
 
 
 class FriendForm(BoxLayout):
@@ -17,7 +19,7 @@ class FriendForm(BoxLayout):
     def __init__(self, friend, **kwargs):
         self.friend = friend
         super().__init__(**kwargs)
-        self.blob_profile_image = friend.profile_photo
+        self.blob_profile_image = dict()
         container = self.social_network_form.container
         self.social_network_fields = []
 
@@ -46,7 +48,14 @@ class FriendForm(BoxLayout):
 
     def blob_image(self, image):
         with open(image, 'rb') as f:
-            self.blob_profile_image = Binary(f.read())
+            file_name, extension = os.path.splitext(image)
+
+            self.blob_profile_image.update(
+                {
+                    'blob': Binary(f.read()),
+                    'ext': extension
+                }
+            )
 
     def display_error_popup(self, action):
         self.popup = get_add_edit_friend_error_popup(action, self._on_answer)
@@ -62,6 +71,7 @@ class AddFriendForm(FriendForm):
         try:
             friend_id = get_friend_manager().add_friend(friend)
             self._add_social_networks(friend_id)
+            self._add_friend_profile_photo(friend_id)
         except MinimumFriendParameterException:
             self.display_error_popup('adding')
         else:
@@ -76,6 +86,14 @@ class AddFriendForm(FriendForm):
                     i + 1,
                     field.text_input.text
                 )
+
+    def _add_friend_profile_photo(self, friend_id):
+        if self.blob_profile_image:
+            get_profile_photo_manager().insert_profile_photo(
+                friend_id,
+                self.blob_profile_image['blob'],
+                self.blob_profile_image['ext']
+            )
 
 class UpdateFriendForm(FriendForm):
     def __init__(self, friend, **kwargs):
@@ -92,6 +110,7 @@ class UpdateFriendForm(FriendForm):
         try:
             get_friend_manager().update_friend(updated_friend)
             self._update_social_networks()
+            self._update_image()
         except MinimumFriendParameterException:
             self.display_error_popup('updating')
         else:
@@ -114,6 +133,21 @@ class UpdateFriendForm(FriendForm):
                         self.friend.id,
                         i + 1
                     )
+
+    def _update_image(self):
+        if self.blob_profile_image:
+            try:
+                get_profile_photo_manager().insert_profile_photo(
+                    self.friend.id,
+                    self.blob_profile_image['blob'],
+                    self.blob_profile_image['ext']
+                )
+            except IntegrityError:
+                get_profile_photo_manager().update_profile_photo(
+                    self.friend.id,
+                    self.blob_profile_image['blob'],
+                    self.blob_profile_image['ext']
+                )
 
     def build_friend(self, form):
         friend = super().build_friend(form)
