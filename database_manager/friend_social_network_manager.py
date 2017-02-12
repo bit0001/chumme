@@ -21,6 +21,12 @@ QUERIES = {
         INSERT INTO friends_social_networks
         VALUES
         (?, ?, ?)
+        """,
+    'update_social_network':
+        """
+        UPDATE friends_social_networks
+        SET social_network_link = ?
+        WHERE friend_id = ? AND social_network_id = ?
         """
 }
 
