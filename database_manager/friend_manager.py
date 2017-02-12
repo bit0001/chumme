@@ -132,10 +132,18 @@ class FriendManager:
             else:
                 return [row[0] for row in cursor.fetchall()]
 
-    def get_social_networks_by_friend_id(self, id: int):
+    def get_social_network_links_by_friend_id(self, id: int):
         with DBContextManager(self.db_path) as cursor:
             cursor.execute(
                 QUERIES['select_social_networks_by_friend_id'], (id,)
             )
 
             return {row[0]: row[1] for row in cursor.fetchall()}
+
+    def get_social_networks_for_general_info_by_friend_id(self, id):
+        with DBContextManager(self.db_path) as cursor:
+            cursor.execute(
+                QUERIES['select_social_networks_by_friend_id'], (id,)
+            )
+
+            return {row[2]: row[1] for row in cursor.fetchall()}
