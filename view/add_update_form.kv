@@ -166,9 +166,10 @@
             on_press: root.update_friend()
 
 <ImageChooser>:
-    orientation: 'vertical'
-    FileChooserIconView
-    Button:
-        size_hint_y: None
-        height: '40dp'
-        text: 'Cancel'
+    BoxLayout:
+        orientation: 'vertical'
+        FileChooserIconView:
+        Button:
+            size_hint_y: None
+            height: '40dp'
+            text: 'Cancel'
