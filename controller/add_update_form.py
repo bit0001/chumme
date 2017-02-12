@@ -5,7 +5,7 @@ from controller.popup import get_add_edit_friend_error_popup
 from database_manager.friend_manager import MinimumFriendParameterException
 from model.friend import Friend
 from model.social_network import SocialNetwork
-from utils.getter import get_friend_manager
+from utils.getter import get_friend_manager, get_friend_social_network_manager
 
 
 class FriendForm(BoxLayout):
@@ -15,14 +15,15 @@ class FriendForm(BoxLayout):
         self.friend = friend
         super().__init__(**kwargs)
         container = self.social_network_form.container
+        self.social_network_fields = []
 
         for social_network in SocialNetwork:
             social_network_field = SocialNetworkField(
                 hint=social_network.social_network_name,
                 image=social_network.logo_path
             )
+            self.social_network_fields.append(social_network_field)
             container.add_widget(social_network_field)
-
 
     def build_friend(self, form):
         parameters = {
@@ -50,12 +51,22 @@ class AddFriendForm(FriendForm):
     def add_friend(self):
         friend = self.build_friend(self.parent.add_friend_form)
         try:
-            get_friend_manager().add_friend(friend)
+            friend_id = get_friend_manager().add_friend(friend)
+            self._add_social_networks(friend_id)
         except MinimumFriendParameterException:
             self.display_error_popup('adding')
         else:
             self.parent.show_friend_list()
 
+    def _add_social_networks(self, friend_id):
+        for i, field in enumerate(self.social_network_fields):
+            if field.check_box.active:
+                get_friend_social_network_manager().\
+                    add_friend_social_network(
+                    friend_id,
+                    i + 1,
+                    field.text_input.text
+                )
 
 class UpdateFriendForm(FriendForm):
     def update_friend(self):
