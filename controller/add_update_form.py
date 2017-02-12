@@ -38,7 +38,7 @@ class FriendForm(BoxLayout):
             'email': form.email.text,
             'cell_phone': form.cell_phone.text,
             'status': form.status.text,
-            'profile_image': self.blob_profile_image
+            'profile_photo': self.blob_profile_image
         }
 
         friend = Friend(**parameters)
