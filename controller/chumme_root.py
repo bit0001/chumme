@@ -13,6 +13,7 @@ class ChumMeRoot(BoxLayout):
     friend_list_view = ObjectProperty()
     friend_info_carousel = ObjectProperty()
     edit_friend_interests = ObjectProperty()
+    image_chooser = ObjectProperty()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -49,5 +50,11 @@ class ChumMeRoot(BoxLayout):
         self.friend_info_carousel.interests.update_friend_info(friend)
 
     def show_image_chooser(self):
-        self.clear_widgets()
-        self.add_widget(ImageChooser())
+        self.image_chooser = ImageChooser()
+        self.image_chooser.open()
+
+    def show_friend_form(self, image=None):
+        child_widget = self.children[0]
+        if image:
+            child_widget.image.source = image
+        self.image_chooser.dismiss()

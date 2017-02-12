@@ -26,6 +26,7 @@
     cell_phone: cell_phone.input_text_id
     status: status
     social_network_form: social_network_form
+    image: image
     FormInput:
         id: first_name
         label_text: 'First Name [b]*[/b]'
@@ -76,6 +77,7 @@
             padding: [0, 20, 0, 30]
             orientation: 'vertical'
             Image:
+                id: image
                 source: 'resources/img/chumme_profile.png'
             Button:
                 padding: [20, 20]
@@ -84,6 +86,7 @@
                 size: self.texture_size
                 pos_hint: {'center_x': 0.5}
                 text: 'Choose photo'
+                on_press: app.root.show_image_chooser()
 
 <SocialNetworkForm@ScrollView>
     container: container
@@ -169,7 +172,9 @@
     BoxLayout:
         orientation: 'vertical'
         FileChooserIconView:
+            on_selection: app.root.show_friend_form(self.selection[0])
         Button:
             size_hint_y: None
             height: '40dp'
             text: 'Cancel'
+            on_press: app.root.show_friend_form()
