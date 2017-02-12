@@ -1,3 +1,5 @@
+from database_manager.db_context_manager import DBContextManager
+
 QUERIES = {
     'select_profile_photo':
         """
@@ -18,3 +20,30 @@ QUERIES = {
         WHERE friend_id = ?
         """
 }
+
+
+class ProfilePhotoManager():
+    def __init__(self, db_path):
+        self.db_path = db_path
+
+    def select_profile_photo(self, friend_id):
+        with DBContextManager(self.db_path) as cursor:
+            cursor.execute(QUERIES['select_profile_photo'], (friend_id,))
+
+            row = cursor.fetchone()
+
+            return {'blob': row[0], 'ext': row[1]}
+
+    def insert_profile_photo(self, friend_id, blob_image, extension):
+        with DBContextManager(self.db_path) as cursor:
+            cursor.execute(
+                QUERIES['insert_profile_photo'],
+                (friend_id, blob_image, extension)
+            )
+
+    def update_profile_photo(self, friend_id, blob_image, extension):
+        with DBContextManager(self.db_path) as cursor:
+            cursor.execute(
+                QUERIES['update_profile_photo'],
+                (friend_id, blob_image, extension)
+            )
