@@ -81,6 +81,18 @@ CREATE_TABLES_QUERIES = {
             REFERENCES friends(id)
             ON DELETE CASCADE
         )
+        """,
+    'create_profile_photos_table':
+        """
+        CREATE TABLE IF NOT EXISTS profile_photos
+        (
+          friend_id INTEGER PRIMARY KEY,
+          profile_photo BLOB,
+          extension VARCHAR(10),
+          FOREIGN KEY (friend_id)
+            REFERENCES friends(id)
+            ON DELETE CASCADE
+        )
         """
 }
 
