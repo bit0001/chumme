@@ -78,3 +78,6 @@ class SocialNetworkField(BoxLayout):
         super().__init__(**kwargs)
         self.hint = hint
         self.image = image
+
+    def enable_disable_text_input(self, checkbox):
+        self.text_input.disabled = not checkbox.active
