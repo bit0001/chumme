@@ -45,3 +45,10 @@ class FriendSocialNetworkManager:
                 QUERIES['insert_friend_social_network'],
                 (friend_id, social_network_id, social_network_link)
             )
+
+    def update_social_network(self, link, friend_id, social_network_id):
+        with DBContextManager(self.db_path) as cursor:
+            cursor.execute(
+                QUERIES['update_social_network'],
+                (link, friend_id, social_network_id)
+            )
