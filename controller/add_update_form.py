@@ -73,10 +73,21 @@ class UpdateFriendForm(FriendForm):
         updated_friend = self.build_friend(self.parent.update_friend_form)
         try:
             get_friend_manager().update_friend(updated_friend)
+            self._update_social_networks()
         except MinimumFriendParameterException:
             self.display_error_popup('updating')
         else:
             self.parent.show_friend_details(updated_friend)
+
+    def _update_social_networks(self):
+        for i, field in enumerate(self.social_network_fields):
+            if field.check_box.active:
+                get_friend_social_network_manager().\
+                    update_social_network(
+                    field.text_input.text,
+                    self.friend.id,
+                    i + 1
+                )
 
     def build_friend(self, form):
         friend = super().build_friend(form)
