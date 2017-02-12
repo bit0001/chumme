@@ -69,6 +69,15 @@ class AddFriendForm(FriendForm):
                 )
 
 class UpdateFriendForm(FriendForm):
+    def __init__(self, friend, **kwargs):
+        super().__init__(friend, **kwargs)
+        social_networks = get_friend_manager().\
+            get_social_networks_by_friend_id(self.friend.id)
+
+        for i, link in social_networks.items():
+            field = self.social_network_fields[i - 1]
+            field.text_input.text = link
+
     def update_friend(self):
         updated_friend = self.build_friend(self.parent.update_friend_form)
         try:
