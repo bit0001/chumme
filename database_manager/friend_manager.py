@@ -9,11 +9,11 @@ QUERIES = {
         INSERT INTO friends
         (
           first_name, middle_name, last_name, birthdate,
-          email, cell_phone, status, profile_photo
+          email, cell_phone, status
         )
         VALUES
         (
-          trim(?), trim(?), trim(?), trim(?), trim(?), trim(?), ?, ?
+          trim(?), trim(?), trim(?), trim(?), trim(?), trim(?), ?
         )
         """,
     'update_friend_on_field':
@@ -26,8 +26,7 @@ QUERIES = {
         """
         UPDATE friends
         SET first_name = ?, middle_name = ?, last_name = ?,
-            birthdate = ?, email = ?, cell_phone = ?, status = ?,
-            profile_photo = ?
+            birthdate = ?, email = ?, cell_phone = ?, status = ?
         WHERE id = ?
         """,
     'delete_friend':
@@ -77,7 +76,7 @@ class FriendManager:
                 QUERIES['insert_friend'],
                 (friend.first_name, friend.middle_name, friend.last_name,
                  friend.birthdate, friend.email, friend.cell_phone,
-                 friend.status, friend.profile_photo)
+                 friend.status)
             )
 
             return cursor.lastrowid
@@ -113,8 +112,7 @@ class FriendManager:
                            (friend.first_name, friend.middle_name,
                             friend.last_name, friend.birthdate,
                             friend.email, friend.cell_phone,
-                            friend.status, friend.profile_photo,
-                            friend.id)
+                            friend.status)
                            )
 
     def update_friend_on_field(self, id: int, field: str, value: str):

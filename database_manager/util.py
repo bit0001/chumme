@@ -33,8 +33,7 @@ CREATE_TABLES_QUERIES = {
           birthdate DATE,
           email VARCHAR(320),
           cell_phone VARCHAR(50),
-          status VARCHAR(30) NOT NULL,
-          profile_photo BLOB
+          status VARCHAR(30) NOT NULL
         )
         """,
     'create_friends_social_networks_table':
