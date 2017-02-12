@@ -24,6 +24,13 @@ class FriendGeneralInfo(FriendInfo):
         self.email = self.get_field(friend.email)
         self.cell_phone = self.get_field(friend.cell_phone)
         self.status = friend.status
+        self._show_social_networks(friend)
+
+    def _show_social_networks(self, friend):
+        social_networks = get_friend_manager().\
+            get_social_network_links_by_friend_id(friend.id)
+
+        print(social_networks)
 
     def get_field(self, field):
         return field if field else self.EMPTY_FIELD

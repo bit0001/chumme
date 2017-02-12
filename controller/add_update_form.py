@@ -72,7 +72,7 @@ class UpdateFriendForm(FriendForm):
     def __init__(self, friend, **kwargs):
         super().__init__(friend, **kwargs)
         social_networks = get_friend_manager().\
-            get_social_networks_by_friend_id(self.friend.id)
+            get_social_network_links_by_friend_id(self.friend.id)
 
         for i, link in social_networks.items():
             field = self.social_network_fields[i - 1]
