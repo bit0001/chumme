@@ -3,7 +3,7 @@ from kivy.uix.boxlayout import BoxLayout
 
 from controller.friend_info.friend_carousel import FriendInfoCarousel
 from model.friend import Friend
-from .add_update_form import AddFriendForm, UpdateFriendForm
+from .add_update_form import AddFriendForm, UpdateFriendForm, ImageChooser
 from .friend_info.edit_friend_interests import EditFriendInterests
 
 
@@ -47,3 +47,7 @@ class ChumMeRoot(BoxLayout):
 
     def show_friend_interests(self, friend):
         self.friend_info_carousel.interests.update_friend_info(friend)
+
+    def show_image_chooser(self):
+        self.clear_widgets()
+        self.add_widget(ImageChooser())
