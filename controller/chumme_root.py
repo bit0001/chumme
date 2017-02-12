@@ -57,4 +57,5 @@ class ChumMeRoot(BoxLayout):
         child_widget = self.children[0]
         if image:
             child_widget.image.source = image
+            child_widget.blob_image(image)
         self.image_chooser.dismiss()

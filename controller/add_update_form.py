@@ -1,4 +1,4 @@
-from sqlite3 import IntegrityError
+from sqlite3 import IntegrityError, Binary
 
 from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
@@ -17,6 +17,7 @@ class FriendForm(BoxLayout):
     def __init__(self, friend, **kwargs):
         self.friend = friend
         super().__init__(**kwargs)
+        self.blob_profile_image = None
         container = self.social_network_form.container
         self.social_network_fields = []
 
@@ -36,11 +37,17 @@ class FriendForm(BoxLayout):
             'birthdate': form.birthdate.text,
             'email': form.email.text,
             'cell_phone': form.cell_phone.text,
-            'status': form.status.text
+            'status': form.status.text,
+            'profile_image': self.blob_profile_image
         }
+
         friend = Friend(**parameters)
 
         return friend
+
+    def blob_image(self, image):
+        with open(image, 'rb') as f:
+            self.blob_profile_image = Binary(f.read())
 
     def display_error_popup(self, action):
         self.popup = get_add_edit_friend_error_popup(action, self._on_answer)
