@@ -2,6 +2,7 @@ from sqlite3 import IntegrityError
 
 from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.modalview import ModalView
 
 from controller.popup import get_add_edit_friend_error_popup
 from database_manager.friend_manager import MinimumFriendParameterException
@@ -124,5 +125,5 @@ class SocialNetworkField(BoxLayout):
         self.text_input.disabled = not checkbox.active
 
 
-class ImageChooser(BoxLayout):
+class ImageChooser(ModalView):
     pass
