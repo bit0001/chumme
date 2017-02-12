@@ -91,7 +91,6 @@ class UpdateFriendForm(FriendForm):
             self.parent.show_friend_details(updated_friend)
 
     def _update_social_networks(self):
-        print('This function is being called')
         for i, field in enumerate(self.social_network_fields):
             if field.check_box.active:
                 try:
