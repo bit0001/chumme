@@ -74,18 +74,25 @@
 <SocialNetworkInfo@BoxLayout>
     social_network_container: social_network_container
     orientation: 'vertical'
+    spacing: 20
     Label:
         padding: [40, 0]
         size_hint_y: None
         height: '20dp'
-        text_size: self.width, None
+        text_size: self.width, self.height
         text: 'Social Networks:'
     SocialNetworkContainer:
         id: social_network_container
 
-<SocialNetworkButton@Button>
+<SocialNetworkButton>
     image: ''
+    background_normal: 'resources/img/white_background.png'
+    background_down: 'resources/img/gray_background.png'
     size_hint: None, None
+    border: 0, 0, 0, 0
     size: '50dp', '50dp'
     Image:
         source: root.image
+        center_x: self.parent.center_x
+        center_y: self.parent.center_y
+        pos: self.pos
