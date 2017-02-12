@@ -4,6 +4,7 @@
     size_hint_y: None
     label_text: ''
     input_text: ''
+    hint: ''
     input_text_id: input_text_id
     Label:
         text: root.label_text
@@ -12,6 +13,7 @@
         write_tab: False
         multiline: False
         text: root.input_text
+        hint_text: root.hint
 
 <FriendForm>:
     orientation: 'vertical'
@@ -39,6 +41,7 @@
         id: birthdate
         label_text: 'Birthdate'
         input_text: root.friend.birthdate
+        hint: 'YYYY/MM/DD'
     FormInput:
         id: email
         label_text: 'Email'
