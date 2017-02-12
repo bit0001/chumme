@@ -1,10 +1,10 @@
 from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.label import Label
 
 from controller.popup import get_add_edit_friend_error_popup
 from database_manager.friend_manager import MinimumFriendParameterException
 from model.friend import Friend
+from model.social_network import SocialNetwork
 from utils.getter import get_friend_manager
 
 
@@ -14,6 +14,15 @@ class FriendForm(BoxLayout):
     def __init__(self, friend, **kwargs):
         self.friend = friend
         super().__init__(**kwargs)
+        container = self.social_network_form.container
+
+        for social_network in SocialNetwork:
+            social_network_field = SocialNetworkField(
+                hint=social_network.social_network_name,
+                image=social_network.logo_path
+            )
+            container.add_widget(social_network_field)
+
 
     def build_friend(self, form):
         parameters = {
@@ -65,4 +74,7 @@ class UpdateFriendForm(FriendForm):
 
 
 class SocialNetworkField(BoxLayout):
-    pass
+    def __init__(self, hint, image, **kwargs):
+        super().__init__(**kwargs)
+        self.hint = hint
+        self.image = image
