@@ -26,7 +26,8 @@ QUERIES = {
         """
         UPDATE friends
         SET first_name = ?, middle_name = ?, last_name = ?,
-            birthdate = ?, email = ?, cell_phone = ?, status = ?
+            birthdate = ?, email = ?, cell_phone = ?, status = ?,
+            profile_photo = ?
         WHERE id = ?
         """,
     'delete_friend':
@@ -112,7 +113,9 @@ class FriendManager:
                            (friend.first_name, friend.middle_name,
                             friend.last_name, friend.birthdate,
                             friend.email, friend.cell_phone,
-                            friend.status, friend.id))
+                            friend.status, friend.profile_photo,
+                            friend.id)
+                           )
 
     def update_friend_on_field(self, id: int, field: str, value: str):
         with DBContextManager(self.db_path) as cursor:

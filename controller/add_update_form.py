@@ -17,7 +17,7 @@ class FriendForm(BoxLayout):
     def __init__(self, friend, **kwargs):
         self.friend = friend
         super().__init__(**kwargs)
-        self.blob_profile_image = None
+        self.blob_profile_image = friend.profile_photo
         container = self.social_network_form.container
         self.social_network_fields = []
 
