@@ -76,7 +76,7 @@ class FriendManager:
                 QUERIES['insert_friend'],
                 (friend.first_name, friend.middle_name, friend.last_name,
                  friend.birthdate, friend.email, friend.cell_phone,
-                 friend.status)
+                 friend.status, friend.profile_photo)
             )
 
             return cursor.lastrowid
