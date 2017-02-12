@@ -122,3 +122,7 @@ class SocialNetworkField(BoxLayout):
 
     def enable_disable_text_input(self, checkbox):
         self.text_input.disabled = not checkbox.active
+
+
+class ImageChooser(BoxLayout):
+    pass
