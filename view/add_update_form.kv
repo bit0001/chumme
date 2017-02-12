@@ -79,7 +79,6 @@
         spacing: [20, 20]
 
 <SocialNetworkField>
-    name: ''
     image: ''
     hint: ''
     link: ''
@@ -97,7 +96,7 @@
                 pos:self.center_x - 13, self.center_y - 13
                 size:[26, 26]
     Image:
-        source: root.name
+        source: root.image
         size_hint: None, None
         size: '35dp', '35dp'
         pos_hint: {'center_x': 0.5, 'center_y': 0.5}
