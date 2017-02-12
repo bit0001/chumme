@@ -1,4 +1,5 @@
 from kivy.properties import StringProperty
+from kivy.uix.button import Button
 
 from .friend_carousel import FriendInfo
 from controller.popup import get_delete_friend_confirmation_popup
@@ -28,9 +29,12 @@ class FriendGeneralInfo(FriendInfo):
 
     def _show_social_networks(self, friend):
         social_networks = get_friend_manager().\
-            get_social_network_links_by_friend_id(friend.id)
+            get_social_networks_for_general_info_by_friend_id(friend.id)
+        container = self.social_network_info.social_network_container.container
 
-        print(social_networks)
+        for image, link in social_networks.items():
+            button = SocialNetworkButton(image, link)
+            container.add_widget(button)
 
     def get_field(self, field):
         return field if field else self.EMPTY_FIELD
@@ -45,3 +49,10 @@ class FriendGeneralInfo(FriendInfo):
         if answer:
             get_friend_manager().delete_friend(self.friend.id)
             self.parent.parent.parent.parent.show_friend_list()
+
+
+class SocialNetworkButton(Button):
+    def __init__(self, image, link, **kw):
+        super().__init__(**kw)
+        self.image = image
+        self.link = link
