@@ -68,8 +68,17 @@
         padding: ['20dp', 0]
         text_size: self.width, None
         text: 'Social Networks:'
-    SocialNetworkForm:
-        id: social_network_form
+    BoxLayout:
+        SocialNetworkForm:
+            id: social_network_form
+        BoxLayout:
+            orientation: 'vertical'
+            Image:
+                source: 'resources/img/chumme_profile.png'
+            Button:
+                size_hint_y: None
+                height: '40dp'
+                text: 'Choose photo'
 
 <SocialNetworkForm@ScrollView>
     container: container
