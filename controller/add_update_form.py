@@ -64,5 +64,5 @@ class UpdateFriendForm(FriendForm):
         return friend
 
 
-class SocialNetworkField(Label):
+class SocialNetworkField(BoxLayout):
     pass
