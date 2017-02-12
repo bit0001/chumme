@@ -86,6 +86,8 @@ class FriendManager:
                  friend.status)
             )
 
+            return cursor.lastrowid
+
     def check_mandatory_fields(self, friend):
         if friend.first_name == '' or friend.last_name == '':
             raise MinimumFriendParameterException()
