@@ -39,15 +39,25 @@ QUERIES = {
         SELECT * FROM friends
         """,
     'select_interests_by_friend_id':
-    """
-      SELECT i.interest
-      FROM friends f
-      INNER JOIN friends_interests fi
-      ON f.id = fi.friend_id
-      INNER JOIN interests i
-      ON fi.interest_id = i.id
-      WHERE f.id = ?
-    """
+        """
+        SELECT i.interest
+        FROM friends f
+        INNER JOIN friends_interests fi
+        ON f.id = fi.friend_id
+        INNER JOIN interests i
+        ON fi.interest_id = i.id
+        WHERE f.id = ?
+        """,
+    'select_social_networks_by_friend_id':
+        """
+        SELECT sn.id, fsn.social_network_link
+        FROM friends f
+        INNER JOIN friends_social_networks fsn
+        ON f.id = fsn.friend_id
+        INNER JOIN social_networks sn
+        ON fsn.social_network_id = sn.id
+        WHERE f.id = ?
+        """
 }
 
 
