@@ -1,6 +1,7 @@
 #: import FriendGeneralInfo controller.friend_info.friend_general_info.FriendGeneralInfo
 <FriendGeneralInfo>:
     orientation: 'vertical'
+    social_network_info: social_network_info
     BoxLayout:
         size_hint_y: None
         height: '40dp'
@@ -48,7 +49,8 @@
                 size_hint_y: None
                 text: '{}   {}'.format(icon('fa-heart'), root.status)
                 markup: True
-            SocialNetworkInfo
+            SocialNetworkInfo:
+                id: social_network_info
 
 <InfoField@BoxLayout>:
     field_label: ''
