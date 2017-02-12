@@ -4,20 +4,6 @@ from model.friend import Friend
 from .db_context_manager import DBContextManager
 
 QUERIES = {
-    'create_friends_table':
-        """
-        CREATE TABLE IF NOT EXISTS friends
-        (
-          id INTEGER PRIMARY KEY,
-          first_name VARCHAR(50) NOT NULL,
-          middle_name VARCHAR(50),
-          last_name VARCHAR(50) NOT NULL,
-          birthdate DATE,
-          email VARCHAR(320),
-          cell_phone VARCHAR(50),
-          status VARCHAR(30) NOT NULL
-          )
-        """,
     'insert_friend':
         """
         INSERT INTO friends
@@ -72,9 +58,6 @@ class MinimumFriendParameterException(Exception):
 class FriendManager:
     def __init__(self, db_path: str):
         self.db_path = db_path
-
-        with DBContextManager(db_path) as cursor:
-            cursor.execute(QUERIES['create_friends_table'])
 
     def add_friend(self, friend: Friend):
         self.check_mandatory_fields(friend)

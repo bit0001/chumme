@@ -5,12 +5,8 @@ from database_manager.friend_manager import FriendManager
 from database_manager.friend_social_network_manager import \
     FriendSocialNetworkManager
 from database_manager.interest_manager import InterestManager
-from database_manager.social_network_manager import SocialNetworkManager
 from database_manager.thought_manager import ThoughtManager
-
-DB_PATH = '{}/{}'.format(
-    os.path.dirname(os.path.abspath(__file__)), '../chumme.db'
-)
+from database_manager.util import DB_PATH
 
 
 def get_friend_manager():
@@ -27,10 +23,6 @@ def get_friend_interest_manager():
 
 def get_thought_manager():
     return ThoughtManager(DB_PATH)
-
-
-def get_social_network_manager():
-    return SocialNetworkManager(DB_PATH)
 
 
 def get_friend_social_network_manager():

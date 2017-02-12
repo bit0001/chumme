@@ -2,18 +2,6 @@ from database_manager.db_context_manager import DBContextManager
 from model.thought import Thought
 
 QUERIES = {
-    'create_thoughts_table':
-        """
-        CREATE TABLE IF NOT EXISTS thoughts
-        (
-          friend_id INTEGER NOT NULL,
-          thought TEXT NOT NULL,
-          creation_date DATETIME,
-          FOREIGN KEY (friend_id)
-            REFERENCES friends(id)
-            ON DELETE CASCADE
-        )
-        """,
     'insert_thought':
         """
         INSERT INTO thoughts
@@ -37,9 +25,6 @@ class EmptyThoughtException(Exception):
 class ThoughtManager:
     def __init__(self, db_path: str):
         self.db_path = db_path
-
-        with DBContextManager(db_path) as cursor:
-            cursor.execute(QUERIES['create_thoughts_table'])
 
     def add_thought(self, friend_id: int, thought: str):
         if thought is '':
