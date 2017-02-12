@@ -13,7 +13,9 @@ class Friend:
                  birthdate: str = '',
                  email: str = '',
                  cell_phone: str = '',
-                 status: str = STATUSES[-1]):
+                 status: str = STATUSES[-1],
+                 profile_photo=None
+                 ):
         self.id = id
         self.first_name = first_name
         self.middle_name = middle_name
@@ -22,6 +24,7 @@ class Friend:
         self.email = email
         self.cell_phone = cell_phone
         self.status = status
+        self.profile_photo = profile_photo
 
     @property
     def full_name(self):
