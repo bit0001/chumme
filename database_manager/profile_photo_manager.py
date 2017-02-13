@@ -31,8 +31,10 @@ class ProfilePhotoManager():
             cursor.execute(QUERIES['select_profile_photo'], (friend_id,))
 
             row = cursor.fetchone()
+            if row:
+                return {'blob': row[0], 'ext': row[1]}
 
-            return {'blob': row[0], 'ext': row[1]}
+            return {}
 
     def insert_profile_photo(self, friend_id, blob_image, extension):
         with DBContextManager(self.db_path) as cursor:
