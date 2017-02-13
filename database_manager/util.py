@@ -85,7 +85,7 @@ CREATE_TABLES_QUERIES = {
         """
         CREATE TABLE IF NOT EXISTS profile_photos
         (
-          friend_id INTEGER PRIMARY KEY,
+          friend_id INTEGER UNIQUE,
           profile_photo BLOB,
           extension VARCHAR(10),
           FOREIGN KEY (friend_id)
