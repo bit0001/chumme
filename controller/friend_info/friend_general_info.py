@@ -3,9 +3,10 @@ import webbrowser
 from kivy.properties import StringProperty
 from kivy.uix.button import Button
 
+from controller.util import get_image_from_blob
 from .friend_carousel import FriendInfo
 from controller.popup import get_delete_friend_confirmation_popup
-from utils.getter import get_friend_manager
+from utils.getter import get_friend_manager, get_profile_photo_manager
 
 
 class FriendGeneralInfo(FriendInfo):
@@ -28,6 +29,14 @@ class FriendGeneralInfo(FriendInfo):
         self.cell_phone = self.get_field(friend.cell_phone)
         self.status = friend.status
         self._show_social_networks(friend)
+
+        profile_photo = get_profile_photo_manager().\
+            select_profile_photo(friend.id)
+
+        if profile_photo:
+            blob = profile_photo['blob']
+            extension = profile_photo['ext'][1:]
+            self.profile_photo.texture = get_image_from_blob(blob, extension).texture
 
     def _show_social_networks(self, friend):
         social_networks = get_friend_manager().\
