@@ -39,15 +39,17 @@
             orientation: 'vertical'
             padding: '10dp'
             Image:
+                size_hint_y: 2
                 id: profile_photo
                 source: 'resources/img/chumme_profile.png'
                 center: self.parent.center
             Label:
-                height: '40dp'
                 size_hint_y: None
+                height: '40dp'
                 text: '{}   {}'.format(icon('fa-heart'), root.status)
                 markup: True
             SocialNetworkInfo:
+                size_hint_y: 1
                 id: social_network_info
 
 <InfoField@BoxLayout>:
