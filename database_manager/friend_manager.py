@@ -112,7 +112,7 @@ class FriendManager:
                            (friend.first_name, friend.middle_name,
                             friend.last_name, friend.birthdate,
                             friend.email, friend.cell_phone,
-                            friend.status)
+                            friend.status, friend.id)
                            )
 
     def update_friend_on_field(self, id: int, field: str, value: str):
