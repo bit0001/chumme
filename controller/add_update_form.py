@@ -6,6 +6,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.modalview import ModalView
 
 from controller.popup import get_add_edit_friend_error_popup
+from controller.util import get_image_from_blob
 from database_manager.friend_manager import MinimumFriendParameterException
 from model.friend import Friend
 from model.social_network import SocialNetwork
@@ -104,6 +105,14 @@ class UpdateFriendForm(FriendForm):
         for i, link in social_networks.items():
             field = self.social_network_fields[i - 1]
             field.text_input.text = link
+
+        profile_image = get_profile_photo_manager().\
+            select_profile_photo(self.friend.id)
+
+        if profile_image:
+            blob = profile_image['blob']
+            extension = profile_image['ext'][1:]
+            self.image.texture = get_image_from_blob(blob, extension).texture
 
     def update_friend(self):
         updated_friend = self.build_friend(self.parent.update_friend_form)
