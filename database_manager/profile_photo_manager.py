@@ -47,5 +47,5 @@ class ProfilePhotoManager():
         with DBContextManager(self.db_path) as cursor:
             cursor.execute(
                 QUERIES['update_profile_photo'],
-                (friend_id, blob_image, extension)
+                (blob_image, extension, friend_id)
             )
