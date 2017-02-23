@@ -38,7 +38,6 @@ def fill_social_networks_table():
                 pass
 
 
-class ChumMeDBManager:
 class Singleton(type):
     _instances = {}
     def __call__(cls, *args, **kwargs):
@@ -48,6 +47,7 @@ class Singleton(type):
         return cls._instances[cls]
 
 
+class ChumMeDBManager(metaclass=Singleton):
     def __init__(self):
         self._friend_manager = FriendManager(DB_PATH)
         self._interest_manager = InterestManager(DB_PATH)
