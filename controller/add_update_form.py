@@ -8,9 +8,9 @@ from kivy.uix.modalview import ModalView
 from controller.popup import get_add_edit_friend_error_popup
 from controller.util import get_image_from_blob
 from database_manager.friend_manager import MinimumFriendParameterException
+from database_manager.util import ChumMeDBManager
 from model.friend import Friend
 from model.social_network import SocialNetwork
-from utils.getter import ChumMeDBManager
 
 
 class FriendForm(BoxLayout):
