@@ -12,7 +12,7 @@ class FriendList(BoxLayout):
         return {'friend': data_item}
 
     def update(self):
-        friends = ChumMeDBManager.friend_manager().get_friends()
+        friends = ChumMeDBManager().friend_manager.get_friends()
         no_friends_label = self.no_friends_label
         friend_list = self.friend_list
 

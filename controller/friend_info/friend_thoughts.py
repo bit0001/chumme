@@ -11,8 +11,8 @@ from .friend_carousel import FriendInfo
 class FriendThoughts(FriendInfo):
     def update_friend_info(self, friend):
         super().update_friend_info(friend)
-        self.thoughts = ChumMeDBManager.\
-            thought_manager().get_thoughts_by_friend_id(
+        self.thoughts = ChumMeDBManager().\
+            thought_manager.get_thoughts_by_friend_id(
             self.friend.id
         )
         no_thoughts_label = self.no_thoughts_label
@@ -35,7 +35,7 @@ class FriendThoughts(FriendInfo):
 
     def add_thought(self, text):
         try:
-            ChumMeDBManager.thought_manager().add_thought(
+            ChumMeDBManager().thought_manager.add_thought(
                 self.friend.id, text.strip()
             )
         except EmptyThoughtException:

@@ -39,26 +39,35 @@ def fill_social_networks_table():
 
 
 class ChumMeDBManager:
-    @staticmethod
-    def friend_manager():
-        return FriendManager(DB_PATH)
+    def __init__(self):
+        self._friend_manager = FriendManager(DB_PATH)
+        self._interest_manager = InterestManager(DB_PATH)
+        self._friend_interest_manager = FriendInterestManager(DB_PATH)
+        self._thought_manager = ThoughtManager(DB_PATH)
+        self._friend_social_network_manager = \
+            FriendSocialNetworkManager(DB_PATH)
+        self._profile_photo_manager = ProfilePhotoManager(DB_PATH)
 
-    @staticmethod
-    def interest_manager():
-        return InterestManager(DB_PATH)
+    @property
+    def friend_manager(self):
+        return self._friend_manager
 
-    @staticmethod
-    def friend_interest_manager():
-        return FriendInterestManager(DB_PATH)
+    @property
+    def interest_manager(self):
+        return self._interest_manager
 
-    @staticmethod
-    def thought_manager():
-        return ThoughtManager(DB_PATH)
+    @property
+    def friend_interest_manager(self):
+        return self._friend_interest_manager
 
-    @staticmethod
-    def friend_social_network_manager():
-        return FriendSocialNetworkManager(DB_PATH)
+    @property
+    def thought_manager(self):
+        return self._thought_manager
 
-    @staticmethod
-    def profile_photo_manager():
-        return ProfilePhotoManager(DB_PATH)
+    @property
+    def friend_social_network_manager(self):
+        return self._friend_social_network_manager
+
+    @property
+    def profile_photo_manager(self):
+        return self._profile_photo_manager

@@ -7,7 +7,7 @@ from .interest_util import add_interests_to_friend_interests
 class FriendInterests(FriendInfo):
     def update_friend_info(self, friend):
         super().update_friend_info(friend)
-        interests = ChumMeDBManager.friend_manager().get_interest_by_friend_id(
+        interests = ChumMeDBManager().friend_manager.get_interest_by_friend_id(
             self.friend.id)
         no_interests_label = self.no_interests_label
         interest_scroll = self.interest_scroll_view
