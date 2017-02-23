@@ -6,8 +6,7 @@ from kivy.uix.button import Button
 from controller.util import get_image_from_blob
 from .friend_carousel import FriendInfo
 from controller.popup import get_delete_friend_confirmation_popup
-from utils.getter import get_profile_photo_manager, \
-    ChumMeDBManager
+from utils.getter import ChumMeDBManager
 
 
 class FriendGeneralInfo(FriendInfo):
@@ -31,7 +30,7 @@ class FriendGeneralInfo(FriendInfo):
         self.status = friend.status
         self._show_social_networks(friend)
 
-        profile_photo = get_profile_photo_manager().\
+        profile_photo = ChumMeDBManager.profile_photo_manager().\
             select_profile_photo(friend.id)
 
         if profile_photo:

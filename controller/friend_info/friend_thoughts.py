@@ -1,11 +1,9 @@
-import datetime
-
 from kivy.uix.label import Label
 
 from controller.popup import get_empty_thought_popup
 from database_manager.thought_manager import EmptyThoughtException
 from model.thought import Thought
-from utils.getter import get_thought_manager
+from utils.getter import ChumMeDBManager
 from utils.widget import hide_label, show_label, hide_widget, show_widget
 from .friend_carousel import FriendInfo
 
@@ -13,7 +11,8 @@ from .friend_carousel import FriendInfo
 class FriendThoughts(FriendInfo):
     def update_friend_info(self, friend):
         super().update_friend_info(friend)
-        self.thoughts = get_thought_manager().get_thoughts_by_friend_id(
+        self.thoughts = ChumMeDBManager.\
+            thought_manager().get_thoughts_by_friend_id(
             self.friend.id
         )
         no_thoughts_label = self.no_thoughts_label
@@ -36,7 +35,7 @@ class FriendThoughts(FriendInfo):
 
     def add_thought(self, text):
         try:
-            get_thought_manager().add_thought(
+            ChumMeDBManager.thought_manager().add_thought(
                 self.friend.id, text.strip()
             )
         except EmptyThoughtException:

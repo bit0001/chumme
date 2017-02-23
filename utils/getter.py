@@ -13,22 +13,22 @@ class ChumMeDBManager:
     def friend_manager():
         return FriendManager(DB_PATH)
 
+    @staticmethod
+    def interest_manager():
+        return InterestManager(DB_PATH)
 
-def get_interest_manager():
-    return InterestManager(DB_PATH)
+    @staticmethod
+    def friend_interest_manager():
+        return FriendInterestManager(DB_PATH)
 
+    @staticmethod
+    def thought_manager():
+        return ThoughtManager(DB_PATH)
 
-def get_friend_interest_manager():
-    return FriendInterestManager(DB_PATH)
+    @staticmethod
+    def friend_social_network_manager():
+        return FriendSocialNetworkManager(DB_PATH)
 
-
-def get_thought_manager():
-    return ThoughtManager(DB_PATH)
-
-
-def get_friend_social_network_manager():
-    return FriendSocialNetworkManager(DB_PATH)
-
-
-def get_profile_photo_manager():
-    return ProfilePhotoManager(DB_PATH)
+    @staticmethod
+    def profile_photo_manager():
+        return ProfilePhotoManager(DB_PATH)
