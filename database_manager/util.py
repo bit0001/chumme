@@ -1,9 +1,15 @@
 import os
 from sqlite3 import IntegrityError
 
+from .friend_interest_manager import FriendInterestManager
+from .friend_manager import FriendManager
+from .friend_social_network_manager import FriendSocialNetworkManager
+from .interest_manager import InterestManager
+from .profile_photo_manager import ProfilePhotoManager
+from .thought_manager import ThoughtManager
 from .queries.create_table import CREATE_TABLES_QUERIES, OTHER_QUERIES
-from model.social_network import SocialNetwork
 from .db_context_manager import DBContextManager
+from model.social_network import SocialNetwork
 
 DB_PATH = '{}/{}'.format(
     os.path.dirname(os.path.abspath(__file__)), '../chumme.db'
@@ -30,3 +36,29 @@ def fill_social_networks_table():
                 )
             except IntegrityError:
                 pass
+
+
+class ChumMeDBManager:
+    @staticmethod
+    def friend_manager():
+        return FriendManager(DB_PATH)
+
+    @staticmethod
+    def interest_manager():
+        return InterestManager(DB_PATH)
+
+    @staticmethod
+    def friend_interest_manager():
+        return FriendInterestManager(DB_PATH)
+
+    @staticmethod
+    def thought_manager():
+        return ThoughtManager(DB_PATH)
+
+    @staticmethod
+    def friend_social_network_manager():
+        return FriendSocialNetworkManager(DB_PATH)
+
+    @staticmethod
+    def profile_photo_manager():
+        return ProfilePhotoManager(DB_PATH)

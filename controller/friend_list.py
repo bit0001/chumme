@@ -2,7 +2,7 @@ from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.listview import ListItemButton
 
-from utils.getter import ChumMeDBManager
+from database_manager.util import ChumMeDBManager
 from utils.widget import hide_label, hide_widget, show_label
 from utils.widget import show_list_view
 

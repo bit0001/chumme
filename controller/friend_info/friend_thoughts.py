@@ -2,8 +2,8 @@ from kivy.uix.label import Label
 
 from controller.popup import get_empty_thought_popup
 from database_manager.thought_manager import EmptyThoughtException
+from database_manager.util import ChumMeDBManager
 from model.thought import Thought
-from utils.getter import ChumMeDBManager
 from utils.widget import hide_label, show_label, hide_widget, show_widget
 from .friend_carousel import FriendInfo
 

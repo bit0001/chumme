@@ -1,4 +1,4 @@
-from utils.getter import ChumMeDBManager
+from database_manager.util import ChumMeDBManager
 from utils.widget import hide_label, show_widget, hide_widget, show_label
 from .friend_carousel import FriendInfo
 from .interest_util import add_interests_to_friend_interests

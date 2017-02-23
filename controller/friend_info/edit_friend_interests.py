@@ -7,7 +7,6 @@ from .interest_util import add_interests_to_container, \
     add_interest_button_to_container, perform_operation_with_interests
 from controller.popup import get_interest_should_not_be_empty_string_popup, \
     get_interest_already_in_list_popup, get_interest_in_other_interests_popup
-from utils.getter import ChumMeDBManager
 
 
 class EditFriendInterests(ModalView):

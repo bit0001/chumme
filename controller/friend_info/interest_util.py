@@ -3,7 +3,7 @@ from sqlite3 import IntegrityError
 from kivy.uix.button import Button
 from kivy.uix.label import Label
 
-from utils.getter import ChumMeDBManager
+from database_manager.util import ChumMeDBManager
 
 
 class InterestLabel(Label):
