@@ -7,8 +7,7 @@ from .interest_util import add_interests_to_container, \
     add_interest_button_to_container, perform_operation_with_interests
 from controller.popup import get_interest_should_not_be_empty_string_popup, \
     get_interest_already_in_list_popup, get_interest_in_other_interests_popup
-from utils.getter import get_interest_manager, \
-    get_friend_interest_manager, ChumMeDBManager
+from utils.getter import ChumMeDBManager
 
 
 class EditFriendInterests(ModalView):
@@ -23,7 +22,7 @@ class EditFriendInterests(ModalView):
 
         friend_interests = ChumMeDBManager.friend_manager().\
             get_interest_by_friend_id(self.friend.id)
-        other_interests = get_interest_manager().get_interests()
+        other_interests = ChumMeDBManager.interest_manager().get_interests()
         other_interests = set(other_interests) - set(friend_interests)
 
         add_interests_to_container(
@@ -73,7 +72,7 @@ class EditFriendInterests(ModalView):
             return
 
         try:
-            get_interest_manager().add_interest(interest)
+            ChumMeDBManager.interest_manager().add_interest(interest)
         except IntegrityError:
             self.popup = get_interest_in_other_interests_popup(
                 interest, self._on_answer)
@@ -107,13 +106,14 @@ class EditFriendInterests(ModalView):
 
     def add_interests(self, interests):
         perform_operation_with_interests(
-            get_friend_interest_manager().add_friend_interest_ids,
+            ChumMeDBManager.friend_interest_manager().add_friend_interest_ids,
             interests, self.friend
         )
 
     def remove_interests(self, interests):
         perform_operation_with_interests(
-            get_friend_interest_manager().delete_friend_interest_ids,
+            ChumMeDBManager.\
+                friend_interest_manager().delete_friend_interest_ids,
             interests, self.friend
         )
 

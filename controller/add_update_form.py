@@ -10,8 +10,7 @@ from controller.util import get_image_from_blob
 from database_manager.friend_manager import MinimumFriendParameterException
 from model.friend import Friend
 from model.social_network import SocialNetwork
-from utils.getter import get_friend_social_network_manager, \
-    get_profile_photo_manager, ChumMeDBManager
+from utils.getter import ChumMeDBManager
 
 
 class FriendForm(BoxLayout):
@@ -81,7 +80,7 @@ class AddFriendForm(FriendForm):
     def _add_social_networks(self, friend_id):
         for i, field in enumerate(self.social_network_fields):
             if field.check_box.active:
-                get_friend_social_network_manager().\
+                ChumMeDBManager.friend_social_network_manager().\
                     add_friend_social_network(
                     friend_id,
                     i + 1,
@@ -90,7 +89,7 @@ class AddFriendForm(FriendForm):
 
     def _add_friend_profile_photo(self, friend_id):
         if self.blob_profile_image:
-            get_profile_photo_manager().insert_profile_photo(
+            ChumMeDBManager.profile_photo_manager().insert_profile_photo(
                 friend_id,
                 self.blob_profile_image['blob'],
                 self.blob_profile_image['ext']
@@ -106,7 +105,7 @@ class UpdateFriendForm(FriendForm):
             field = self.social_network_fields[i - 1]
             field.text_input.text = link
 
-        profile_image = get_profile_photo_manager().\
+        profile_image = ChumMeDBManager.profile_photo_manager().\
             select_profile_photo(self.friend.id)
 
         if profile_image:
@@ -129,14 +128,14 @@ class UpdateFriendForm(FriendForm):
         for i, field in enumerate(self.social_network_fields):
             if field.check_box.active:
                 try:
-                    get_friend_social_network_manager(). \
+                    ChumMeDBManager.friend_social_network_manager(). \
                         add_friend_social_network(
                         self.friend.id,
                         i + 1,
                         field.text_input.text
                     )
                 except IntegrityError:
-                    get_friend_social_network_manager(). \
+                    ChumMeDBManager.friend_social_network_manager(). \
                         update_social_network(
                         field.text_input.text,
                         self.friend.id,
@@ -146,13 +145,13 @@ class UpdateFriendForm(FriendForm):
     def _update_image(self):
         if self.blob_profile_image:
             try:
-                get_profile_photo_manager().insert_profile_photo(
+                ChumMeDBManager.profile_photo_manager().insert_profile_photo(
                     self.friend.id,
                     self.blob_profile_image['blob'],
                     self.blob_profile_image['ext']
                 )
             except IntegrityError:
-                get_profile_photo_manager().update_profile_photo(
+                ChumMeDBManager.profile_photo_manager().update_profile_photo(
                     self.friend.id,
                     self.blob_profile_image['blob'],
                     self.blob_profile_image['ext']
