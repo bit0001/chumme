@@ -30,7 +30,7 @@ class FriendGeneralInfo(FriendInfo):
         self.status = friend.status
         self._show_social_networks(friend)
 
-        profile_photo = ChumMeDBManager.profile_photo_manager().\
+        profile_photo = ChumMeDBManager().profile_photo_manager.\
             select_profile_photo(friend.id)
 
         if profile_photo:
@@ -39,7 +39,7 @@ class FriendGeneralInfo(FriendInfo):
             self.profile_photo.texture = get_image_from_blob(blob, extension).texture
 
     def _show_social_networks(self, friend):
-        social_networks = ChumMeDBManager.friend_manager().\
+        social_networks = ChumMeDBManager().friend_manager.\
             get_social_networks_for_general_info_by_friend_id(friend.id)
         container = self.social_network_info.social_network_container.container
 
@@ -58,7 +58,7 @@ class FriendGeneralInfo(FriendInfo):
     def _on_answer(self, instance, answer):
         self.popup.dismiss()
         if answer:
-            ChumMeDBManager.friend_manager().delete_friend(self.friend.id)
+            ChumMeDBManager().friend_manager.delete_friend(self.friend.id)
             self.parent.parent.parent.parent.show_friend_list()
 
 

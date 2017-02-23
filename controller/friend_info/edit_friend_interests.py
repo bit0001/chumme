@@ -3,6 +3,7 @@ from sqlite3 import IntegrityError
 from kivy.properties import ObjectProperty
 from kivy.uix.modalview import ModalView
 
+from database_manager.util import ChumMeDBManager
 from .interest_util import add_interests_to_container, \
     add_interest_button_to_container, perform_operation_with_interests
 from controller.popup import get_interest_should_not_be_empty_string_popup, \
@@ -19,9 +20,9 @@ class EditFriendInterests(ModalView):
         self.interests_to_add = set()
         self.interests_to_remove = set()
 
-        friend_interests = ChumMeDBManager.friend_manager().\
+        friend_interests = ChumMeDBManager().friend_manager.\
             get_interest_by_friend_id(self.friend.id)
-        other_interests = ChumMeDBManager.interest_manager().get_interests()
+        other_interests = ChumMeDBManager().interest_manager.get_interests()
         other_interests = set(other_interests) - set(friend_interests)
 
         add_interests_to_container(
@@ -71,7 +72,7 @@ class EditFriendInterests(ModalView):
             return
 
         try:
-            ChumMeDBManager.interest_manager().add_interest(interest)
+            ChumMeDBManager().interest_manager.add_interest(interest)
         except IntegrityError:
             self.popup = get_interest_in_other_interests_popup(
                 interest, self._on_answer)
@@ -88,11 +89,11 @@ class EditFriendInterests(ModalView):
 
     def is_interest_already_added(self, interest):
         return interest in self.interests_to_add or\
-               interest in ChumMeDBManager.friend_manager().\
+               interest in ChumMeDBManager().friend_manager.\
                    get_interest_by_friend_id(self.friend.id)
 
     def update_friend_property(self):
-        self.friend = ChumMeDBManager.friend_manager().\
+        self.friend = ChumMeDBManager().friend_manager.\
             get_interest_by_friend_id(self.friend.id)
 
     def cancel_edition(self):
@@ -105,14 +106,14 @@ class EditFriendInterests(ModalView):
 
     def add_interests(self, interests):
         perform_operation_with_interests(
-            ChumMeDBManager.friend_interest_manager().add_friend_interest_ids,
+            ChumMeDBManager().friend_interest_manager.add_friend_interest_ids,
             interests, self.friend
         )
 
     def remove_interests(self, interests):
         perform_operation_with_interests(
-            ChumMeDBManager.\
-                friend_interest_manager().delete_friend_interest_ids,
+            ChumMeDBManager().\
+                friend_interest_manager.delete_friend_interest_ids,
             interests, self.friend
         )
 

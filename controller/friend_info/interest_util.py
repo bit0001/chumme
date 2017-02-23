@@ -16,8 +16,8 @@ class InterestButton(Button):
 
 def perform_operation_with_interests(operation, interests, friend):
     for interest in interests:
-        interest_id = ChumMeDBManager.\
-            interest_manager().get_interest_id(interest)
+        interest_id = ChumMeDBManager().\
+            interest_manager.get_interest_id(interest)
         try:
             operation(friend.id, interest_id)
         except IntegrityError:
