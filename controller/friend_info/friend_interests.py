@@ -1,4 +1,4 @@
-from utils.getter import get_friend_manager
+from utils.getter import ChumMeDBManager
 from utils.widget import hide_label, show_widget, hide_widget, show_label
 from .friend_carousel import FriendInfo
 from .interest_util import add_interests_to_friend_interests
@@ -7,7 +7,7 @@ from .interest_util import add_interests_to_friend_interests
 class FriendInterests(FriendInfo):
     def update_friend_info(self, friend):
         super().update_friend_info(friend)
-        interests = get_friend_manager().get_interest_by_friend_id(
+        interests = ChumMeDBManager.friend_manager().get_interest_by_friend_id(
             self.friend.id)
         no_interests_label = self.no_interests_label
         interest_scroll = self.interest_scroll_view

@@ -7,8 +7,8 @@ from .interest_util import add_interests_to_container, \
     add_interest_button_to_container, perform_operation_with_interests
 from controller.popup import get_interest_should_not_be_empty_string_popup, \
     get_interest_already_in_list_popup, get_interest_in_other_interests_popup
-from utils.getter import get_friend_manager, get_interest_manager, \
-    get_friend_interest_manager
+from utils.getter import get_interest_manager, \
+    get_friend_interest_manager, ChumMeDBManager
 
 
 class EditFriendInterests(ModalView):
@@ -21,7 +21,7 @@ class EditFriendInterests(ModalView):
         self.interests_to_add = set()
         self.interests_to_remove = set()
 
-        friend_interests = get_friend_manager().\
+        friend_interests = ChumMeDBManager.friend_manager().\
             get_interest_by_friend_id(self.friend.id)
         other_interests = get_interest_manager().get_interests()
         other_interests = set(other_interests) - set(friend_interests)
@@ -90,11 +90,11 @@ class EditFriendInterests(ModalView):
 
     def is_interest_already_added(self, interest):
         return interest in self.interests_to_add or\
-               interest in get_friend_manager().\
+               interest in ChumMeDBManager.friend_manager().\
                    get_interest_by_friend_id(self.friend.id)
 
     def update_friend_property(self):
-        self.friend = get_friend_manager().\
+        self.friend = ChumMeDBManager.friend_manager().\
             get_interest_by_friend_id(self.friend.id)
 
     def cancel_edition(self):
