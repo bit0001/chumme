@@ -10,8 +10,8 @@ from controller.util import get_image_from_blob
 from database_manager.friend_manager import MinimumFriendParameterException
 from model.friend import Friend
 from model.social_network import SocialNetwork
-from utils.getter import get_friend_manager, get_friend_social_network_manager, \
-    get_profile_photo_manager
+from utils.getter import get_friend_social_network_manager, \
+    get_profile_photo_manager, ChumMeDBManager
 
 
 class FriendForm(BoxLayout):
@@ -70,7 +70,7 @@ class AddFriendForm(FriendForm):
     def add_friend(self):
         friend = self.build_friend(self.parent.add_friend_form)
         try:
-            friend_id = get_friend_manager().add_friend(friend)
+            friend_id = ChumMeDBManager.friend_manager().add_friend(friend)
             self._add_social_networks(friend_id)
             self._add_friend_profile_photo(friend_id)
         except MinimumFriendParameterException:
@@ -99,7 +99,7 @@ class AddFriendForm(FriendForm):
 class UpdateFriendForm(FriendForm):
     def __init__(self, friend, **kwargs):
         super().__init__(friend, **kwargs)
-        social_networks = get_friend_manager().\
+        social_networks = ChumMeDBManager.friend_manager().\
             get_social_network_links_by_friend_id(self.friend.id)
 
         for i, link in social_networks.items():
@@ -117,7 +117,7 @@ class UpdateFriendForm(FriendForm):
     def update_friend(self):
         updated_friend = self.build_friend(self.parent.update_friend_form)
         try:
-            get_friend_manager().update_friend(updated_friend)
+            ChumMeDBManager.friend_manager().update_friend(updated_friend)
             self._update_social_networks()
             self._update_image()
         except MinimumFriendParameterException:

@@ -1,5 +1,3 @@
-import os
-
 from database_manager.friend_interest_manager import FriendInterestManager
 from database_manager.friend_manager import FriendManager
 from database_manager.friend_social_network_manager import \
@@ -10,8 +8,10 @@ from database_manager.thought_manager import ThoughtManager
 from database_manager.util import DB_PATH
 
 
-def get_friend_manager():
-    return FriendManager(DB_PATH)
+class ChumMeDBManager:
+    @staticmethod
+    def friend_manager():
+        return FriendManager(DB_PATH)
 
 
 def get_interest_manager():
