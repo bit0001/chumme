@@ -1,7 +1,7 @@
 import os
 from sqlite3 import IntegrityError
 
-from database_manager.queries import CREATE_TABLES_QUERIES, OTHER_QUERIES
+from .queries.queries import CREATE_TABLES_QUERIES, OTHER_QUERIES
 from model.social_network import SocialNetwork
 from .db_context_manager import DBContextManager
 
