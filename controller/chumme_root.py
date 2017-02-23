@@ -1,10 +1,10 @@
 from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
 
+from controller.add_update_form.friend_form import ImageChooser
 from controller.friend_info.friend_carousel import FriendInfoCarousel
 from model.friend import Friend
-from .add_update_form.add_update_form import AddFriendForm, \
-    UpdateFriendForm, ImageChooser
+from .add_update_form.add_update_form import AddFriendForm, UpdateFriendForm
 from .friend_info.edit_friend_interests import EditFriendInterests
 
 
