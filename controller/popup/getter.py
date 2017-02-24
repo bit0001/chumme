@@ -1,25 +1,6 @@
-from kivy.properties import StringProperty
-from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.popup import Popup
 
-
-class PopupLayout(BoxLayout):
-    text = StringProperty()
-
-    def __init__(self, **kwargs):
-        self.register_event_type('on_answer')
-        super().__init__(**kwargs)
-
-    def on_answer(self, *args):
-        pass
-
-
-class ConfirmPopup(PopupLayout):
-    pass
-
-
-class OkPopup(PopupLayout):
-    pass
+from controller.popup.popups import OkPopup, ConfirmPopup
 
 
 def get_ok_popup(title, text, on_answer):

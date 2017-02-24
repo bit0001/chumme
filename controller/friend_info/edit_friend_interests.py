@@ -3,7 +3,7 @@ from sqlite3 import IntegrityError
 from kivy.properties import ObjectProperty
 from kivy.uix.modalview import ModalView
 
-from controller.popup.popup import \
+from controller.popup.getter import \
     get_interest_should_not_be_empty_string_popup, \
     get_interest_already_in_list_popup, get_interest_in_other_interests_popup
 from database_manager.util import ChumMeDBManager

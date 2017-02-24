@@ -5,7 +5,7 @@ from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.modalview import ModalView
 
-from controller.popup.popup import get_add_edit_friend_error_popup
+from controller.popup.getter import get_add_edit_friend_error_popup
 from model.friend import Friend
 from model.social_network import SocialNetwork
 
