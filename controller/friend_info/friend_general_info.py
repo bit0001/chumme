@@ -3,10 +3,10 @@ import webbrowser
 from kivy.properties import StringProperty
 from kivy.uix.button import Button
 
+from controller.popup.popup import get_delete_friend_confirmation_popup
 from controller.util import get_image_from_blob
 from database_manager.util import ChumMeDBManager
 from .friend_carousel import FriendInfo
-from controller.popup import get_delete_friend_confirmation_popup
 
 
 class FriendGeneralInfo(FriendInfo):

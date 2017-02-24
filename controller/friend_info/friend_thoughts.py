@@ -1,6 +1,6 @@
 from kivy.uix.label import Label
 
-from controller.popup import get_empty_thought_popup
+from controller.popup.popup import get_empty_thought_popup
 from database_manager.thought_manager import EmptyThoughtException
 from database_manager.util import ChumMeDBManager
 from model.thought import Thought
