@@ -1,0 +1,10 @@
+<ImageChooser>:
+    BoxLayout:
+        orientation: 'vertical'
+        FileChooserIconView:
+            on_selection: app.root.show_friend_form(self.selection[0])
+        Button:
+            size_hint_y: None
+            height: '40dp'
+            text: 'Cancel'
+            on_press: app.root.show_friend_form()
