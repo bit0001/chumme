@@ -1,4 +1,5 @@
 #: include view/add_update_form/image_chooser.kv
+#: include view/add_update_form/social_network.kv
 #: import Friend model.friend.Friend
 <FormInput@BoxLayout>
     height: '30dp'
@@ -88,64 +89,6 @@
                 pos_hint: {'center_x': 0.5}
                 text: 'Choose photo'
                 on_press: app.root.show_image_chooser()
-
-<SocialNetworkForm@ScrollView>
-    container: container
-    do_scroll_x: False
-    GridLayout:
-        cols: 1
-        size_hint_y: None
-        height: self.minimum_height
-        id: container
-        padding: ['20dp', 0, '20dp', 0]
-        spacing: [20, 20]
-
-<SocialNetworkField>
-    image: ''
-    hint: ''
-    link: ''
-    text_input: text_input
-    check_box: check_box
-    size_hint_y: None
-    height: '40dp'
-    spacing: ['20dp', '20dp']
-    CheckBox:
-        id: check_box
-        valign: 'middle'
-        size_hint_x: None
-        width: '50dp'
-        on_active: root.enable_disable_text_input(self)
-        canvas.before:
-            Color:
-                rgb: 1, 1, 1
-            Rectangle:
-                pos:self.center_x - 13, self.center_y - 13
-                size:[26, 26]
-    Image:
-        source: 'resources/img/white_background.png'
-        size_hint: None, None
-        size: '35dp', '35dp'
-        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-        pos: self.pos
-        Image:
-            source: root.image
-            size_hint: None, None
-            size: '35dp', '35dp'
-            center_x: self.parent.center_x
-            center_y: self.parent.center_y
-            pos: self.pos
-    BoxLayout:
-        size_hint_x: None
-        width: '20dp'
-    TextInput:
-        id: text_input
-        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-        size_hint_y: None
-        height: '30dp'
-        multiline: False
-        hint_text: root.hint
-        text: root.link
-        disabled: True
 
 <AddFriendForm>:
     BoxLayout:
