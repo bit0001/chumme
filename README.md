@@ -1,5 +1,16 @@
 # chumme
 This is an application to track the information of your friends.
+It is possible to store general information about a friend as
+his/her first, middle and last name, birthday, email, cell phone,
+and marital status. In addition, one can store links to their
+profile networks such as Facebook, LinkedIn, Twitter, Google+,
+Instagram, and Pinterest among others. One can also add a profile
+photo of one's friend.
+
+ChumMe also offers the possibility of adding the interests of
+a friend. Last but not least, one can add thoughts about a friend,
+and these thoughts cannot be deleted, so one can always see the
+thoughts of a particular friend.
 
 # Screenshots
 1. List of friends
